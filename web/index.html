@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+**  StdVer ~ Standard Versioning Scheme
+**  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
+**  Licensed under Creative Commons Attribution 4.0 <https://spdx.org/licenses/CC-BY-4.0.html>
+-->
+<html>
+    <head>
+        <title>Standard Versioning Scheme</title>
+        <meta charset="UTF-8"/>
+        <link rel="shortcut icon" href="logo.ico">
+
+        <link type="text/css" rel="stylesheet" href="node_modules/typopro-web/web/TypoPRO-SourceSansPro/TypoPRO-SourceSansPro.css">
+        <script type="text/javascript" src="node_modules/vue/dist/vue.global.prod.js"></script>
+
+        <style type="text/css">
+            html {
+                width: 100vw;
+                height: auto;
+                margin: 0;
+            }
+            body {
+                background: linear-gradient(#282828, #000000);
+                background-repeat: no-repeat;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: auto;
+                margin: 0;
+            }
+            .invisible {
+                display: none;
+            }
+            .visible {
+                display: block;
+            }
+            .page {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #c0c0c0;
+                font-family: "Source Sans Pro", sans-serif;
+                font-size: 12pt;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page invisible" v-bind:class="{ visible: true }">
+            <div class="social">
+                <div class="twitter-sharing">
+                    <a class="twitter-share-button" href="https://twitter.com/share"
+                        data-url="https://stdver.org"
+                        data-text="The ultimate versioning scheme for your software solutions"
+                        data-hashtags="StdVer"
+                        data-related="engelschall"
+                    >Tweet</a>
+                    <script>
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+                    </script>
+                </div>
+                <div class="github-stars">
+                    <a href="https://github.com/softeng-academy/stdver">
+                        <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 2000;"
+                             src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+                             alt="Fork me on GitHub"
+                             data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"/>
+                    </a>
+                    <iframe id="starbutton" src="https://ghbtns.com/github-btn.html?user=softeng-academy&repo=stdver&type=star&count=true"
+                        frameborder="0" scrolling="0" width="170px" height="20px">
+                    </iframe>
+                </div>
+            </div>
+            <div class="content">
+                Standard Versioning
+            </div>
+            <div class="footer">
+                Copyright &copy; 2023 <a href="https://softeng.academy">SEA Software Engineering Academy gGmbH</a><br/>
+                Licensed under <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY 4.0</a>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        Vue.createApp({
+            data () {
+                return {
+                }
+            }
+        }).mount("body")
+    </script>
+</html>

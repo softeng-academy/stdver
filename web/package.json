@@ -1,0 +1,26 @@
+{
+    "name":                        "stdver-web",
+    "publishConfig":               { "access": "public" },
+    "version":                     "0.0.0",
+    "description":                 "Standard Version Website",
+    "browser":                     "index.html",
+    "keywords":                    [ "standard", "version", "website" ],
+    "repository": {
+        "type":                    "git",
+        "url":                     "git+https://github.com/softeng-academy/stdver.git"
+    },
+    "author": {
+        "name":                    "SEA Software Engineering Academy gGmbH",
+        "email":                   "contact@softeng.academy",
+        "url":                     "http://softeng.academy"
+    },
+    "license":                     "MIT",
+    "homepage":                    "https://github.com/softeng-academy/stdver",
+    "bugs":                        "https://github.com/softeng-academy/stdver/issues",
+    "dependencies": {
+        "vue":                     "3.3.4",
+        "typopro-web":             "4.2.6"
+    },
+    "scripts": {
+    }
+}
