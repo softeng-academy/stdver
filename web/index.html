@@ -11,16 +11,18 @@
         <link rel="shortcut icon" href="logo.ico">
 
         <link type="text/css" rel="stylesheet" href="node_modules/typopro-web/web/TypoPRO-SourceSansPro/TypoPRO-SourceSansPro.css">
+        <link type="text/css" rel="stylesheet" href="node_modules/typopro-web/web/TypoPRO-SourceCodePro/TypoPRO-SourceCodePro.css">
         <script type="text/javascript" src="node_modules/vue/dist/vue.global.prod.js"></script>
 
         <style type="text/css">
             html {
                 width: 100vw;
+                min-height: 100vh;
                 height: auto;
                 margin: 0;
             }
             body {
-                background: linear-gradient(#282828, #000000);
+                background: linear-gradient(#303030, #000000);
                 background-repeat: no-repeat;
                 display: flex;
                 flex-direction: row;
@@ -28,6 +30,7 @@
                 align-items: center;
                 width: 100vw;
                 height: auto;
+                min-height: 100vh;
                 margin: 0;
             }
             .invisible {
@@ -39,14 +42,69 @@
             .page {
                 margin-top: 20px;
                 margin-bottom: 20px;
-                color: #c0c0c0;
-                font-family: "Source Sans Pro", sans-serif;
-                font-size: 12pt;
+                color: #d0d0d0;
+                font-family: "TypoPRO Source Sans Pro", sans-serif;
+                font-size: 14pt;
+                max-width: 700px;
+            }
+            tt {
+                font-family: "TypoPRO Source Code Pro", monospace;
+                font-size: 14pt;
+            }
+            .social {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 0px;
+            }
+            .social .github-stars {
+                margin-left: 10px;
+            }
+            a,
+            a:visited {
+                text-decoration: none;
+                color: #a0d0ff;
+            }
+            .var1 {
+                font-weight: bold;
+                color: #f0e0b0;
+                border: 1px solid #605040;
+                border-radius: 4px;
+                padding: 0px 4px 0px 4px;
+            }
+            .var2 {
+                font-weight: bold;
+                color: #a0d0ff;
+                border: 1px solid #405060;
+                border-radius: 4px;
+                padding: 0px 4px 0px 4px;
+            }
+            tt {
+                border: 1px solid #404040;
+                border-radius: 4px;
+                padding: 0px 4px 0px 4px;
+            }
+            .pa {
+                color: #909090;
+            }
+            li + li {
+                margin-top: 8px;
+            }
+            .scheme, .scheme * {
+                font-size: 24pt;
+            }
+            .scheme * {
+                margin-right: 4px;
+            }
+            .scheme tt {
+                font-size: 24pt;
+                padding: 3px 4px 3px 4px;
             }
         </style>
     </head>
     <body>
-        <div class="page invisible" v-bind:class="{ visible: true }">
+        <div class="page">
             <div class="social">
                 <div class="twitter-sharing">
                     <a class="twitter-share-button" href="https://twitter.com/share"
@@ -72,7 +130,79 @@
                 </div>
             </div>
             <div class="content">
-                Standard Versioning
+                <h1>Standard Versioning</h1>
+
+                <h2>Scheme</h2>
+
+                <div class="scheme">
+                    <span class="var1">M</span><tt>.</tt><span class="var1">N</span><span class="var1">m</span><span class="var1">R</span>
+                    <span class="pa">[</span><tt>.</tt><span class="var2">YYYYMMDD</span><span class="pa">]</span>
+                    <span class="pa">[</span><tt>+</tt><span class="var2">HHHH</span><span class="pa">]</span>
+                    <span class="pa">[</span><tt>-</tt><span class="var2">SS</span><span class="pa">]</span>
+                </div>
+
+                <h2>Examples</h2>
+
+                <tt>1.2.3</tt><br/>
+                <tt>1.2.3-GA</tt><br/>
+                <tt>1.2b3.20230821-LA</tt><br/>
+                <tt>1.2a3.20230821+42FA-XA</tt><br/>
+                <tt>1.2a3+42FA-XA</tt><br/>
+
+                <h2>Version Identification Parts</h2>
+
+                <ul>
+                    <li><span class="var1">M</span>: <tt>/\d+/</tt> &mdash; Major Version<br/>
+                        Major Version of solution.
+                        Bumped on major technical or domain-specific changes only. 
+                        A bump resets the Minor Version <span class="var1">N</span> and Revision <span class="var1">R</span>, too.
+                        On upgrades human interaction is expected.
+                    </li>
+                    <li><span class="var1">N</span>: <tt>/\d+/</tt> &mdash; Minor Version<br/>
+                        Minor Version of the solution within the Major Version.
+                        Bumped on new features.
+                        A bump resets the Revision <span class="var1">R</span>, too.
+                        Backward compatibility is seeked for, but not assured.
+                        On upgrades human interaction might be required.
+                    </li>
+                    <li><span class="var1">m</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; Maturity Level<br/>
+                        Maturity Level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>. 
+                        <ul>
+                            <li><tt>a</tt>: Alpha Maturity Level<br/>
+                                Early version of the solution with incomplete and unstable
+                                functionalities to get feedback on product.
+                            </li>
+                            <li><tt>b</tt>: Beta Maturity Level<br/>
+                                Early version of the solution with complete but still unstable
+                                functionalities to stabilise product.
+                            </li>
+                            <li><tt>rc</tt>: Release Candidate Maturity Level<br/>
+                                Mature version of solution with complete and stable functionalities to
+                                catch last-minute problems.
+                            </li>
+                            <li><tt>.</tt>: Release Maturity Level<br/>
+                                Initial and subsequent versions of the solution with complete and stable
+                                functionalities, available for production use.
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span class="var1">R</span>: <tt>/\d+/</tt> &mdash; Revision<br/>
+                        Revision of the Maturity Level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>. 
+                        Bumped for every Maturity Level <span class="var1">m</span>.
+                        On Release Update Maturity Levels, full backward compatibility is assured.
+                        On upgrades no human interaction is required.
+                    </li>
+                    <li><span class="var2">YYYYMMDD</span>: <tt>/\d{8}/</tt> &mdash; Release Date<br/>
+                        The optional release date in ISO notation.
+                    </li>
+                    <li><span class="var2">HHHH</span>: <tt>/[\dA-F]{4}/</tt> &mdash; Source Hash<br/>
+                        The optional hashing checksum of the source code of the solution.
+                    </li>
+                    <li><span class="var2">SS</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; Availability Scope<br/>
+                        The optional availability scopes of the release.
+                    </li>
+                </ul>
+
             </div>
             <div class="footer">
                 Copyright &copy; 2023 <a href="https://softeng.academy">SEA Software Engineering Academy gGmbH</a><br/>
