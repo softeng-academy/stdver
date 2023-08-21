@@ -1,0 +1,2 @@
+# stdver
+Standard Versioning
