@@ -1,2 +1,6 @@
-# stdver
-Standard Versioning
+
+stdver
+======
+
+**Standard Versioning**
+
