@@ -171,15 +171,35 @@
                 </ul>
 
             </div>
+            <div class="content" v-show="page === 'comparison'">
+                <div class="subtitle">Comparison</div>
+
+                <a href="https://semver.org">Semantic Versioning</a> is another popular versioning scheme
+                based on three version numbers, where each version number is incremented
+                when a certain class of change was done. The types of changes are
+                backward compatible bugfixes, backward compatible new functionality, and
+                backward incompatible changes. As a consequence, the user knows exactly
+                what to expect from a version number following this strict scheme.
+                Unfortunately, using this scheme does not meet the intuition of some
+                people in practice, as... FIXME
+
+            </div>
             <div class="content" v-show="page === 'about'">
                 <div class="subtitle">About</div>
 
                 The <i>Standard Versioning</i> dates back to early definitions
                 in the year 2008 by <i>Dr. Ralf S. Engelschall</i> in the context
-                of its Software Architecture trainings. It was formally 
+                of its Software Architecture trainings. It was formally
                 defined and publically published on <a href="https://stdver.org">stdver.org</a> in 2023 to have
-                a convenient reference at hand on the Web. It is motivated by the usual maturity-based intution 
-                one has in mind when when it comes to solution versions.
+                a convenient reference at hand on the Web.
+
+                <p/>
+                <i>Standard Versioning</i> is motivated by the usual maturity-based intution
+                most people have in mind when it comes to solution versions. It also integrates
+                the recurring revisions of maturity phases directly into the version.
+                Finally, it knows the optional tagging of versions with release date,
+                source hash and availability scope in order to support snapshot versions,
+                development versions and different target customer scopes.
             </div>
         </div>
         <div class="area col5">
