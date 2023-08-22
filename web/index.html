@@ -14,121 +14,8 @@
         <link type="text/css" rel="stylesheet" href="node_modules/typopro-web/web/TypoPRO-SourceCodePro/TypoPRO-SourceCodePro.css">
         <script type="text/javascript" src="node_modules/vue/dist/vue.global.prod.js"></script>
 
-        <style type="text/css">
-            html {
-                width: 100vw;
-                min-height: 100vh;
-                height: auto;
-                margin: 0;
-            }
-            body {
-                background: linear-gradient(#282828, #000000);
-                background-repeat: no-repeat;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                width: 100vw;
-                height: auto;
-                min-height: 100vh;
-                margin: 0;
-            }
-            .invisible {
-                display: none;
-            }
-            .visible {
-                display: block;
-            }
-            .page {
-                margin-top: 20px;
-                margin-bottom: 20px;
-                color: #d0d0d0;
-                font-family: "TypoPRO Source Sans Pro", sans-serif;
-                font-size: 14pt;
-                max-width: 700px;
-            }
-            tt {
-                font-family: "TypoPRO Source Code Pro", monospace;
-                font-size: 14pt;
-            }
-            .footer {
-                margin-top: 40px;
-                margin-bottom: 20px;
-                color: #909090;
-                font-size: 10pt;
-            }
-            .social {
-                display: flex;
-                flex-direction: row;
-                justify-content: left;
-                align-items: center;
-                margin-bottom: 0px;
-            }
-            .social .github-stars {
-                margin-left: 10px;
-            }
-            a,
-            a:visited {
-                text-decoration: none;
-                color: #a0d0ff;
-            }
-            h1 {
-                color: #ffffff;
-            }
-            h1 span {
-                font-weight: 200;
-                padding-left: 20px;
-                font-size: 20pt;
-            }
-            h2 {
-                color: #ffffff;
-                font-weight: 200;
-            }
-            .var1 {
-                font-weight: bold;
-                color: #f0e0b0;
-                background-color: #60504040;
-                border: 1px solid #605040;
-                border-radius: 4px;
-                padding: 0px 4px 0px 4px;
-            }
-            .var1col {
-                color: #f0e0b0;
-            }
-            .var2 {
-                font-weight: bold;
-                color: #a0d0ff;
-                background-color: #40506040;
-                border: 1px solid #405060;
-                border-radius: 4px;
-                padding: 0px 4px 0px 4px;
-            }
-            .var2col {
-                color: #a0d0ff;
-            }
-            tt {
-                background-color: #40404040;
-                border: 1px solid #404040;
-                border-radius: 4px;
-                padding: 0px 4px 0px 4px;
-            }
-            .pa {
-                color: #909090;
-            }
-            li {
-                margin-top: 0.9rem;
-            }
-            .scheme, .scheme * {
-                font-size: 24pt;
-            }
-            .scheme * {
-                margin-right: 4px;
-            }
-            .scheme tt {
-                font-size: 24pt;
-                padding: 3px 4px 3px 4px;
-            }
-        </style>
+        <link type="text/css" rel="stylesheet" href="index.css">
+        <style type="text/css" src="index.css"></style>
     </head>
     <body>
         <div class="page">
@@ -261,12 +148,5 @@
             </div>
         </div>
     </body>
-    <script type="text/javascript">
-        Vue.createApp({
-            data () {
-                return {
-                }
-            }
-        }).mount("body")
-    </script>
+    <script type="text/javascript" src="index.js"></script>
 </html>
