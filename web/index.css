@@ -1,6 +1,7 @@
 /*
 **  StdVer ~ Standard Versioning
 **  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
+**  Copyright (c) 2008-2023 Dr. Ralf S. Engelschall
 **  Licensed under Creative Commons Attribution 4.0 <https://spdx.org/licenses/CC-BY-4.0.html>
 */
 
@@ -9,42 +10,83 @@ html {
     min-height: 100vh;
     height: auto;
     margin: 0;
+    padding: 0;
 }
 body {
-    background: linear-gradient(#282828, #000000);
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 100vw;
     height: auto;
     min-height: 100vh;
     margin: 0;
-}
-.invisible {
-    display: none;
-}
-.visible {
-    display: block;
-}
-.page {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: #d0d0d0;
+    padding: 0;
+    background: linear-gradient(#282828, #000000);
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: "TypoPRO Source Sans Pro", sans-serif;
     font-size: 14pt;
-    max-width: 700px;
 }
+a,
+a:visited {
+    text-decoration: none;
+    color: #6F4214;
+}
+
+.area {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: first;
+    align-items: center;
+}
+.area.col1 {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+.area.col2 {
+    background-color: #FFEBD2;
+    color: #000000;
+}
+.area.col3 {
+    background-color: #F4DBC2;
+    color: #000000;
+}
+.area.col4 {
+    background-color: #E8B481;
+    color: #333333;
+}
+.area.col5 {
+    background-color: #DC8E40;
+    color: #333333;
+}
+.area.grow {
+    flex-grow: 1;
+}
+
+.content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #333333;
+    width: 700px;
+}
+
+.logo {
+    width: 250px;
+    float: right;
+}
+
 tt {
     font-family: "TypoPRO Source Code Pro", monospace;
     font-size: 14pt;
 }
 .footer {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    color: #909090;
+    color: #ffffff;
     font-size: 10pt;
+}
+.footer a {
+    color: #f4dbc2;
 }
 .social {
     display: flex;
@@ -56,65 +98,87 @@ tt {
 .social .github-stars {
     margin-left: 10px;
 }
-a,
-a:visited {
-    text-decoration: none;
-    color: #a0d0ff;
-}
-h1 {
-    color: #ffffff;
-}
-h1 span {
-    font-weight: 200;
-    padding-left: 20px;
-    font-size: 20pt;
-}
-h2 {
-    color: #ffffff;
-    font-weight: 200;
-}
-.var1 {
+.title {
+    margin-top: 20px;
+    color: #444444;
+    font-size: 42pt;
+    line-height: 36pt;
+    letter-spacing: -2px;
     font-weight: bold;
-    color: #f0e0b0;
-    background-color: #60504040;
-    border: 1px solid #605040;
-    border-radius: 4px;
-    padding: 0px 4px 0px 4px;
 }
-.var1col {
-    color: #f0e0b0;
+.title .url {
+    font-size: 18pt;
+    font-weight: 200;
+    color: #999999;
+    letter-spacing: 0;
 }
-.var2 {
-    font-weight: bold;
-    color: #a0d0ff;
-    background-color: #40506040;
-    border: 1px solid #405060;
-    border-radius: 4px;
-    padding: 0px 4px 0px 4px;
-}
-.var2col {
-    color: #a0d0ff;
-}
-tt {
-    background-color: #40404040;
-    border: 1px solid #404040;
-    border-radius: 4px;
-    padding: 0px 4px 0px 4px;
-}
-.pa {
-    color: #909090;
+.subtitle {
+    color: #806020;
+    font-weight: 200;
+    font-size: 24pt;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 li {
     margin-top: 0.9rem;
 }
-.scheme, .scheme * {
-    font-size: 24pt;
+.scheme {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 .scheme * {
+    font-size: 24pt;
     margin-right: 4px;
 }
+.var {
+    display: inline-block;
+    font-weight: bold;
+    color: #fff0e0;
+    background-color: #90704050;
+    border: 1px solid #70504060;
+    border-radius: 4px;
+    padding: 0px 8px 0px 8px;
+}
+.varcol {
+    color: #333333;
+    font-weight: 600;
+}
+tt {
+    display: inline-block;
+    background-color: #40404010;
+    border: 1px solid #40404060;
+    border-radius: 4px;
+    padding: 0px 8px 0px 8px;
+}
+.scheme .var,
 .scheme tt {
-    font-size: 24pt;
-    padding: 3px 4px 3px 4px;
+    height: 44px;
+}
+.pa {
+    display: inline-block;
+    color: #b09070;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.navbar .navitem {
+    color: #ffffff;
+    background-color: #E8B481;
+    border-radius: 4px;
+    padding: 0px 8px 0px 8px;
+    margin-right: 8px;
+    font-weight: 200;
+}
+.navbar .navitem.active {
+    color: #ffffff;
+    background-color: #6F4214;
 }
 

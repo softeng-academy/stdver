@@ -2,6 +2,7 @@
 <!--
 **  StdVer ~ Standard Versioning
 **  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
+**  Copyright (c) 2008-2023 Dr. Ralf S. Engelschall
 **  Licensed under Creative Commons Attribution 4.0 <https://spdx.org/licenses/CC-BY-4.0.html>
 -->
 <html>
@@ -18,106 +19,111 @@
         <style type="text/css" src="index.css"></style>
     </head>
     <body>
-        <div class="page">
-            <div class="social">
-                <div class="twitter-sharing">
-                    <a class="twitter-share-button" href="https://twitter.com/share"
-                        data-url="https://stdver.org"
-                        data-text="The ultimate versioning scheme for your software solutions"
-                        data-hashtags="StdVer"
-                        data-related="engelschall"
-                    >Tweet</a>
-                    <script>
-                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-                    </script>
+        <div class="area col1">
+            <div class="content">
+                <div class="social">
+                    <div class="twitter-sharing">
+                        <a class="twitter-share-button" href="https://twitter.com/share"
+                            data-url="https://stdver.org"
+                            data-text="The ultimate versioning scheme for your software solutions"
+                            data-hashtags="StdVer"
+                            data-related="engelschall"
+                        >Tweet</a>
+                        <script>
+                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+                        </script>
+                    </div>
+                    <div class="github-stars">
+                        <iframe id="starbutton" src="https://ghbtns.com/github-btn.html?user=softeng-academy&repo=stdver&type=star&count=true"
+                            frameborder="0" scrolling="0" width="170px" height="20px">
+                        </iframe>
+                    </div>
                 </div>
-                <div class="github-stars">
-                    <a href="https://github.com/softeng-academy/stdver">
-                        <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 2000;"
-                             src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
-                             alt="Fork me on GitHub"
-                             data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"/>
-                    </a>
-                    <iframe id="starbutton" src="https://ghbtns.com/github-btn.html?user=softeng-academy&repo=stdver&type=star&count=true"
-                        frameborder="0" scrolling="0" width="170px" height="20px">
-                    </iframe>
+                <img class="logo" src="sea-logo.svg" alt="SEA">
+                <div class="title">
+                    Standard<br/>
+                    Versioning<br/>
+                    <span class="url">stdver.org</span>
                 </div>
             </div>
+        </div>
+        <div class="area col5">
             <div class="content">
-                <h1>Standard Versioning <span>(stdver)</span></h1>
+                <div class="navbar">
+                    <a class="navitem" v-bind:class="{ active: page === 'scheme' }" href="" v-on:click.prevent="goto('scheme')">Scheme</a>
+                    <a class="navitem" v-bind:class="{ active: page === 'examples' }" href="" v-on:click.prevent="goto('examples')">Examples</a>
+                    <!-- <a class="navitem" v-bind:class="{ active: page === 'comparison' }" href="#comparison" v-on:click.prevent="goto('comparison')">Comparison</a> -->
+                    <a class="navitem" v-bind:class="{ active: page === 'about' }" href="#about" v-on:click.prevent="goto('about')">About</a>
+                </div>
+            </div>
+        </div>
+        <div class="area col3 grow">
 
-                <h2>Version Scheme</h2>
+            <div class="content" v-show="page === 'scheme'">
+                <div class="subtitle">Standard Versioning Scheme</div>
+
+                The <i>Standard Versioning</i> is defined by the following version identifier scheme:
 
                 <div class="scheme">
-                    <span class="var1">M</span><tt>.</tt><span class="var1">N</span><span class="var1">m</span><span class="var1">R</span>
-                    <span class="pa">[</span><tt>.</tt><span class="var2">YYYYMMDD</span><span class="pa">]</span>
-                    <span class="pa">[</span><tt>+</tt><span class="var2">HHHH</span><span class="pa">]</span>
-                    <span class="pa">[</span><tt>-</tt><span class="var2">SS</span><span class="pa">]</span>
+                    <span class="var">M</span><tt>.</tt><span class="var">N</span><span class="var">p</span><span class="var">R</span>
+                    <span class="pa">[</span><tt>.</tt><span class="var">D</span><span class="pa">]</span>
+                    <span class="pa">[</span><tt>+</tt><span class="var">H</span><span class="pa">]</span>
+                    <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
                 </div>
 
-                <h2>Version Examples</h2>
-
-                <tt>1.2.3</tt><br/>
-                <tt>1.2.3-GA</tt><br/>
-                <tt>1.2b3.20230821-LA</tt><br/>
-                <tt>1.2a3.20230821+42FA-XA</tt><br/>
-                <tt>1.2a3+42FA-XA</tt><br/>
-
-                <h2>Version Identifiers</h2>
-
                 <ul>
-                    <li><span class="var1">M</span>: <tt>/\d+/</tt> (M &ge; 0) &mdash; <span class="var1col">Major Version</span><br/>
+                    <li><span class="var">M</span>: <tt>/\d+/</tt> (M &ge; 0) &mdash; <span class="varcol">Major Version</span><br/>
                         Major version of solution.
                         Bumped on major technical or domain-specific changes only.
-                        A bump resets the Minor Version <span class="var1">N</span> and Revision <span class="var1">R</span>, too.
+                        A bump resets the Minor Version <span class="var">N</span> and Revision <span class="var">R</span>, too.
                         On upgrades, human interaction is expected.
                     </li>
-                    <li><span class="var1">N</span>: <tt>/\d+/</tt> (N &ge; 0) &mdash; <span class="var1col">Minor Version</span><br/>
+                    <li><span class="var">N</span>: <tt>/\d+/</tt> (N &ge; 0) &mdash; <span class="varcol">Minor Version</span><br/>
                         Minor version of the solution within the Major Version.
                         Bumped on new features.
-                        A bump resets the Revision <span class="var1">R</span>, too.
+                        A bump resets the Revision <span class="var">R</span>, too.
                         Backward compatibility is seeked for, but not assured.
                         On upgrades, human interaction might be required.
                     </li>
-                    <li><span class="var1">m</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; <span class="var1col">Maturity Level</span><br/>
-                        Maturity level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>.
+                    <li><span class="var">p</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; <span class="varcol">Maturity Level</span><br/>
+                        Maturity level within Major Version <span class="var">M</span> and Minor Version <span class="var">N</span>.
                         <ul>
                             <li><tt>a</tt>: Alpha<br/>
                                 Early version of the solution with incomplete and unstable functionalities,
                                 to get feedback on product.
-                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 1.
+                                For Alpha maturity levels, the Revision <span class="var">R</span> usually starts with 1.
                             </li>
                             <li><tt>b</tt>: Beta<br/>
                                 Early version of the solution with complete but still unstable functionalities,
                                 to stabilize product.
-                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 1.
+                                For Alpha maturity levels, the Revision <span class="var">R</span> usually starts with 1.
                             </li>
                             <li><tt>rc</tt>: Release Candidate<br/>
                                 Mature version of the solution with complete and stable functionalities,
                                 to catch last-minute problems just before release.
-                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 1.
+                                For Alpha maturity levels, the Revision <span class="var">R</span> usually starts with 1.
                             </li>
                             <li><tt>.</tt>: Release<br/>
                                 Mature version of the solution with complete and stable functionalities,
                                 available for full production use.
-                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 0.
+                                For Alpha maturity levels, the Revision <span class="var">R</span> usually starts with 0.
                             </li>
                         </ul>
                     </li>
-                    <li><span class="var1">R</span>: <tt>/\d+/</tt> (R &ge; 0) &mdash; <span class="var1col">Revision</span><br/>
-                        Revision of the Maturity Level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>.
-                        Bumped for every Maturity Level <span class="var1">m</span>.
+                    <li><span class="var">R</span>: <tt>/\d+/</tt> (R &ge; 0) &mdash; <span class="varcol">Revision</span><br/>
+                        Revision of the Maturity Level within Major Version <span class="var">M</span> and Minor Version <span class="var">N</span>.
+                        Bumped for every Maturity Level <span class="var">m</span>.
                         On Release Update Maturity Levels, full backward compatibility is assured.
                         On upgrades no human interaction is required.
                     </li>
-                    <li><span class="var2">YYYYMMDD</span>: <tt>/\d{8}/</tt> &mdash; <span class="var2col">Release Date</span><br/>
+                    <li><span class="var">D</span>: <tt>/\d{8}/</tt> &mdash; <span class="varcol">Release Date</span><br/>
                         The optional release date of year, month and date, represented in sort-supporting ISO notation.
                     </li>
-                    <li><span class="var2">HHHH</span>: <tt>/[\dA-F]{4}/</tt> &mdash; <span class="var2col">Source Hash</span><br/>
+                    <li><span class="var">H</span>: <tt>/[\dA-F]{4}/</tt> &mdash; <span class="varcol">Source Hash</span><br/>
                         The optional 16-bit hashing checksum of the source code of the solution, represented as a upper-case hexadecimal
                         value. This usually is a SHA1 or MD5 hash (8 bytes, 128 bit), folded 3 times through an XOR-operation into 2 bytes / 16 bit.
                     </li>
-                    <li><span class="var2">SS</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; <span class="var2col">Availability Scope</span><br/>
+                    <li><span class="var">S</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; <span class="varcol">Availability Scope</span><br/>
                         The optional availability scopes of the release.
                         <ul>
                             <li><tt>XA</tt>: No Availability<br/>
@@ -141,10 +147,48 @@
                 </ul>
 
             </div>
-            <div class="footer">
-                Copyright &copy; 2023 <a href="https://softeng.academy">SEA Software Engineering Academy gGmbH</a><br/>
-                Copyright &copy; 2023 <a href="https://engelschall.com">Dr. Ralf S. Engelschall</a><br/>
-                Licensed under <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY 4.0</a>
+            <div class="content" v-show="page === 'examples'">
+                <div class="subtitle">Version Examples</div>
+
+                The following are samples of versions based on <i>Standard Versioning</i>.
+
+                <ul>
+                    <li><tt>1.2.3</tt>:<br/>
+                        a release version.
+                    </li>
+                    <li><tt>1.2.3-GA</tt>:<br/>
+                        a release version with an explicit availability scope.
+                    </li>
+                    <li><tt>1.2b3.20230821-LA</tt>:<br/>
+                        a snapshot of a beta version, made on a particular date, with explicit availability scope.
+                    </li>
+                    <li><tt>1.2a3.20230821+42FA-XA</tt>:<br/>
+                        a snapshot of an alpha version, made on a particular date, with explicit source hash and availability scope.
+                    </li>
+                    <li><tt>1.2a3+42FA-XA</tt>:<br/>
+                        a snapshot of an alpha version, with explicit source hash and availability scope.
+                    </li>
+                </ul>
+
+            </div>
+            <div class="content" v-show="page === 'about'">
+                <div class="subtitle">About</div>
+
+                The <i>Standard Versioning</i> dates back to early definitions
+                in the year 2008 by <i>Dr. Ralf S. Engelschall</i> in the context
+                of its Software Architecture trainings. It was formally 
+                defined and publically published on <a href="https://stdver.org">stdver.org</a> in 2023 to have
+                a convenient reference at hand on the Web. It is motivated by the usual maturity-based intution 
+                one has in mind when when it comes to solution versions.
+            </div>
+        </div>
+        <div class="area col5">
+            <div class="content">
+                <div class="footer">
+                    Copyright &copy; 2023 <a href="https://softeng.academy">SEA Software Engineering Academy gGmbH</a><br/>
+                    Copyright &copy; 2008-2023 <a href="https://engelschall.com">Dr. Ralf S. Engelschall</a><br/>
+                    Licensed under <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY 4.0</a>
+                </div>
             </div>
         </div>
     </body>

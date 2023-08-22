@@ -20,7 +20,5 @@
     "dependencies": {
         "vue":                     "3.3.4",
         "typopro-web":             "4.2.6"
-    },
-    "scripts": {
     }
 }
