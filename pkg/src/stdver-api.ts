@@ -1,7 +1,13 @@
+/*
+**  StdVer ~ Standard Versioning
+**  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
+**  Copyright (c) 2008-2023 Dr. Ralf S. Engelschall
+**  Licensed under MIT license <https://spdx.org/licenses/MIT.html>
+*/
 
-module.exports = class StdVer {
+export default class StdVer {
     constructor () {}
-    parse (str) {
+    parse (str: string) {
         const m = str.match(/^(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.\d{8})?(?:\+[\dA-F]{4})?(?:-(XA|LA|EA|GA))?$/)
         if (m === null)
             throw new Error("invalid version identifier")
