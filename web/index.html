@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--
-**  StdVer ~ Standard Versioning Scheme
+**  StdVer ~ Standard Versioning
 **  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
 **  Licensed under Creative Commons Attribution 4.0 <https://spdx.org/licenses/CC-BY-4.0.html>
 -->
 <html>
     <head>
-        <title>Standard Versioning Scheme</title>
+        <title>Standard Versioning</title>
         <meta charset="UTF-8"/>
         <link rel="shortcut icon" href="logo.ico">
 
@@ -22,7 +22,7 @@
                 margin: 0;
             }
             body {
-                background: linear-gradient(#303030, #000000);
+                background: linear-gradient(#282828, #000000);
                 background-repeat: no-repeat;
                 display: flex;
                 flex-direction: row;
@@ -51,10 +51,16 @@
                 font-family: "TypoPRO Source Code Pro", monospace;
                 font-size: 14pt;
             }
+            .footer {
+                margin-top: 40px;
+                margin-bottom: 20px;
+                color: #909090;
+                font-size: 10pt;
+            }
             .social {
                 display: flex;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: left;
                 align-items: center;
                 margin-bottom: 0px;
             }
@@ -66,21 +72,42 @@
                 text-decoration: none;
                 color: #a0d0ff;
             }
+            h1 {
+                color: #ffffff;
+            }
+            h1 span {
+                font-weight: 200;
+                padding-left: 20px;
+                font-size: 20pt;
+            }
+            h2 {
+                color: #ffffff;
+                font-weight: 200;
+            }
             .var1 {
                 font-weight: bold;
                 color: #f0e0b0;
+                background-color: #60504040;
                 border: 1px solid #605040;
                 border-radius: 4px;
                 padding: 0px 4px 0px 4px;
             }
+            .var1col {
+                color: #f0e0b0;
+            }
             .var2 {
                 font-weight: bold;
                 color: #a0d0ff;
+                background-color: #40506040;
                 border: 1px solid #405060;
                 border-radius: 4px;
                 padding: 0px 4px 0px 4px;
             }
+            .var2col {
+                color: #a0d0ff;
+            }
             tt {
+                background-color: #40404040;
                 border: 1px solid #404040;
                 border-radius: 4px;
                 padding: 0px 4px 0px 4px;
@@ -88,8 +115,8 @@
             .pa {
                 color: #909090;
             }
-            li + li {
-                margin-top: 8px;
+            li {
+                margin-top: 0.9rem;
             }
             .scheme, .scheme * {
                 font-size: 24pt;
@@ -130,9 +157,9 @@
                 </div>
             </div>
             <div class="content">
-                <h1>Standard Versioning</h1>
+                <h1>Standard Versioning <span>(stdver)</span></h1>
 
-                <h2>Scheme</h2>
+                <h2>Version Scheme</h2>
 
                 <div class="scheme">
                     <span class="var1">M</span><tt>.</tt><span class="var1">N</span><span class="var1">m</span><span class="var1">R</span>
@@ -141,7 +168,7 @@
                     <span class="pa">[</span><tt>-</tt><span class="var2">SS</span><span class="pa">]</span>
                 </div>
 
-                <h2>Examples</h2>
+                <h2>Version Examples</h2>
 
                 <tt>1.2.3</tt><br/>
                 <tt>1.2.3-GA</tt><br/>
@@ -149,63 +176,87 @@
                 <tt>1.2a3.20230821+42FA-XA</tt><br/>
                 <tt>1.2a3+42FA-XA</tt><br/>
 
-                <h2>Version Identification Parts</h2>
+                <h2>Version Identifiers</h2>
 
                 <ul>
-                    <li><span class="var1">M</span>: <tt>/\d+/</tt> &mdash; Major Version<br/>
-                        Major Version of solution.
-                        Bumped on major technical or domain-specific changes only. 
+                    <li><span class="var1">M</span>: <tt>/\d+/</tt> (M &ge; 0) &mdash; <span class="var1col">Major Version</span><br/>
+                        Major version of solution.
+                        Bumped on major technical or domain-specific changes only.
                         A bump resets the Minor Version <span class="var1">N</span> and Revision <span class="var1">R</span>, too.
-                        On upgrades human interaction is expected.
+                        On upgrades, human interaction is expected.
                     </li>
-                    <li><span class="var1">N</span>: <tt>/\d+/</tt> &mdash; Minor Version<br/>
-                        Minor Version of the solution within the Major Version.
+                    <li><span class="var1">N</span>: <tt>/\d+/</tt> (N &ge; 0) &mdash; <span class="var1col">Minor Version</span><br/>
+                        Minor version of the solution within the Major Version.
                         Bumped on new features.
                         A bump resets the Revision <span class="var1">R</span>, too.
                         Backward compatibility is seeked for, but not assured.
-                        On upgrades human interaction might be required.
+                        On upgrades, human interaction might be required.
                     </li>
-                    <li><span class="var1">m</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; Maturity Level<br/>
-                        Maturity Level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>. 
+                    <li><span class="var1">m</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; <span class="var1col">Maturity Level</span><br/>
+                        Maturity level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>.
                         <ul>
-                            <li><tt>a</tt>: Alpha Maturity Level<br/>
-                                Early version of the solution with incomplete and unstable
-                                functionalities to get feedback on product.
+                            <li><tt>a</tt>: Alpha<br/>
+                                Early version of the solution with incomplete and unstable functionalities,
+                                to get feedback on product.
+                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 1.
                             </li>
-                            <li><tt>b</tt>: Beta Maturity Level<br/>
-                                Early version of the solution with complete but still unstable
-                                functionalities to stabilise product.
+                            <li><tt>b</tt>: Beta<br/>
+                                Early version of the solution with complete but still unstable functionalities,
+                                to stabilize product.
+                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 1.
                             </li>
-                            <li><tt>rc</tt>: Release Candidate Maturity Level<br/>
-                                Mature version of solution with complete and stable functionalities to
-                                catch last-minute problems.
+                            <li><tt>rc</tt>: Release Candidate<br/>
+                                Mature version of the solution with complete and stable functionalities,
+                                to catch last-minute problems just before release.
+                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 1.
                             </li>
-                            <li><tt>.</tt>: Release Maturity Level<br/>
-                                Initial and subsequent versions of the solution with complete and stable
-                                functionalities, available for production use.
+                            <li><tt>.</tt>: Release<br/>
+                                Mature version of the solution with complete and stable functionalities,
+                                available for full production use.
+                                For Alpha maturity levels, the Revision <span class="var1">R</span> usually starts with 0.
                             </li>
                         </ul>
                     </li>
-                    <li><span class="var1">R</span>: <tt>/\d+/</tt> &mdash; Revision<br/>
-                        Revision of the Maturity Level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>. 
+                    <li><span class="var1">R</span>: <tt>/\d+/</tt> (R &ge; 0) &mdash; <span class="var1col">Revision</span><br/>
+                        Revision of the Maturity Level within Major Version <span class="var1">M</span> and Minor Version <span class="var1">N</span>.
                         Bumped for every Maturity Level <span class="var1">m</span>.
                         On Release Update Maturity Levels, full backward compatibility is assured.
                         On upgrades no human interaction is required.
                     </li>
-                    <li><span class="var2">YYYYMMDD</span>: <tt>/\d{8}/</tt> &mdash; Release Date<br/>
-                        The optional release date in ISO notation.
+                    <li><span class="var2">YYYYMMDD</span>: <tt>/\d{8}/</tt> &mdash; <span class="var2col">Release Date</span><br/>
+                        The optional release date of year, month and date, represented in sort-supporting ISO notation.
                     </li>
-                    <li><span class="var2">HHHH</span>: <tt>/[\dA-F]{4}/</tt> &mdash; Source Hash<br/>
-                        The optional hashing checksum of the source code of the solution.
+                    <li><span class="var2">HHHH</span>: <tt>/[\dA-F]{4}/</tt> &mdash; <span class="var2col">Source Hash</span><br/>
+                        The optional 16-bit hashing checksum of the source code of the solution, represented as a upper-case hexadecimal
+                        value. This usually is a SHA1 or MD5 hash (8 bytes, 128 bit), folded 3 times through an XOR-operation into 2 bytes / 16 bit.
                     </li>
-                    <li><span class="var2">SS</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; Availability Scope<br/>
+                    <li><span class="var2">SS</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; <span class="var2col">Availability Scope</span><br/>
                         The optional availability scopes of the release.
+                        <ul>
+                            <li><tt>XA</tt>: No Availability<br/>
+                                No public availability of solution at all.
+                                The scope for all Development and sometimes Snapshot point-in-times.
+                            </li>
+                            <li><tt>LA</tt>: Limited Availability<br/>
+                                Limited public availability of solution.
+                                Usually for releases after the End-of-Life-Announcement (EOLA) or for releases with specific customer features.
+                            </li>
+                            <li><tt>EA</tt>: Early Availability<br/>
+                                Early public availability of solution for early market.
+                                Usually for Beta or Release Candidate levels or for Release and initial Release Update levels.
+                            </li>
+                            <li><tt>GA</tt>: General Availability<br/>
+                                Late public availability of solution for mainstream market.
+                                Usually for Release and sometimes just for Release Update levels.
+                            </li>
+                        </ul>
                     </li>
                 </ul>
 
             </div>
             <div class="footer">
                 Copyright &copy; 2023 <a href="https://softeng.academy">SEA Software Engineering Academy gGmbH</a><br/>
+                Copyright &copy; 2023 <a href="https://engelschall.com">Dr. Ralf S. Engelschall</a><br/>
                 Licensed under <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY 4.0</a>
             </div>
         </div>
