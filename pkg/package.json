@@ -1,0 +1,24 @@
+{
+    "name":                        "stdver",
+    "publishConfig":               { "access": "public" },
+    "version":                     "0.0.0",
+    "description":                 "Standard Versioning",
+    "keywords":                    [ "analog", "clock", "obs", "studio", "vmix" ],
+    "repository": {
+        "type":                    "git",
+        "url":                     "git+https://github.com/softeng-academy/stdver.git"
+    },
+    "author": {
+        "name":                    "Dr. Ralf S. Engelschall",
+        "email":                   "rse@engelschall.com",
+        "url":                     "http://engelschall.com"
+    },
+    "license":                     "MIT",
+    "homepage":                    "https://github.com/softeng-academy/stdver",
+    "bugs":                        "https://github.com/softeng-academy/stdver/issues",
+    "main":                        "stdver.js",
+    "dependencies": {
+    },
+    "scripts": {
+    }
+}
