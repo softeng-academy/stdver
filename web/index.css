@@ -146,9 +146,9 @@ li {
     border-radius: 4px;
     padding: 0px 8px 0px 8px;
 }
-.varcol {
+.part {
     color: #333333;
-    font-weight: 600;
+    font-size: 120%;
 }
 tt {
     display: inline-block;
