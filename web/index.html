@@ -127,8 +127,9 @@
                     </li>
                     <li><span class="var">H</span>: <tt>/[\dA-F]{4}/</tt> &mdash; <span class="varcol">Source Hash</span><br/>
                         The optional 16-bit hashing checksum of the source code of the solution, represented as a upper-case hexadecimal
-                        value. This usually is a SHA1 or MD5 hash (8 bytes, 128 bit), folded 3 times through an XOR-operation into 2 bytes / 16 bit.
-                        <i>Rationale: Support sub-daily snapshots and build identification during developer hot-reload round-trips.</i>
+                        value. This usually is an, automatically calculated build-time, SHA1 or MD5 hash
+                        value (8 bytes, 128 bit), folded 3 times through an XOR-operation into just 2 bytes / 16 bit.
+                        <i>Rationale: Support sub-daily snapshots and easy build identification during developer hot-reload round-trips.</i>
                     </li>
                     <li><span class="var">S</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; <span class="varcol">Availability Scope</span><br/>
                         The optional availability scopes of the release. The known scopes are:
