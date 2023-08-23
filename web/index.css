@@ -69,7 +69,7 @@ a:visited {
     margin-top: 10px;
     margin-bottom: 10px;
     color: #333333;
-    width: 700px;
+    width: 640px;
 }
 
 .logo {
@@ -107,7 +107,7 @@ tt {
     font-weight: bold;
 }
 .title .url {
-    font-size: 18pt;
+    font-size: 16pt;
     font-weight: 200;
     color: #999999;
     letter-spacing: 0;

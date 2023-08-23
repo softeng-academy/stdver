@@ -43,7 +43,7 @@
                 <div class="title">
                     Standard<br/>
                     Versioning<br/>
-                    <span class="url">stdver.org</span>
+                    <span class="url">stdver.org 0.9.1.20230823</span>
                 </div>
             </div>
         </div>
@@ -77,6 +77,7 @@
                         Bumped on major technical or domain-specific changes only.
                         A bump resets the Minor Version <span class="var">N</span> and Revision <span class="var">R</span>, too.
                         On upgrades, human interaction is expected.
+                        <i>Rationale: Primary version of solution.</i>
                     </li>
                     <li><span class="var">N</span>: <tt>/\d+/</tt> (N &ge; 0) &mdash; <span class="varcol">Minor Version</span><br/>
                         Minor version of the solution within the Major Version.
@@ -84,9 +85,11 @@
                         A bump resets the Revision <span class="var">R</span>, too.
                         Backward compatibility is seeked for, but not assured.
                         On upgrades, human interaction might be required.
+                        <i>Rationale: Secondary version of solution.</i>
                     </li>
                     <li><span class="var">p</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; <span class="varcol">Maturity Level</span><br/>
-                        Maturity level within Major Version <span class="var">M</span> and Minor Version <span class="var">N</span>.
+                        Maturity phase within Major Version <span class="var">M</span> and Minor Version <span class="var">N</span>.
+                        The known phases are:
                         <ul>
                             <li><tt>a</tt>: Alpha<br/>
                                 Early version of the solution with incomplete and unstable functionalities,
@@ -109,22 +112,26 @@
                                 For Alpha maturity levels, the Revision <span class="var">R</span> usually starts with 0.
                             </li>
                         </ul>
+                        <i>Rationale: Integrate maturity phase.</i>
                     </li>
                     <li><span class="var">R</span>: <tt>/\d+/</tt> (R &ge; 0) &mdash; <span class="varcol">Revision</span><br/>
                         Revision of the Maturity Level within Major Version <span class="var">M</span> and Minor Version <span class="var">N</span>.
                         Bumped for every Maturity Level <span class="var">m</span>.
                         On Release Update Maturity Levels, full backward compatibility is assured.
                         On upgrades no human interaction is required.
+                        <i>Rationale: Revision counter within maturity phase.</i>
                     </li>
                     <li><span class="var">D</span>: <tt>/\d{8}/</tt> &mdash; <span class="varcol">Release Date</span><br/>
                         The optional release date of year, month and date, represented in sort-supporting ISO notation.
+                        <i>Rationale: Support snapshots between official versions.</i>
                     </li>
                     <li><span class="var">H</span>: <tt>/[\dA-F]{4}/</tt> &mdash; <span class="varcol">Source Hash</span><br/>
                         The optional 16-bit hashing checksum of the source code of the solution, represented as a upper-case hexadecimal
                         value. This usually is a SHA1 or MD5 hash (8 bytes, 128 bit), folded 3 times through an XOR-operation into 2 bytes / 16 bit.
+                        <i>Rationale: Support sub-daily snapshots and build identification during developer hot-reload round-trips.</i>
                     </li>
                     <li><span class="var">S</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; <span class="varcol">Availability Scope</span><br/>
-                        The optional availability scopes of the release.
+                        The optional availability scopes of the release. The known scopes are:
                         <ul>
                             <li><tt>XA</tt>: No Availability<br/>
                                 No public availability of solution at all.
@@ -143,6 +150,7 @@
                                 Usually for Release and sometimes just for Release Update levels.
                             </li>
                         </ul>
+                        <i>Rationale: Support intended scope of version.</i>
                     </li>
                 </ul>
 
