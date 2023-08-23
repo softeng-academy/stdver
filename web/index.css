@@ -32,6 +32,9 @@ a:visited {
     text-decoration: none;
     color: #6F4214;
 }
+b {
+    font-weight: 600;
+}
 
 .area {
     width: 100vw;

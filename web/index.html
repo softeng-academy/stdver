@@ -52,7 +52,7 @@
                 <div class="navbar">
                     <a class="navitem" v-bind:class="{ active: page === 'scheme' }" href="" v-on:click.prevent="goto('scheme')">Scheme</a>
                     <a class="navitem" v-bind:class="{ active: page === 'examples' }" href="" v-on:click.prevent="goto('examples')">Examples</a>
-                    <!-- <a class="navitem" v-bind:class="{ active: page === 'comparison' }" href="#comparison" v-on:click.prevent="goto('comparison')">Comparison</a> -->
+                    <a class="navitem" v-bind:class="{ active: page === 'comparison' }" href="#comparison" v-on:click.prevent="goto('comparison')">Comparison</a>
                     <a class="navitem" v-bind:class="{ active: page === 'about' }" href="#about" v-on:click.prevent="goto('about')">About</a>
                 </div>
             </div>
@@ -183,14 +183,69 @@
             <div class="content" v-show="page === 'comparison'">
                 <div class="subtitle">Comparison</div>
 
-                <a href="https://semver.org">Semantic Versioning</a> is another popular versioning scheme
-                based on three version numbers, where each version number is incremented
-                when a certain class of change was done. The types of changes are
-                backward compatible bugfixes, backward compatible new functionality, and
-                backward incompatible changes. As a consequence, the user knows exactly
-                what to expect from a version number following this strict scheme.
-                Unfortunately, using this scheme does not meet the intuition of some
-                people in practice, as... FIXME
+                Beside <i>Standard Versioning</i> there are other popular versioning schemes, each with
+                their pros and cons and with distinct differences to <i>Standard Versioning</i>.
+
+                <ul>
+                    <li>
+                        <b>Semantic Versioning</b>
+
+                        <p/>
+                        <a href="https://semver.org">Semantic Versioning</a> is strict versioning scheme,
+                        based on three version numbers where each version number is incremented
+                        when a certain class of change was done. The types of changes are
+                        backward compatible bugfixes, backward compatible new functionality, and
+                        backward incompatible changes. Hence, <a href="https://semver.org">Semantic Versioning</a>
+                        primary is compatibility-driven.
+
+                        <p/>
+                        PRO: One knows exactly what compatibility to expect from such a version number.
+                        Its base part of the versions also follows the widespread scheme of three numbers
+                        and this way meets the representation expectation of many people.
+
+                        <p/>
+                        CON: The compatibility-driven semantics are useful in practice, but when it comes
+                        to version numbers, the <i>intuition</i> of many people is primarily maurity-driven and just
+                        secondarily compatibility-driven. Also, the maturity phase (pre-release) information
+                        is just attached instead of fully integrated and hence confusing for some edge cases.
+                        For instance, <tt>1.2.3-alpha.4</tt> would denoate the 4th alpha of version 1.2.3, but
+                        as the 3 of 1.2.3 in <a href="https://semver.org">Semantic Versioning</a> is a strict
+                        patchlevel for fully compatible bugfixes, why should an alpha version exists for such
+                        a situation anyway?
+                    </li>
+                    <li>
+                        <b>Calendrical Versioning</b>
+
+                        <p/>
+                        Calendrical version identifiers like <tt>2023.08</tt> are a versioning scheme,
+                        usually based on year and month information and in ISO-notation.
+
+                        <p/>
+                        PRO: Calendrical version identifiers combine the intuition of traditional 
+                        double-digit based versions with the release point in time.
+
+                        <p/>
+                        CON: Because of the maximum of a month resolution, they fit primarily large products
+                        with long release-cycles only, and especially do not work for small release-cycles.
+                    </li>
+                    <li>
+                        <b>Marketing Versioning</b>
+
+                        <p/>
+                        Marketing version identifiers like (Windows) <tt>Vista</tt>, (macOS) <tt>Ventura</tt>
+                        or (Debian GNU/Linux) <tt>Bookworm</tt>
+                        are based on code-names, usually derived from non-reserved/non-registerable
+                        names of places, people, etc.
+
+                        <p/>
+                        PRO: Those version identifiers are nice in marketing products, as they
+                        can be easily pronounced and are catchy.
+
+                        <p/>
+                        CON: Those version identifiers carry no maturity and/or compatibility semantics at all
+                        and hence in practice always have to be combined with underlying technical version identifiers.
+                    </li>
+                </ul>
 
             </div>
             <div class="content" v-show="page === 'about'">
