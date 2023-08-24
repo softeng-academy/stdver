@@ -146,6 +146,15 @@ li {
     font-size: 28pt;
     margin-right: 4px;
 }
+.scheme-inline {
+    display: inline-block;
+}
+.scheme-inline * {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 14pt;
+    height: 20pt;
+}
 .var {
     display: inline-block;
     font-weight: bold;

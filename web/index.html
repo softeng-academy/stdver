@@ -62,6 +62,8 @@
             <div class="content" v-show="page === 'scheme'">
                 <div class="subtitle">Standard Versioning Scheme</div>
 
+                <div class="subsubtitle">Scheme</div>
+
                 The <i>Standard Versioning</i> is a maturity-oriented versioning scheme, defined by the following version identifier scheme:
 
                 <div class="scheme">
@@ -70,6 +72,8 @@
                     <span class="pa">[</span><tt>+</tt><span class="var">H</span><span class="pa">]</span>
                     <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
                 </div>
+
+                <div class="subsubtitle">Parts</div>
 
                 The parts of the <i>Standard Versioning</i> version identifier scheme are:
 
@@ -153,6 +157,38 @@
                             </li>
                         </ul>
                         <i>Rationale: Support intended scope of version.</i>
+                    </li>
+                </ul>
+
+                <div class="subsubtitle">Level</div>
+
+                The <i>Standard Versioning</i> version identifier scheme can be used
+                at the following three distinct levels in practice:
+
+                <ul>
+                    <li><b>Level 0</b>:
+                        <span class="scheme-inline">
+                            <span class="var">M</span><tt>.</tt><span class="var">N</span><tt>.</tt><span class="var">R</span>
+                        </span>
+                        <br/>
+                        This uses <i>Standard Versioning</i>, just with release revisions and excluding the optional information.
+                    </li>
+                    <li><b>Level 1</b>:
+                        <span class="scheme-inline">
+                            <span class="var">M</span><tt>.</tt><span class="var">N</span><span class="var">p</span><span class="var">R</span>
+                        </span>
+                        <br/>
+                        This uses <i>Standard Versioning</i>, excluding the optional information.
+                    </li>
+                    <li><b>Level 2</b>:
+                        <span class="scheme-inline">
+                            <span class="var">M</span><tt>.</tt><span class="var">N</span><span class="var">p</span><span class="var">R</span>
+                            <span class="pa">[</span><tt>.</tt><span class="var">D</span><span class="pa">]</span>
+                            <span class="pa">[</span><tt>+</tt><span class="var">H</span><span class="pa">]</span>
+                            <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
+                        </span>
+                        <br/>
+                        This uses <i>Standard Versioning</i>, including the optional information.
                     </li>
                 </ul>
             </div>
