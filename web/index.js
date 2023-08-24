@@ -45,7 +45,7 @@ Vue.createApp({
                 decoded: {},
                 error: ""
             }
-            const m = version.match(/^(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.(\d{8}))?(?:\+([\dA-F]{4}))?(?:-(XA|LA|EA|GA))?$/)
+            const m = version.match(/^(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.(\d{8}))?(?:\+([\dA-F]{4}))?(?:-([XLEG]A))?$/)
             if (m === null) {
                 decoder.error = "invalid stdver representation"
                 return decoder
