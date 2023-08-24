@@ -74,22 +74,22 @@
                     <li><span class="var">M</span>: <tt>/\d+/</tt> (M &ge; 0) &mdash; <span class="part">Major Version</span><br/>
                         Major version of solution.
                         Bumped on <i>major</i> changes, like full modernizations.
-                        A bump resets the Minor Version <span class="var">N</span> and Revision <span class="var">R</span> to 0.
+                        A bump resets the <span class="part">Minor Version</span> <span class="var">N</span> and <span class="part">Revision</span> <span class="var">R</span> to 0.
                         On change, backward compatibility is not possible.
                         On upgrade, human interaction is expected.
                         <i>Rationale: Primary version of solution.</i>
                     </li>
                     <li><span class="var">N</span>: <tt>/\d+/</tt> (N &ge; 0) &mdash; <span class="part">Minor Version</span><br/>
-                        Minor version of the solution within the Major Version.
+                        Minor version of the solution within the <span class="part">Major Version</span>.
                         Bumped on <i>minor</i> changes, like new features.
-                        A bump resets the Revision <span class="var">R</span> to 0.
+                        A bump resets the <span class="part">Revision</span> <span class="var">R</span> to 0.
                         On change, backward compatibility is seeked for, but not assured.
                         On upgrade, human interaction might be required.
                         <i>Rationale: Secondary version of solution.</i>
                     </li>
                     <li><span class="var">p</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; <span class="part">Maturity Phase</span><br/>
-                        Maturity phase within the combination of Major Version <span class="var">M</span> and Minor Version <span class="var">N</span>.
-                        A change resets the Revision <span class="var">R</span> to 0.
+                        Maturity phase within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.
+                        A change resets the <span class="part">Revision</span> <span class="var">R</span> to 0.
                         The distinct phases, in chronological order, are:
                         <ul>
                             <li><tt>a</tt>: Alpha<br/>
@@ -112,8 +112,8 @@
                         <i>Rationale: Integrate maturity phase.</i>
                     </li>
                     <li><span class="var">R</span>: <tt>/\d+/</tt> (R &ge; 0) &mdash; <span class="part">Phase Revision</span><br/>
-                        Revision of the Maturity Phase within the combination of Major Version <span class="var">M</span> and Minor Version <span class="var">N</span>.
-                        Bumped for every revision within a Maturity Phase <span class="var">p</span>.
+                        Revision of the <span class="part">Maturity Phase</span> within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.
+                        Bumped for every revision within a <span class="part">Maturity Phase</span> <span class="var">p</span>.
                         On change within Alpha and Beta maturity phases, <u>no</u> backward compatibility has to be assured.
                         On change within Release Candidate and Release maturity phases, full backward compatibility has to be assured.
                         On upgrade, <u>no</u> human interaction is required.

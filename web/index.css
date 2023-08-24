@@ -152,7 +152,7 @@ li {
 }
 .part {
     color: #333333;
-    font-size: 120%;
+    font-weight: 600;
 }
 tt {
     display: inline-block;
