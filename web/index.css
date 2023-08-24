@@ -189,3 +189,15 @@ tt {
     background-color: #6F4214;
 }
 
+@media print {
+    .social {
+        display: none;
+    }
+    .navbar {
+        display: none;
+    }
+    .area-navbar {
+        display: none;
+    }
+}
+
