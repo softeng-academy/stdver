@@ -73,6 +73,7 @@ b {
     margin-bottom: 10px;
     color: #333333;
     width: 640px;
+    position: relative;
 }
 
 .sea-logo {
@@ -113,7 +114,8 @@ tt {
     letter-spacing: -2px;
     font-weight: bold;
 }
-.title .url {
+.id {
+    margin-top: -2px;
     font-size: 14pt;
     font-weight: 200;
     color: #999999;
