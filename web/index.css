@@ -75,9 +75,13 @@ b {
     width: 640px;
 }
 
-.logo {
+.sea-logo {
+    margin-top: 10px;
     width: 250px;
     float: right;
+}
+.stdver-logo {
+    width: 300px;
 }
 
 tt {
