@@ -69,7 +69,7 @@
                     <span class="pa">[</span><tt>+</tt><span class="var">H</span><span class="pa">]</span>
                     <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
                 </div>
-                
+
                 The parts of the <i>Standard Versioning</i> version identifier scheme are:
 
                 <ul>
@@ -159,24 +159,100 @@
             <div class="content" v-show="page === 'examples'">
                 <div class="subtitle">Standard Versioning Examples</div>
 
-                The following are samples of versions based on <i>Standard Versioning</i>.
+                The following are version examples,
+                based on <i>Standard Versioning</i>,
+                over an excerpt of the life-cycle of a fictive solution:
 
                 <ul>
-                    <li><tt>1.2.3</tt>:<br/>
-                        a release version.
+                    <li>[...]</li>
+                    <li><tt>1.1.4</tt>:
+                        Forth update release of version 1.1.
                     </li>
-                    <li><tt>1.2.3-GA</tt>:<br/>
-                        a release version with an explicit availability scope.
+                    <li><tt>1.2a0</tt>:
+                        First alpha version of forthcoming version 1.2.
                     </li>
-                    <li><tt>1.2b3.20230821-LA</tt>:<br/>
-                        a snapshot of a beta version, made on a particular date, with explicit availability scope.
+                    <li><tt>1.2a1</tt>:
+                        Second alpha version of forthcoming version 1.2.
                     </li>
-                    <li><tt>1.2a3.20230821+42FA-XA</tt>:<br/>
-                        a snapshot of an alpha version, made on a particular date, with explicit source hash and availability scope.
+                    <li><tt>1.2b0</tt>:
+                        First beta version of forthcoming version 1.2.
                     </li>
-                    <li><tt>1.2a3+42FA-XA</tt>:<br/>
-                        a snapshot of an alpha version, with explicit source hash and availability scope.
+                    <li><tt>1.2b1</tt>:
+                        Second beta version of forthcoming version 1.2.
                     </li>
+                    <li><tt>1.2b2</tt>:
+                        Third beta version of forthcoming version 1.2.
+                    </li>
+                    <li><tt>1.2rc0</tt>:
+                        First release candidate version of forthcoming version 1.2.
+                    </li>
+                    <li><tt>1.2.0</tt>:
+                        Release version of version 1.2.
+                    </li>
+                    <li><tt>1.2.1</tt>:
+                        First update release version of version 1.2.
+                    </li>
+                    <li><tt>1.2.2</tt>:
+                        Second update release version of version 1.2.
+                    </li>
+                    <li>[...]</li>
+                </ul>
+
+                The following the version examples of the same fictive solution life-cycle,
+                but this time also leveraging the optional date, hash and scope
+                information to especially also support snapshots, developer round-trips
+                and varying availability scopes:
+
+                <ul>
+                    <li>[...]</li>
+                    <li><tt>1.1.4-GA</tt>:
+                        Forth update release of version 1.1.
+                    </li>
+                    <li><tt>1.2a0-LA</tt>:
+                        First alpha version of forthcoming version 1.2.
+                    </li>
+                    <li><tt>1.2a0.20230821+42FA-XA</tt>:
+                        Internal developer snapshot at 2023.08.21 after 1.2a0 with source identified as 0x42FA.
+                    </li>
+                    <li><tt>1.2a0.20230821+42CB-XA</tt>:
+                        Internal developer snapshot at 2023.08.21 after 1.2a0 with source identified as 0x42CB.
+                    </li>
+                    <li><tt>1.2a1-LA</tt>:
+                        Second alpha version of forthcoming version 1.2, first time
+                        also intended to be consumed by closed group of customers.
+                    </li>
+                    <li><tt>1.2a1.20230824-LA</tt>:
+                        Customer snapshot at 2023.08.24 after 1.2a1.
+                    </li>
+                    <li><tt>1.2b0-LA</tt>:
+                        First beta version of forthcoming version 1.2.
+                    </li>
+                    <li><tt>1.2b1-LA</tt>:
+                        Second beta version of forthcoming version 1.2.
+                    </li>
+                    <li><tt>1.2b2-LA</tt>:
+                        Third beta version of forthcoming version 1.2.
+                    </li>
+                    <li><tt>1.2rc0-EA</tt>:
+                        First release candidate version of forthcoming version 1.2,
+                        first time also intended to be consumed by early adopting customers.
+                    </li>
+                    <li><tt>1.2.0-EA</tt>:
+                        Release version of version 1.2, still
+                        intended to be consumed by early adopting customers only.
+                    </li>
+                    <li><tt>1.2.1-GA</tt>:
+                        First update release version of version 1.2,
+                        first time also intended to be consumed by any customer.
+                    </li>
+                    <li><tt>1.2.1.20230831-LA</tt>:
+                        Snapshot at 2023.08.31, intended
+                        to be consumed by closed group of customers only.
+                    </li>
+                    <li><tt>1.2.2-GA</tt>:
+                        Second update release version of version 1.2.
+                    </li>
+                    <li>[...]</li>
                 </ul>
 
             </div>
