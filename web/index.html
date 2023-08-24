@@ -50,8 +50,8 @@
             <div class="content">
                 <div class="navbar">
                     <a class="navitem" v-bind:class="{ active: page === 'scheme' }" href="" v-on:click.prevent="goto('scheme')">Scheme</a>
-                    <a class="navitem" v-bind:class="{ active: page === 'decoding' }" href="" v-on:click.prevent="goto('decoding')">Decoding</a>
                     <a class="navitem" v-bind:class="{ active: page === 'examples' }" href="" v-on:click.prevent="goto('examples')">Examples</a>
+                    <a class="navitem" v-bind:class="{ active: page === 'decoding' }" href="" v-on:click.prevent="goto('decoding')">Decoding</a>
                     <a class="navitem" v-bind:class="{ active: page === 'alternatives' }" href="#alternatives" v-on:click.prevent="goto('alternatives')">Alternatives</a>
                     <a class="navitem" v-bind:class="{ active: page === 'about' }" href="#about" v-on:click.prevent="goto('about')">About</a>
                 </div>
@@ -162,7 +162,7 @@
 
                 <div class="subsubtitle">Level</div>
 
-                The <i>Standard Versioning</i> version identifier scheme can be used
+                The <i>Standard Versioning</i> version identifier scheme usually is used
                 at the following three distinct levels in practice:
 
                 <ul>
@@ -191,6 +191,62 @@
                         This uses <i>Standard Versioning</i>, including the optional information.
                     </li>
                 </ul>
+            </div>
+            <div class="content" v-show="page === 'examples'">
+                <div class="subtitle">Standard Versioning Examples</div>
+
+                The following are version examples of the life-cycle excerpt of a fictive solution,
+                based on <i>Standard Versioning</i> <b>Level 0</b>,
+                where just release versions are used:
+
+                <ul>
+                    <li><tt>1.1.4</tt>: {{ explain("1.1.4") }}</li>
+                    <li><tt>1.2.0</tt>: {{ explain("1.2.0") }}</li>
+                    <li><tt>1.2.1</tt>: {{ explain("1.2.1") }}</li>
+                    <li><tt>1.2.2</tt>: {{ explain("1.2.2") }}</li>
+                </ul>
+
+                The following are version examples of the life-cycle excerpt of the same fictive solution,
+                based on <i>Standard Versioning</i> <b>Level 1</b>,
+                where also pre-release versions are used to support
+                development phases:
+
+                <ul>
+                    <li><tt>1.1.4</tt>: {{ explain("1.1.4") }}</li>
+                    <li><tt>1.2a0</tt>: {{ explain("1.2a0") }}</li>
+                    <li><tt>1.2a1</tt>: {{ explain("1.2a1") }}</li>
+                    <li><tt>1.2b0</tt>: {{ explain("1.2b0") }}</li>
+                    <li><tt>1.2b1</tt>: {{ explain("1.2b1") }}</li>
+                    <li><tt>1.2b2</tt>: {{ explain("1.2b2") }}</li>
+                    <li><tt>1.2rc0</tt>: {{ explain("1.2rc0") }}</li>
+                    <li><tt>1.2.0</tt>: {{ explain("1.2.0") }}</li>
+                    <li><tt>1.2.1</tt>: {{ explain("1.2.1") }}</li>
+                    <li><tt>1.2.2</tt>: {{ explain("1.2.2") }}</li>
+                </ul>
+
+                The following are version examples of the life-cycle excerpt of the same fictive solution,
+                based on <i>Standard Versioning</i> <b>Level 2</b>,
+                where optional date, source state hash and availability scope
+                information are additionally used to especially also support
+                snapshots, developer round-trips and varying availability scopes:
+
+                <ul>
+                    <li><tt>1.1.4-GA</tt>: {{ explain("1.1.4-GA") }}</li>
+                    <li><tt>1.2a0-LA</tt>: {{ explain("1.2a0-LA") }}</li>
+                    <li><tt>1.2a0.20230821+42FA-XA</tt>: {{ explain("1.2a0.20230821+42FA-XA") }}</li>
+                    <li><tt>1.2a0.20230821+42CB-XA</tt>: {{ explain("1.2a0.20230821+42CB-XA") }}</li>
+                    <li><tt>1.2a1-LA</tt>: {{ explain("1.2a1-LA") }}</li>
+                    <li><tt>1.2a1.20230824-LA</tt>: {{ explain("1.2a1.20230824-LA") }}</li>
+                    <li><tt>1.2b0-LA</tt>: {{ explain("1.2b0-LA") }}</li>
+                    <li><tt>1.2b1-LA</tt>: {{ explain("1.2b1-LA") }}</li>
+                    <li><tt>1.2b2-LA</tt>: {{ explain("1.2b2-LA") }}</li>
+                    <li><tt>1.2rc0-EA</tt>: {{ explain("1.2rc0-EA") }}</li>
+                    <li><tt>1.2.0-EA</tt>: {{ explain("1.2.0-EA") }}</li>
+                    <li><tt>1.2.1-GA</tt>: {{ explain("1.2.1-GA") }}</li>
+                    <li><tt>1.2.1.20230831-LA</tt>: {{ explain("1.2.1.20230831-LA") }}</li>
+                    <li><tt>1.2.2-GA</tt>: {{ explain("1.2.2-GA") }}</li>
+                </ul>
+
             </div>
             <div class="content" v-show="page === 'decoding'">
                 <div class="subtitle">Standard Versioning Decoding</div>
@@ -246,15 +302,7 @@
                     <p/>
                     <div class="subsubtitle">Explanation</div>
                     <div>
-                        <b>
-                        Version {{ decoder.decoded.M }}.{{ decoder.decoded.N }}'s
-                        {{ decoder.decoded.R }}{{ decoder.decoded.R === "1" ? "st" : (decoder.decoded.R === "2" ? "nd" : (decoder.decoded.R === "3" ? "rd" : "th")) }}
-                        {{ decoder.decoded.p === "a" ? "alpha release" : (decoder.decoded.p === "b" ? "beta release" : (decoder.decoded.p === "rc" ? "release candidate" : "release")) }}
-                        <span v-if="decoder.decoded.D">,<br/>made on {{ decoder.decoded.D.replace(/^(....)(..)(..)$/, "$1.$2.$3") }}</span>
-                        <span v-if="decoder.decoded.H">, from source state 0x{{ decoder.decoded.H }}</span>
-                        <span v-if="decoder.decoded.S">,<br/>intended for {{ decoder.decoded.S === "XA" ? "no" : (decoder.decoded.S === "LA" ? "limited" : (decoder.decoded.S === "EA" ? "early" : "general")) }} availability</span>
-                        .
-                        </b>
+                        <b>{{ explain(decoder.encoded) }}</b>
                     </div>
                 </div>
                 <div class="error" v-if="decoder.error === ''">
@@ -270,129 +318,6 @@
                         <tr><td>Availability Scope (S):</td><td><tt>{{ decoder.decoded.S ?? "(none)" }}</tt></td></tr>
                     </table>
                 </div>
-            </div>
-            <div class="content" v-show="page === 'examples'">
-                <div class="subtitle">Standard Versioning Examples</div>
-
-                The following are version examples of the life-cycle of a fictive solution,
-                based on <i>Standard Versioning</i> <b>Level 0</b>,
-                where just release versions are used:
-
-                <ul>
-                    <li>[...]</li>
-                    <li><tt>1.1.4</tt>:
-                        Forth update release of version 1.1.
-                    </li>
-                    <li><tt>1.2.0</tt>:
-                        Release version of version 1.2.
-                    </li>
-                    <li><tt>1.2.1</tt>:
-                        First update release version of version 1.2.
-                    </li>
-                    <li><tt>1.2.2</tt>:
-                        Second update release version of version 1.2.
-                    </li>
-                    <li>[...]</li>
-                </ul>
-
-                The following are version examples of the life-cycle of the same fictive solution,
-                based on <i>Standard Versioning</i> <b>Level 1</b>,
-                where also pre-release versions are used to support
-                development phases:
-
-                <ul>
-                    <li>[...]</li>
-                    <li><tt>1.1.4</tt>:
-                        Forth update release of version 1.1.
-                    </li>
-                    <li><tt>1.2a0</tt>:
-                        First alpha version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2a1</tt>:
-                        Second alpha version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2b0</tt>:
-                        First beta version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2b1</tt>:
-                        Second beta version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2b2</tt>:
-                        Third beta version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2rc0</tt>:
-                        First release candidate version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2.0</tt>:
-                        Release version of version 1.2.
-                    </li>
-                    <li><tt>1.2.1</tt>:
-                        First update release version of version 1.2.
-                    </li>
-                    <li><tt>1.2.2</tt>:
-                        Second update release version of version 1.2.
-                    </li>
-                    <li>[...]</li>
-                </ul>
-
-                The following are version examples of the life-cycle of the same fictive solution,
-                based on <i>Standard Versioning</i> <b>Level 2</b>,
-                where optional date, source state hash and availability scope
-                information are additionally used to especially also support
-                snapshots, developer round-trips and varying availability scopes:
-
-                <ul>
-                    <li>[...]</li>
-                    <li><tt>1.1.4-GA</tt>:
-                        Forth update release of version 1.1.
-                    </li>
-                    <li><tt>1.2a0-LA</tt>:
-                        First alpha version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2a0.20230821+42FA-XA</tt>:
-                        Internal developer snapshot at 2023.08.21 after 1.2a0 with source identified as 0x42FA.
-                    </li>
-                    <li><tt>1.2a0.20230821+42CB-XA</tt>:
-                        Internal developer snapshot at 2023.08.21 after 1.2a0 with source identified as 0x42CB.
-                    </li>
-                    <li><tt>1.2a1-LA</tt>:
-                        Second alpha version of forthcoming version 1.2, first time
-                        also intended to be consumed by closed group of customers.
-                    </li>
-                    <li><tt>1.2a1.20230824-LA</tt>:
-                        Customer snapshot at 2023.08.24 after 1.2a1.
-                    </li>
-                    <li><tt>1.2b0-LA</tt>:
-                        First beta version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2b1-LA</tt>:
-                        Second beta version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2b2-LA</tt>:
-                        Third beta version of forthcoming version 1.2.
-                    </li>
-                    <li><tt>1.2rc0-EA</tt>:
-                        First release candidate version of forthcoming version 1.2,
-                        first time also intended to be consumed by early adopting customers.
-                    </li>
-                    <li><tt>1.2.0-EA</tt>:
-                        Release version of version 1.2, still
-                        intended to be consumed by early adopting customers only.
-                    </li>
-                    <li><tt>1.2.1-GA</tt>:
-                        First update release version of version 1.2,
-                        first time also intended to be consumed by any customer.
-                    </li>
-                    <li><tt>1.2.1.20230831-LA</tt>:
-                        Snapshot at 2023.08.31, intended
-                        to be consumed by closed group of customers only.
-                    </li>
-                    <li><tt>1.2.2-GA</tt>:
-                        Second update release version of version 1.2.
-                    </li>
-                    <li>[...]</li>
-                </ul>
-
             </div>
             <div class="content" v-show="page === 'alternatives'">
                 <div class="subtitle">Alternative Versioning Schemes</div>

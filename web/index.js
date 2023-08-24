@@ -26,7 +26,7 @@ Vue.createApp({
                 this.page = page
             else {
                 this.page = "decoder"
-                this.decode(page)
+                this.decoder = this.decode(page)
             }
         }
         window.addEventListener("hashchange", () => {
@@ -40,23 +40,58 @@ Vue.createApp({
             window.location.hash = page === "scheme" ? "" : `#${page}`
         },
         decode (version) {
-            this.decoder.encoded = version
-            this.decoder.decoded = {}
-            this.decoder.error = ""
+            const decoder = {
+                encoded: version,
+                decoded: {},
+                error: ""
+            }
             const m = version.match(/^(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.(\d{8}))?(?:\+([\dA-F]{4}))?(?:-(XA|LA|EA|GA))?$/)
             if (m === null) {
-                this.decoder.error = "invalid stdver representation"
-                return
+                decoder.error = "invalid stdver representation"
+                return decoder
             }
             else {
-                this.decoder.decoded.M = m[1]
-                this.decoder.decoded.N = m[2]
-                this.decoder.decoded.p = m[3]
-                this.decoder.decoded.R = m[4]
-                this.decoder.decoded.D = m[5]
-                this.decoder.decoded.H = m[6]
-                this.decoder.decoded.S = m[7]
+                decoder.decoded.M = m[1]
+                decoder.decoded.N = m[2]
+                decoder.decoded.p = m[3]
+                decoder.decoded.R = m[4]
+                decoder.decoded.D = m[5]
+                decoder.decoded.H = m[6]
+                decoder.decoded.S = m[7]
             }
+            return decoder
+        },
+        explain (input) {
+            if (!input)
+                return ""
+            const decoder = this.decode(input)
+            const version = decoder.decoded
+            let text = `Version ${version.M}.${version.N}'s`
+            if (version.R === "0")
+                text += " initial"
+            else {
+                let R = parseInt(version.R) + 1
+                text += ` ${R}`
+                if      (R === 1)  text += "st"
+                else if (R === 2)  text += "nd"
+                else if (R === 3)  text += "rd"
+                else               text += "th"
+            }
+            text += " "
+            if      (version.p === "a")  text += "alpha release"
+            else if (version.p === "b")  text += "beta release"
+            else if (version.p === "rc") text += "release candidate"
+            else                         text += "release"
+            if (version.D) text += `, made on ${version.D.replace(/^(....)(..)(..)$/, "$1.$2.$3")}`
+            if (version.H) text += `, from source state 0x${version.H}`
+            if (version.S) {
+                if      (version.S === "XA") text += `, intended for no availability`
+                else if (version.S === "LA") text += `, intended for limited availability`
+                else if (version.S === "EA") text += `, intended for early availability`
+                else if (version.S === "GA") text += `, intended for general availability`
+            }
+            text += "."
+            return text
         }
     }
 }).mount("body")
