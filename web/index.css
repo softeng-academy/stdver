@@ -124,6 +124,13 @@ tt {
     margin-top: 20px;
     margin-bottom: 10px;
 }
+.subsubtitle {
+    color: #806020;
+    font-weight: 200;
+    font-size: 20pt;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
 li {
     margin-top: 0.9rem;
 }
