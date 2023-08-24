@@ -78,7 +78,7 @@
                 The parts of the <i>Standard Versioning</i> version identifier scheme are:
 
                 <ul>
-                    <li><span class="var">M</span>: <tt>/\d+/</tt> (M &ge; 0) &mdash; <span class="part">Major Version</span><br/>
+                    <li><span class="var">M</span>: <tt>\d+</tt> (M &ge; 0) &mdash; <span class="part">Major Version</span><br/>
                         Major version of solution.
                         Bumped on <i>major</i> changes, like full modernizations.
                         A bump resets the <span class="part">Minor Version</span> <span class="var">N</span> and <span class="part">Revision</span> <span class="var">R</span> to 0.
@@ -86,7 +86,7 @@
                         On upgrade, human interaction is expected.
                         <i>Rationale: Primary version of solution.</i>
                     </li>
-                    <li><span class="var">N</span>: <tt>/\d+/</tt> (N &ge; 0) &mdash; <span class="part">Minor Version</span><br/>
+                    <li><span class="var">N</span>: <tt>\d+</tt> (N &ge; 0) &mdash; <span class="part">Minor Version</span><br/>
                         Minor version of the solution within the <span class="part">Major Version</span>.
                         Bumped on <i>minor</i> changes, like new features.
                         A bump resets the <span class="part">Revision</span> <span class="var">R</span> to 0.
@@ -94,7 +94,7 @@
                         On upgrade, human interaction might be required.
                         <i>Rationale: Secondary version of solution.</i>
                     </li>
-                    <li><span class="var">p</span>: <tt>/(a|b|rc|\.)/</tt> &mdash; <span class="part">Maturity Phase</span><br/>
+                    <li><span class="var">p</span>: <tt>(?:a|b|rc|\.)</tt> &mdash; <span class="part">Maturity Phase</span><br/>
                         Maturity phase within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.
                         A change resets the <span class="part">Revision</span> <span class="var">R</span> to 0.
                         The distinct phases, in chronological order, are:
@@ -118,7 +118,7 @@
                         </ul>
                         <i>Rationale: Integrate maturity phase.</i>
                     </li>
-                    <li><span class="var">R</span>: <tt>/\d+/</tt> (R &ge; 0) &mdash; <span class="part">Phase Revision</span><br/>
+                    <li><span class="var">R</span>: <tt>\d+</tt> (R &ge; 0) &mdash; <span class="part">Phase Revision</span><br/>
                         Revision of the <span class="part">Maturity Phase</span> within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.
                         Bumped for every revision within a <span class="part">Maturity Phase</span> <span class="var">p</span>.
                         On change within Alpha and Beta maturity phases, <u>no</u> backward compatibility has to be assured.
@@ -126,17 +126,17 @@
                         On upgrade, <u>no</u> human interaction is required.
                         <i>Rationale: Revision counter within maturity phase.</i>
                     </li>
-                    <li><span class="var">D</span>: <tt>/\d{8}/</tt> &mdash; <span class="part">Release Date</span><br/>
+                    <li><span class="var">D</span>: <tt>\d{8}</tt> &mdash; <span class="part">Release Date</span><br/>
                         The optional release date of year, month and date, represented in sort-supporting ISO notation.
                         <i>Rationale: Support snapshots between official versions.</i>
                     </li>
-                    <li><span class="var">H</span>: <tt>/[\dA-F]{4}/</tt> &mdash; <span class="part">Source Hash</span><br/>
+                    <li><span class="var">H</span>: <tt>[\dA-F]{4}</tt> &mdash; <span class="part">Source Hash</span><br/>
                         The optional 16-bit hashing checksum of the source code of the solution, represented as a upper-case hexadecimal
                         value. This usually is an, automatically calculated build-time, SHA1 or MD5 hash
                         value (8 bytes, 128 bit), folded 3 times through an XOR-operation into just 2 bytes / 16 bit.
                         <i>Rationale: Support sub-daily snapshots and easy build identification during developer hot-reload round-trips.</i>
                     </li>
-                    <li><span class="var">S</span>: <tt>/(XA|LA|EA|GA)/</tt> &mdash; <span class="part">Availability Scope</span><br/>
+                    <li><span class="var">S</span>: <tt>[XLEG]A</tt> &mdash; <span class="part">Availability Scope</span><br/>
                         The optional availability scopes of the release. The known scopes are:
                         <ul>
                             <li><tt>XA</tt>: No Availability<br/>
@@ -271,7 +271,7 @@
                 (?:a|b|rc|\.)\d+<br/>
                 (?:\.\d{8})?<br/>
                 (?:\+[\dA-F]{4})?<br/>
-                (?:-(?:XA|LA|EA|GA))?</tt>
+                (?:-[XLEG]A)?</tt>
 
                 <p/>
                 To match and decode a <i>Standard Versioning</i> identifier,
@@ -283,7 +283,7 @@
                 (a|b|rc|\.)(\d+)<br/>
                 (?:\.(\d{8}))?<br/>
                 (?:\+([\dA-F]{4}))?<br/>
-                (?:-(XA|LA|EA|GA))?</tt>
+                (?:-([XLEG]A))?</tt>
 
             </div>
             <div class="content" v-show="page === 'decoder'">
