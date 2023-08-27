@@ -80,8 +80,14 @@ b {
     width: 250px;
     float: right;
 }
+.sea-logo img {
+    width: 250px;
+}
 .stdver-logo {
     margin-top: 10px;
+    width: 300px;
+}
+.stdver-logo img {
     width: 300px;
 }
 
