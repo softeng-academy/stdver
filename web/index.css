@@ -66,6 +66,7 @@ b {
 }
 .area.grow {
     flex-grow: 1;
+    padding-bottom: 20px;
 }
 
 .content {

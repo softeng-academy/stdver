@@ -163,7 +163,8 @@
                 <div class="subsubtitle">Level</div>
 
                 The <i>Standard Versioning</i> version identifier scheme usually is used
-                at the following three distinct levels in practice:
+                at the following three distinct levels, which are most popular in practice
+                and directly align to the usual extend of the release management:
 
                 <ul>
                     <li><b>Level 0</b>:
@@ -188,7 +189,7 @@
                             <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
                         </span>
                         <br/>
-                        This uses <i>Standard Versioning</i>, including the optional information.
+                        This uses <i>Standard Versioning</i>, including the optional information (when necessary).
                     </li>
                 </ul>
             </div>
@@ -251,27 +252,25 @@
             <div class="content" v-show="page === 'decoding'">
                 <div class="subtitle">Standard Versioning Decoding</div>
 
-                <div class="subsubtitle">Online Decoder</div>
+                <div class="subsubtitle">Online Decoder (Webpage)</div>
 
                 <p/>
-                To decode a <i>Standard Versioning</i> identifier, you can
-                just prefix it with <tt>https://stdver.org#</tt>.
+                To decode a <i>Standard Versioning</i> identifier, one can
+                just prefix it with <tt>https://stdver.org#</tt> and open
+                the resulting URL in any Web browser. An
+                example URL follows:
 
                 <p/>
-                Example: <a href="#1.2.3.20230810+ABCD-XA">https://stdver.org#1.2.3.20230810+ABCD-XA</a>
+                <a href="#1.2.3.20230810+ABCD-XA"><tt>https://stdver.org#1.2.3.20230810+ABCD-XA</tt></a>
 
-                <div class="subsubtitle">Regular Expressions</div>
+                <div class="subsubtitle">Offline Decoder (Regular Expressions)</div>
 
                 <p/>
                 To match a <i>Standard Versioning</i> identifier,
                 one can use the following <i>Regular Expression (RegExp)</i>:
 
                 <p/>
-                <tt>\d+\.\d+<br/>
-                (?:a|b|rc|\.)\d+<br/>
-                (?:\.\d{8})?<br/>
-                (?:\+[\dA-F]{4})?<br/>
-                (?:-[XLEG]A)?</tt>
+                <tt>\d+\.\d+(?:a|b|rc|\.)\d+(?:\.\d{8})?(?:\+[\dA-F]{4})?(?:-[XLEG]A)?</tt>
 
                 <p/>
                 To match and decode a <i>Standard Versioning</i> identifier,
@@ -279,11 +278,17 @@
                 the necessary capture groups:
 
                 <p/>
-                <tt>(\d+)\.(\d+)<br/>
-                (a|b|rc|\.)(\d+)<br/>
-                (?:\.(\d{8}))?<br/>
-                (?:\+([\dA-F]{4}))?<br/>
-                (?:-([XLEG]A))?</tt>
+                <tt>(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.(\d{8}))?(?:\+([\dA-F]{4}))?(?:-([XLEG]A))?</tt>
+
+                <div class="subsubtitle">Offline Decoder (StdVer API)</div>
+
+                <p/>
+                FIXME
+
+                <div class="subsubtitle">Offline Decoder (StdVer CLI)</div>
+
+                <p/>
+                FIXME
 
             </div>
             <div class="content" v-show="page === 'decoder'">
