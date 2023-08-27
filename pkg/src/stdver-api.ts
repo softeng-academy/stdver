@@ -48,7 +48,7 @@ export default class StdVerAPI {
             case "c": p = StdVerPhase.candidate;  break
             default:  p = StdVerPhase.release;    break
         }
-        let S: StdVerScope
+        let S: StdVerScope | undefined
         if (m[7]) {
             switch (m[7]) {
                 case "XA": S = StdVerScope.XA; break
