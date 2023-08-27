@@ -1,4 +1,5 @@
-/*
+#!/usr/bin/env node
+/*!
 **  StdVer ~ Standard Versioning
 **  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
 **  Copyright (c) 2008-2023 Dr. Ralf S. Engelschall
