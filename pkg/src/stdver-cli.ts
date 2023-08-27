@@ -39,7 +39,7 @@ class StdVerCLI {
             .argument("<version>", "Standard Versioning identifier to change")
             .action((version, opts) => { try { this.bump(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.command("explain")
-            .option("-f, --format <format>", "format of explanation ('text', 'json')", "text")
+            .option("-f, --format <format>", "format of explanation ('text', 'table', 'json', 'yaml')", "text")
             .argument("<version>", "Standard Versioning identifier to explain")
             .action((version, opts) => { try { this.explain(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.parse(process.argv)
@@ -76,8 +76,8 @@ class StdVerCLI {
     }
     explain (opts: any, version: string) {
         const api = new StdVerAPI()
-        const text = api.explain(version)
-        process.stdout.write(text + "\n")
+        const text = api.explain(version, opts.format)
+        process.stdout.write(text + (text.match(/\n$/) ? "" : "\n"))
     }
 }
 (new StdVerCLI()).main()

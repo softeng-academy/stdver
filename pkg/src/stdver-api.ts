@@ -25,13 +25,13 @@ export enum StdVerScope {
 
 /*  Standard Versioning record  */
 export interface StdVer {
-    M: number,
-    N: number,
-    p: StdVerPhase,
-    R: number,
-    D: number,
-    H: string
-    S: StdVerScope
+    M:  number,
+    N:  number,
+    p:  StdVerPhase,
+    R:  number,
+    D?: number,
+    H?: string
+    S?: StdVerScope
 }
 
 /*  Standard Versioning API  */
@@ -49,20 +49,22 @@ export default class StdVerAPI {
             default:  p = StdVerPhase.release;    break
         }
         let S: StdVerScope
-        switch (m[7]) {
-            case "XA": S = StdVerScope.XA; break
-            case "LA": S = StdVerScope.LA; break
-            case "EA": S = StdVerScope.EA; break
-            default:   S = StdVerScope.GA; break
+        if (m[7]) {
+            switch (m[7]) {
+                case "XA": S = StdVerScope.XA; break
+                case "LA": S = StdVerScope.LA; break
+                case "EA": S = StdVerScope.EA; break
+                case "GA": S = StdVerScope.GA; break
+            }
         }
         return {
             M: parseInt(m[1]),
             N: parseInt(m[2]),
             p,
             R: parseInt(m[4]),
-            D: m[5] ? parseInt(m[5]) : undefined,
-            H: m[6] ?? "",
-            S
+            ...(m[5] ? { D: parseInt(m[5]) } : {}),
+            ...(m[6] ? { H: m[6] } : {}),
+            ...(S ? { S } : {})
         } as StdVer
     }
 
@@ -164,33 +166,77 @@ export default class StdVerAPI {
     }
 
     /*  explain a Standard Versioning identifier  */
-    explain (encoding: string) {
+    explain (encoding: string, format: "text" | "table" | "json" | "yaml" = "text") {
         const decoding = this.decode(encoding)
-        let text = `Version ${decoding.M}.${decoding.N}'s`
-        if (decoding.R === 0)
-            text += " initial"
-        else {
-            const R = decoding.R + 1
-            text += ` ${R}`
-            if      (R === 1)  text += "st"
-            else if (R === 2)  text += "nd"
-            else if (R === 3)  text += "rd"
-            else               text += "th"
+
+        let text = ""
+        if (format === "text") {
+            text += `Version ${decoding.M}.${decoding.N}'s`
+            if (decoding.R === 0)
+                text += " initial"
+            else {
+                const R = decoding.R + 1
+                text += ` ${R}`
+                if      (R === 1)  text += "st"
+                else if (R === 2)  text += "nd"
+                else if (R === 3)  text += "rd"
+                else               text += "th"
+            }
+            text += " "
+            if      (decoding.p === StdVerPhase.alpha)     text += "alpha release"
+            else if (decoding.p === StdVerPhase.beta)      text += "beta release"
+            else if (decoding.p === StdVerPhase.candidate) text += "release candidate"
+            else                                           text += "release"
+            if (decoding.D)
+                text += `, made on ${decoding.D.toString().replace(/^(....)(..)(..)$/, "$1.$2.$3")}`
+            if (decoding.H)
+                text += `, from source state 0x${decoding.H}`
+            if (decoding.S) {
+                if      (decoding.S === StdVerScope.XA) text += ", intended for no availability"
+                else if (decoding.S === StdVerScope.LA) text += ", intended for limited availability"
+                else if (decoding.S === StdVerScope.EA) text += ", intended for early availability"
+                else if (decoding.S === StdVerScope.GA) text += ", intended for general availability"
+            }
+            text += "."
         }
-        text += " "
-        if      (decoding.p === StdVerPhase.alpha)     text += "alpha release"
-        else if (decoding.p === StdVerPhase.beta)      text += "beta release"
-        else if (decoding.p === StdVerPhase.candidate) text += "release candidate"
-        else                                           text += "release"
-        if (decoding.D) text += `, made on ${decoding.D.toString().replace(/^(....)(..)(..)$/, "$1.$2.$3")}`
-        if (decoding.H) text += `, from source state 0x${decoding.H}`
-        if (decoding.S) {
-            if      (decoding.S === StdVerScope.XA) text += ", intended for no availability"
-            else if (decoding.S === StdVerScope.LA) text += ", intended for limited availability"
-            else if (decoding.S === StdVerScope.EA) text += ", intended for early availability"
-            else if (decoding.S === StdVerScope.GA) text += ", intended for general availability"
+        else if (format === "table") {
+            text += `Major Version      (M): ${decoding.M}\n`
+            text += `Minor Version      (N): ${decoding.N}\n`
+            text += `Maturity Phase     (p): ${StdVerPhase[decoding.p]}\n`
+            text += `Phase Revision     (R): ${decoding.R}\n`
+            text += `Release Date       (D): ${decoding.D ? decoding.D : "(none)"}\n`
+            text += `Source Hash        (H): ${decoding.H ? decoding.H : "(none)"}\n`
+            text += `Availability Scope (S): ${decoding.S ? StdVerScope[decoding.S] : "(none)"}\n`
         }
-        text += "."
+        else if (format === "json") {
+            text += "{"
+            text += ` "M": ${decoding.M},`
+            text += ` "N": ${decoding.N},`
+            text += ` "p": "${StdVerPhase[decoding.p]}",`
+            text += ` "R": ${decoding.R},`
+            if (decoding.D)
+                text += ` "D": ${decoding.D},`
+            if (decoding.H)
+                text += ` "H": "${decoding.H}",`
+            if (decoding.S)
+                text += ` "S": "${StdVerScope[decoding.S]}",`
+            text = text.replace(/,$/, "")
+            text += " }\n"
+        }
+        else if (format === "yaml") {
+            text += `M: ${decoding.M}\n`
+            text += `N: ${decoding.N}\n`
+            text += `p: ${StdVerPhase[decoding.p]}\n`
+            text += `R: ${decoding.R}\n`
+            if (decoding.D)
+                text += `D: ${decoding.D}\n`
+            if (decoding.H)
+                text += `H: ${decoding.H}\n`
+            if (decoding.S)
+                text += `S: ${StdVerScope[decoding.S]}\n`
+        }
+        else
+            throw new Error("invalid format")
         return text
     }
 }
