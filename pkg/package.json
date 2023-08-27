@@ -2,6 +2,7 @@
     "name":                                 "stdver",
     "publishConfig":                        { "access": "public" },
     "version":                              "0.0.1",
+    "stdver":                               "0.0.1-GA",
     "description":                          "Standard Versioning Command-Line Interface",
     "keywords":                             [ "standard", "versioning", "cli", "stdver" ],
     "repository": {
