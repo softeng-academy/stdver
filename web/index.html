@@ -252,16 +252,41 @@
             <div class="content" v-show="page === 'decoding'">
                 <div class="subtitle">Standard Versioning Decoding</div>
 
-                <div class="subsubtitle">Online Decoder (Webpage)</div>
+                <div class="subsubtitle">Online Decoder (StdVer.org)</div>
 
                 <p/>
-                To decode a <i>Standard Versioning</i> identifier, one can
+                To online decode a <i>Standard Versioning</i> identifier, one can
                 just prefix it with <tt>https://stdver.org#</tt> and open
                 the resulting URL in any Web browser. An
                 example URL follows:
 
                 <p/>
                 <a href="#1.2.3.20230810+ABCD-XA"><tt>https://stdver.org#1.2.3.20230810+ABCD-XA</tt></a>
+
+                <div class="subsubtitle">Offline Decoder (StdVer CLI)</div>
+
+                <p/>
+                To offline decode a <i>Standard Versioning</i> identifier, one can
+                use the <tt>stdver(1)</tt> Command-Line Interface (CLI) in
+                a Node.js environment:
+
+                <p/>
+                <pre>
+$ stdver explain -t text  1.2.3.20230810+ABCD-XA
+$ stdver explain -t table 1.2.3.20230810+ABCD-XA</pre>
+
+                <div class="subsubtitle">Offline Decoder (StdVer API)</div>
+
+                <p/>
+                To offline decode a <i>Standard Versioning</i> identifier programatically, one can
+                use the <tt>stdver</tt> NPM package in a Node.js environment:
+
+                <p/>
+                <pre>
+import StdVer from "stdver"
+const stdver = new StdVer()
+const text = stdver.explain("1.2.3.20230810+ABCD-XA", "text")
+console.log(text)</pre>
 
                 <div class="subsubtitle">Offline Decoder (Regular Expressions)</div>
 
@@ -279,16 +304,6 @@
 
                 <p/>
                 <tt>(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.(\d{8}))?(?:\+([\dA-F]{4}))?(?:-([XLEG]A))?</tt>
-
-                <div class="subsubtitle">Offline Decoder (StdVer API)</div>
-
-                <p/>
-                FIXME
-
-                <div class="subsubtitle">Offline Decoder (StdVer CLI)</div>
-
-                <p/>
-                FIXME
 
             </div>
             <div class="content" v-show="page === 'decoder'">

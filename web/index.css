@@ -95,9 +95,11 @@ b {
     width: 300px;
 }
 
-tt {
+tt,
+pre {
     font-family: "TypoPRO Source Code Pro", monospace;
-    font-size: 14pt;
+    font-size: 12pt;
+    letter-spacing: -0.7px;
 }
 .footer {
     color: #ffffff;
@@ -180,6 +182,13 @@ li {
 }
 tt {
     display: inline-block;
+    background-color: #40404010;
+    border: 1px solid #40404060;
+    border-radius: 4px;
+    padding: 0px 8px 0px 8px;
+}
+pre {
+    display: block;
     background-color: #40404010;
     border: 1px solid #40404060;
     border-radius: 4px;
