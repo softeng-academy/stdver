@@ -17,6 +17,7 @@
     "license":                              "MIT",
     "homepage":                             "https://github.com/softeng-academy/stdver",
     "bugs":                                 "https://github.com/softeng-academy/stdver/issues",
+    "type":                                 "module",
     "main":                                 "dst/stdver-api.js",
     "bin": {
         "stdver":                           "dst/stdver-cli.js"
@@ -24,6 +25,7 @@
     "dependencies": {
         "commander":                        "11.0.0",
         "chalk":                            "5.3.0",
+        "moment":                           "2.29.4",
         "@types/node":                      "20.5.6"
     },
     "devDependencies": {
@@ -33,11 +35,14 @@
         "eslint":                           "8.48.0",
         "eslint-config-standard":           "17.1.0",
         "eslint-plugin-import":             "2.28.1",
-        "npm-run-all":                      "4.1.5"
+
+        "stmux":                            "1.8.7",
+        "nps":                              "5.10.0",
+        "cross-env":                        "7.0.3",
+        "nodemon":                          "3.0.1",
+        "rimraf":                           "5.0.1"
     },
     "scripts": {
-        "build":                            "npm-run-all build:*",
-        "build:eslint":                     "eslint --config eslint.yaml --ext ts src/*.ts",
-        "build:tsc":                        "tsc --project tsconfig.json"
+        "start":                            "nps -c etc/nps.yaml"
     }
 }

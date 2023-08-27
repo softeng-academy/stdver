@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+		"outDir":                     "../dst",
+        "target":                     "esnext",
+        "module":                     "nodenext",
+        "moduleResolution":           "nodenext",
+        "useDefineForClassFields":    false,
+        "composite":                  false,
+        "strict":                     true,
+        "resolveJsonModule":          true,
+        "isolatedModules":            true,
+        "esModuleInterop":            true,
+        "lib":                        [ "ESNext" ],
+        "skipLibCheck":               true,
+        "noEmit":                     false,
+        "types":                      [ "node" ],
+        "rootDir":                    "../src"
+    },
+	"include": [
+        "../src/**/*.d.ts",
+		"../src/**/*.ts"
+    ]
+}
