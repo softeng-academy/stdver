@@ -94,7 +94,7 @@ export default class StdVerAPI {
     /*  bump a Standard Versioning identifier part  */
     bump (encoding: string, part: "M"|"N"|"p"|"R"|"D"|"H"|"S" = "R", level = 2) {
         /*  decode identifier  */
-        let decoding = this.decode(encoding)
+        const decoding = this.decode(encoding)
 
         /*  bump identifier part(s)  */
         if (part === "M") {
@@ -170,7 +170,7 @@ export default class StdVerAPI {
         if (decoding.R === 0)
             text += " initial"
         else {
-            let R = decoding.R + 1
+            const R = decoding.R + 1
             text += ` ${R}`
             if      (R === 1)  text += "st"
             else if (R === 2)  text += "nd"
@@ -185,10 +185,10 @@ export default class StdVerAPI {
         if (decoding.D) text += `, made on ${decoding.D.toString().replace(/^(....)(..)(..)$/, "$1.$2.$3")}`
         if (decoding.H) text += `, from source state 0x${decoding.H}`
         if (decoding.S) {
-            if      (decoding.S === StdVerScope.XA) text += `, intended for no availability`
-            else if (decoding.S === StdVerScope.LA) text += `, intended for limited availability`
-            else if (decoding.S === StdVerScope.EA) text += `, intended for early availability`
-            else if (decoding.S === StdVerScope.GA) text += `, intended for general availability`
+            if      (decoding.S === StdVerScope.XA) text += ", intended for no availability"
+            else if (decoding.S === StdVerScope.LA) text += ", intended for limited availability"
+            else if (decoding.S === StdVerScope.EA) text += ", intended for early availability"
+            else if (decoding.S === StdVerScope.GA) text += ", intended for general availability"
         }
         text += "."
         return text

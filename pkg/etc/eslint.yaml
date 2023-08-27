@@ -35,8 +35,8 @@ rules:
     indent:                              [ "error", 4, { "SwitchCase": 1 } ]
     semi:                                [ "error", "never" ]
     operator-linebreak:                  [ "error", "after", { "overrides": { "&&": "before", "||": "before", ":": "after" } } ]
-    brace-style:                         [ "error", "stroustrup", { "allowSingleLine": true } ]
     quotes:                              [ "error", "double" ]
+    brace-style:                         off
 
     #   disabled rules
     no-multi-spaces:                     off
@@ -51,7 +51,8 @@ rules:
     lines-between-class-members:         off
     symbol-description:                  off
     no-useless-constructor:              off
-    
+    no-unused-vars:                      off
+
     "@typescript-eslint/no-empty-function": off
     "@typescript-eslint/no-explicit-any":   off
     "@typescript-eslint/no-unused-vars":    off

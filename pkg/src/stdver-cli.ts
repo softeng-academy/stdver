@@ -9,7 +9,7 @@ import fs          from "node:fs"
 import { Command } from "commander"
 import chalk       from "chalk"
 
-import StdVerAPI, { StdVerScope, StdVerPhase, StdVer } from "./stdver-api.js"
+import StdVerAPI   from "./stdver-api.js"
 
 class StdVerCLI {
     private program!: Command
