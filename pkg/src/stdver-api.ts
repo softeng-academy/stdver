@@ -10,7 +10,7 @@ import chalk  from "chalk"
 import Table  from "cli-table3"
 
 /*  Standard Versioning: Phase  */
-export enum StdVerPhase {
+enum StdVerPhase {
     alpha      = 1,
     beta       = 2,
     candidate  = 3,
@@ -18,7 +18,7 @@ export enum StdVerPhase {
 }
 
 /*  Standard Versioning: Scope  */
-export enum StdVerScope {
+enum StdVerScope {
     XA = 1,
     LA = 2,
     EA = 3,
@@ -38,6 +38,9 @@ export interface StdVer {
 
 /*  Standard Versioning API  */
 export default class StdVerAPI {
+    Phase = StdVerPhase
+    Scope = StdVerScope
+
     /*  decode a Standard Versioning identifier string into a record  */
     decode (encoding: string): StdVer {
         const m = encoding.match(/^(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.(\d{8}))?(?:\+([\dA-F]{4}))?(?:-([XLEG]A))?$/)
