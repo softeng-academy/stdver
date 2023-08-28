@@ -39,7 +39,7 @@
                             frameborder="0" scrolling="0" width="100px" height="20px">
                         </iframe>
                     </div>
-                    <div class="id">stdver.org 0.9.5.20230828-EA</div>
+                    <div class="id">stdver.org 0.9.6.20230829-EA</div>
                 </div>
                 <div class="title">
                     <a class="sea-logo" href="https://softeng.academy"><img src="sea-logo.svg" alt="Software Engineering Academy"></a>
@@ -75,98 +75,11 @@
                     <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
                 </div>
 
-                <div class="subsubtitle">Parts</div>
-
-                The parts of the <i>Standard Versioning</i> version identifier scheme are:
-
-                <ul>
-                    <li><span class="var">M</span>: <tt>\d+</tt> (M &ge; 0) &mdash; <span class="part">Major Version</span><br/>
-                        Major version of solution.
-                        Bumped on <i>major</i> changes, like full modernizations.
-                        A bump resets the <span class="part">Minor Version</span> <span class="var">N</span> and <span class="part">Revision</span> <span class="var">R</span> to 0.
-                        On change, backward compatibility is not possible.
-                        On upgrade, human interaction is expected.
-                        <i>Rationale: Primary version of solution.</i>
-                    </li>
-                    <li><span class="var">N</span>: <tt>\d+</tt> (N &ge; 0) &mdash; <span class="part">Minor Version</span><br/>
-                        Minor version of the solution within the <span class="part">Major Version</span>.
-                        Bumped on <i>minor</i> changes, like new features.
-                        A bump resets the <span class="part">Revision</span> <span class="var">R</span> to 0.
-                        On change, backward compatibility is seeked for, but not assured.
-                        On upgrade, human interaction might be required.
-                        <i>Rationale: Secondary version of solution.</i>
-                    </li>
-                    <li><span class="var">p</span>: <tt>(?:a|b|rc|\.)</tt> &mdash; <span class="part">Maturity Phase</span><br/>
-                        Maturity phase within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.
-                        A change resets the <span class="part">Revision</span> <span class="var">R</span> to 0.
-                        The distinct phases, in chronological order, are:
-                        <ul>
-                            <li><tt>a</tt>: Alpha<br/>
-                                Early version of the solution with incomplete and unstable functionalities,
-                                to get feedback on solution.
-                            </li>
-                            <li><tt>b</tt>: Beta<br/>
-                                Early version of the solution with complete but still unstable functionalities,
-                                to stabilize solution.
-                            </li>
-                            <li><tt>rc</tt>: Release Candidate<br/>
-                                Mature version of the solution with complete and stable functionalities,
-                                to catch final inconsistencies just before release.
-                            </li>
-                            <li><tt>.</tt>: Release<br/>
-                                Mature version of the solution with complete and stable functionalities,
-                                available for full production use.
-                            </li>
-                        </ul>
-                        <i>Rationale: Integrate maturity phase.</i>
-                    </li>
-                    <li><span class="var">R</span>: <tt>\d+</tt> (R &ge; 0) &mdash; <span class="part">Phase Revision</span><br/>
-                        Revision of the <span class="part">Maturity Phase</span> within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.
-                        Bumped for every revision within a <span class="part">Maturity Phase</span> <span class="var">p</span>.
-                        On change within Alpha and Beta maturity phases, <u>no</u> backward compatibility has to be assured.
-                        On change within Release Candidate and Release maturity phases, full backward compatibility has to be assured.
-                        On upgrade, <u>no</u> human interaction is required.
-                        <i>Rationale: Revision counter within maturity phase.</i>
-                    </li>
-                    <li><span class="var">D</span>: <tt>\d{8}</tt> &mdash; <span class="part">Snapshot Date</span><br/>
-                        The optional snapshot date of year, month and date, represented in sort-supporting ISO notation.
-                        <i>Rationale: Support snapshots between official versions.</i>
-                    </li>
-                    <li><span class="var">H</span>: <tt>[\dA-F]{4}</tt> &mdash; <span class="part">Source Hash</span><br/>
-                        The optional 16-bit hashing checksum of the source code of the solution, represented as a upper-case hexadecimal
-                        value. This usually is an, automatically calculated build-time, SHA1 or MD5 hash
-                        value (8 bytes, 128 bit), folded 3 times through an XOR-operation into just 2 bytes / 16 bit.
-                        <i>Rationale: Support sub-daily snapshots and easy build identification during developer hot-reload round-trips.</i>
-                    </li>
-                    <li><span class="var">S</span>: <tt>[XLEG]A</tt> &mdash; <span class="part">Availability Scope</span><br/>
-                        The optional availability scopes of the release. The known scopes are:
-                        <ul>
-                            <li><tt>XA</tt>: No Availability<br/>
-                                No public availability of solution at all.
-                                The scope for all Development and sometimes Snapshot point-in-times.
-                            </li>
-                            <li><tt>LA</tt>: Limited Availability<br/>
-                                Limited public availability of solution.
-                                Usually for releases after the End-of-Life-Announcement (EOLA) or for releases with specific customer features.
-                            </li>
-                            <li><tt>EA</tt>: Early Availability<br/>
-                                Early public availability of solution for early market.
-                                Usually for Beta or Release Candidate levels or for Release and initial Release Update levels.
-                            </li>
-                            <li><tt>GA</tt>: General Availability<br/>
-                                Late public availability of solution for mainstream market.
-                                Usually for Release and sometimes just for Release Update levels.
-                            </li>
-                        </ul>
-                        <i>Rationale: Support intended scope of version.</i>
-                    </li>
-                </ul>
-
                 <div class="subsubtitle">Level</div>
 
                 The <i>Standard Versioning</i> version identifier scheme usually is used
                 at the following three distinct levels, which are most popular in practice
-                and directly align to the usual extend of the release management:
+                and directly align to the usual extend of the particularly used release management:
 
                 <ul>
                     <li><b>Level 0</b>:
@@ -174,14 +87,14 @@
                             <span class="var">M</span><tt>.</tt><span class="var">N</span><tt>.</tt><span class="var">R</span>
                         </span>
                         <br/>
-                        This uses <i>Standard Versioning</i>, just with release revisions and excluding the optional information.
+                        <i>Standard Versioning</i>, just with release revisions and excluding the optional parts.
                     </li>
                     <li><b>Level 1</b>:
                         <span class="scheme-inline">
                             <span class="var">M</span><tt>.</tt><span class="var">N</span><span class="var">p</span><span class="var">R</span>
                         </span>
                         <br/>
-                        This uses <i>Standard Versioning</i>, excluding the optional information.
+                        <i>Standard Versioning</i>, excluding the optional parts.
                     </li>
                     <li><b>Level 2</b>:
                         <span class="scheme-inline">
@@ -191,9 +104,143 @@
                             <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
                         </span>
                         <br/>
-                        This uses <i>Standard Versioning</i>, including the optional information (when necessary).
+                        <i>Standard Versioning</i>, including the optional parts (when necessary).
                     </li>
                 </ul>
+
+                <div class="subsubtitle">Parts</div>
+
+                The parts of the <i>Standard Versioning</i> version identifier scheme are:
+
+                <ul>
+                    <li><span class="var">M</span>: <tt>\d+</tt> (M &ge; 0) &mdash; <span class="part">Major Version</span><br/>
+                        Major version of solution.<br/>
+                        <i>Rationale: Primary versioning of solution.</i>
+                        <ul>
+                            <li>Bumped by provider on <i>major</i> changes, like full modernizations.
+                                A bump resets the <span class="part">Minor Version</span> <span class="var">N</span> to 0,
+                                <span class="part">Phase</span> <span class="var">p</span> to Release (for Level 0) or Alpha (for Level 1 and 2),
+                                <span class="part">Revision</span> <span class="var">R</span> to 0,
+                                and drops <span class="part">Snapshot Date</span> <span class="var">D</span>
+                                and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
+                            <li>On change by provider, backward compatibility is not possible.</li>
+                            <li>On upgrade by consumer, human interaction is expected.</li>
+                        </ul>
+                    </li>
+                    <li><span class="var">N</span>: <tt>\d+</tt> (N &ge; 0) &mdash; <span class="part">Minor Version</span><br/>
+                        Minor version of the solution within the <span class="part">Major Version</span>. <br/>
+                        <i>Rationale: Primary versioning of solution.</i>
+                        <ul>
+                            <li>Bumped by provider on <i>minor</i> changes, like new features.
+                                A bump resets the <span class="part">Phase</span> <span class="var">p</span> to Release (for Level 0) or Alpha (for Level 1 and 2),
+                                <span class="part">Revision</span> <span class="var">R</span> to 0,
+                                and drops <span class="part">Snapshot Date</span> <span class="var">D</span>
+                                and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
+                            <li>On change by provider, backward compatibility is seeked for, but not assured.</li>
+                            <li>On upgrade by consumer, human interaction might be required.</li>
+                        </ul>
+                    </li>
+                    <li><span class="var">p</span>: <tt>(?:a|b|rc|\.)</tt> &mdash; <span class="part">Maturity Phase</span><br/>
+                        Maturity phase within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.<br/>
+                        <i>Rationale: Integrate maturity phase.</i>
+
+                        <ul>
+                            <li>The distinct phases, in chronological order, are:
+                                <ul>
+                                    <li><tt>a</tt> &mdash; Alpha<br/>
+                                        Early version of the solution with incomplete and unstable functionalities,
+                                        to get feedback on solution.
+                                    </li>
+                                    <li><tt>b</tt> &mdash; Beta<br/>
+                                        Early version of the solution with complete but still unstable functionalities,
+                                        to stabilize solution.
+                                    </li>
+                                    <li><tt>rc</tt> &mdash; Release Candidate<br/>
+                                        Mature version of the solution with complete and stable functionalities,
+                                        to catch final inconsistencies just before release.
+                                    </li>
+                                    <li><tt>.</tt> &mdash; Release<br/>
+                                        Mature version of the solution with complete and stable functionalities,
+                                        available for full production use.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Bumped by provider on entering a new maturity phase of the solution.
+                                A bump resets the <span class="part">Revision</span> <span class="var">R</span> to 0
+                                and drops <span class="part">Snapshot Date</span> <span class="var">D</span>
+                                and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
+                            <li>On change by provider, backward compatibility is seeked for, but not assured.</li>
+                            <li>On upgrade by consumer, human interaction might be required.</li>
+                        </ul>
+                    </li>
+                    <li><span class="var">R</span>: <tt>\d+</tt> (R &ge; 0) &mdash; <span class="part">Phase Revision</span><br/>
+                        Revision of the <span class="part">Maturity Phase</span> <span class="var">p</span> within the combination of <span class="part">Major Version</span> <span class="var">M</span> and <span class="part">Minor Version</span> <span class="var">N</span>.<br/>
+                        <i>Rationale: Revision counter within maturity phase.</i>
+                        <ul>
+                            <li>Bumped by provider on every revision within a <span class="part">Maturity Phase</span> <span class="var">p</span>.
+                                A bump drops <span class="part">Snapshot Date</span> <span class="var">D</span>
+                                and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
+                            <li>On change by provider within Alpha and Beta maturity phases, <u>no</u> backward compatibility has to be assured.
+                                On change by provider within Release Candidate and Release maturity phases, full backward compatibility has to be assured.</li>
+                            <li>On upgrade by consumer, <u>no</u> human interaction is required.</li>
+                        </ul>
+                    </li>
+                    <li><span class="var">D</span>: <tt>\d{8}</tt> &mdash; <span class="part">Snapshot Date</span><br/>
+                        The optional snapshot date of year, month and date, represented in sort-supporting ISO notation.<br/>
+                        <i>Rationale: Support snapshots between official versions.</i>
+                        <ul>
+                            <li>Bumped by provider on new snapshots within a <span class="part">Revision</span> <span class="var">R</span>.
+                                A bump just updates <span class="part">Snapshot Date</span> <span class="var">D</span>
+                                to the current date and drops the <span class="part">Source Hash</span> <span class="var">H</span>.</li>
+                            <li>On change by provider within Alpha and Beta maturity phases, <u>no</u> backward compatibility has to be assured.
+                                On change by provider within Release Candidate and Release maturity phases, full backward compatibility has to be assured.</li>
+                            <li>On upgrade by consumer, human interaction might be required.</li>
+                        </ul>
+                    </li>
+                    <li><span class="var">H</span>: <tt>[\dA-F]{4}</tt> &mdash; <span class="part">Source Hash</span><br/>
+                        The optional 16-bit hash of the source state of the solution, represented as a upper-case hexadecimal
+                        value. This is an, at build-time automatically calculated, SHA-254 digest
+                        (32 bytes, 256 bit), folded 4 times through an XOR-operation into just 2 bytes / 16 bit.<br/>
+                        <i>Rationale: Support sub-daily snapshots and easy build identification during developer hot-reloading round-trips.</i>
+                        <ul>
+                            <li>Bumped by provider on any build within <span class="part">Revision</span> <span class="var">R</span>.
+                                A bump just drops <span class="part">Source Hash</span> <span class="var">H</span>,
+                                as it afterwards has to be set manually.</li>
+                            <li>On change by provider, <u>no</u> backward compatibility has to be assured.</li>
+                            <li>On upgrade by consumer, human interaction might be required.</li>
+                        </ul>
+                    </li>
+                    <li><span class="var">S</span>: <tt>[XLEG]A</tt> &mdash; <span class="part">Availability Scope</span><br/>
+                        The optional availability scopes of the release.<br/>
+                        <i>Rationale: Support intended availability scope of version.</i>
+                        <ul>
+                            <li>The known availability scopes are:
+                                <ul>
+                                    <li><tt>XA</tt>: No Availability<br/>
+                                        No public availability of solution at all.
+                                        The scope for all Development and sometimes Snapshot point-in-times.
+                                    </li>
+                                    <li><tt>LA</tt>: Limited Availability<br/>
+                                        Limited public availability of solution.
+                                        Usually for releases after the End-of-Life-Announcement (EOLA) or for releases with specific customer features.
+                                    </li>
+                                    <li><tt>EA</tt>: Early Availability<br/>
+                                        Early public availability of solution for early market.
+                                        Usually for Beta or Release Candidate levels or for Release and initial Release Update levels.
+                                    </li>
+                                    <li><tt>GA</tt>: General Availability<br/>
+                                        Late public availability of solution for mainstream market.
+                                        Usually for Release and sometimes just for Release Update levels.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Bumped by provider on entering a new availability scope of the solution.</li>
+                            <li>On change by provider, backward compatibility is seeked for, but not assured.</li>
+                            <li>On upgrade by consumer, human interaction might be required.</li>
+                        </ul>
+                    </li>
+                </ul>
+
             </div>
             <div class="content" v-show="page === 'examples'">
                 <div class="subtitle">Standard Versioning Examples</div>
