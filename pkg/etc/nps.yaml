@@ -19,8 +19,12 @@ scripts:
     lint-eslint:            eslint --config etc/eslint.yaml --ext ts src/**/*.ts
 
     #   code compilation/transpiling (building)
-    build-watch:            tsc --project etc/tsc.json --sourceMap --watch
-    build:                  tsc --project etc/tsc.json
+    build-watch:            nodemon --exec "npm start build" --watch src --ext js,ts
+    build:                  npm start build-server build-client
+    build-server:           tsc --project etc/tsc.json
+    build-client: >
+                            cross-env NODE_OPTIONS=--max-old-space-size=8192
+                            vite --config etc/vite.ts build --logLevel info --mode production
 
     #   cleanup filesystem
     clean:                  rimraf dst

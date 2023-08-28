@@ -19,6 +19,7 @@
     "bugs":                                 "https://github.com/softeng-academy/stdver/issues",
     "type":                                 "module",
     "main":                                 "dst/stdver-api.js",
+    "browser":                              "dst/stdver-api.browser.js",
     "bin": {
         "stdver":                           "dst/stdver-cli.js"
     },
@@ -41,7 +42,9 @@
 
         "stmux":                            "1.8.7",
         "nps":                              "5.10.0",
+        "cross-env":                        "7.0.3",
         "nodemon":                          "3.0.1",
+        "vite":                             "4.4.9",
         "rimraf":                           "5.0.1"
     },
     "engines": {
