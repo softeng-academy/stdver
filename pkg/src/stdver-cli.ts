@@ -72,7 +72,7 @@ class StdVerCLI {
     }
     bump (opts: any, version: string) {
         const api = new StdVerAPI()
-        const versionNew = api.bump(version, opts.part, opts.level)
+        const versionNew = api.bump(version, { part: opts.part, level: opts.level })
         process.stdout.write(versionNew + "\n")
     }
     explain (opts: any, version: string) {

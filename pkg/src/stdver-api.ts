@@ -100,83 +100,93 @@ export default class StdVerAPI {
     }
 
     /*  bump a Standard Versioning identifier part  */
-    bump (encoding: string, part: "M"|"N"|"p"|"R"|"D"|"H"|"S" = "R", level = 2) {
+    bump (encoding: string, options = {} as { part?: string, level?: number }) {
+        /*  provide option defaults  */
+        options = { part: "R", level: 1, ...options }
+        console.log(options)
+
         /*  decode identifier  */
         const decoding = this.decode(encoding)
 
-        /*  bump identifier part(s)  */
-        if (part === "M") {
+        /*  bump identifier part and update related parts implicitly  */
+        if (options.part === "M") {
             decoding.M++
             decoding.N = 0
-            if (level === 0)
+            if (options.level === 0)
                 decoding.p = StdVerPhase.release
             else
                 decoding.p = StdVerPhase.alpha
             decoding.R = 0
             if (decoding.D)
-                decoding.D = parseInt(moment().format("YYYYMMDD"))
+                delete decoding.D
             if (decoding.H)
-                decoding.H = ""
+                delete decoding.H
         }
-        else if (part === "N") {
+        else if (options.part === "N") {
             decoding.N++
-            if (level === 0)
+            if (options.level === 0)
                 decoding.p = StdVerPhase.release
             else
                 decoding.p = StdVerPhase.alpha
             decoding.R = 0
             if (decoding.D)
-                decoding.D = parseInt(moment().format("YYYYMMDD"))
+                delete decoding.D
             if (decoding.H)
-                decoding.H = ""
+                delete decoding.H
         }
-        else if (part === "p") {
+        else if (options.part === "p") {
             switch (decoding.p) {
                 case StdVerPhase.alpha:     decoding.p = StdVerPhase.beta;      break
                 case StdVerPhase.beta:      decoding.p = StdVerPhase.candidate; break
                 case StdVerPhase.candidate: decoding.p = StdVerPhase.release;   break
-                case StdVerPhase.release:   decoding.p = StdVerPhase.alpha;     break
+                case StdVerPhase.release:
+                    throw new Error("cannot bump Phase higher than 'release'")
             }
             decoding.R = 0
             if (decoding.D)
-                decoding.D = parseInt(moment().format("YYYYMMDD"))
+                delete decoding.D
             if (decoding.H)
-                decoding.H = ""
+                delete decoding.H
         }
-        else if (part === "R") {
+        else if (options.part === "R") {
+            decoding.R++
             if (decoding.D)
-                decoding.D = parseInt(moment().format("YYYYMMDD"))
+                delete decoding.D
             if (decoding.H)
-                decoding.H = ""
+                delete decoding.H
         }
-        else if (part === "D") {
+        else if (options.part === "D") {
             decoding.D = parseInt(moment().format("YYYYMMDD"))
             if (decoding.H)
-                decoding.H = ""
+                delete decoding.H
         }
-        else if (part === "H") {
-            decoding.H = ""
+        else if (options.part === "H") {
+            delete decoding.H
         }
-        else if (part === "S") {
+        else if (options.part === "S") {
             switch (decoding.S) {
                 case StdVerScope.XA: decoding.S = StdVerScope.LA; break
                 case StdVerScope.LA: decoding.S = StdVerScope.EA; break
                 case StdVerScope.EA: decoding.S = StdVerScope.GA; break
-                case StdVerScope.GA: decoding.S = StdVerScope.XA; break
+                case StdVerScope.GA:
+                    throw new Error("cannot bump Scope higher than 'GA'")
             }
         }
 
-        /*  (re-)encode identifer  */
+        /*  (re-)encode identifier  */
         const encodingNew = this.encode(decoding)
         return encodingNew
     }
 
     /*  explain a Standard Versioning identifier  */
     explain (encoding: string, options = {} as { format?: string, markup?: string }) {
+        /*  provide option defaults  */
         options = { format: "text", markup: "none", ...options }
 
+        /*  decode identifier  */
         const decoding = this.decode(encoding)
 
+        /*  dispatch according to format and markup  */
         let text = ""
         if (options.format === "text" && options.markup === "html") {
             text += `Version <span class="part part-M">${decoding.M + "." + decoding.N}</span>'s`
