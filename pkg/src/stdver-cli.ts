@@ -40,7 +40,7 @@ class StdVerCLI {
             .argument("<version>", "Standard Versioning identifier to change")
             .action((version, opts) => { try { this.bump(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.command("explain")
-            .option("-f, --format <format>", "format of explanation ('text', 'table', 'json', 'yaml')", "text")
+            .option("-f, --format <format>", "format ('text', 'table-cli', 'table-htmk', 'obj-json', 'obj-yaml')", "table-cli")
             .argument("<version>", "Standard Versioning identifier to explain")
             .action((version, opts) => { try { this.explain(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.parse(process.argv)
