@@ -20,11 +20,13 @@ scripts:
 
     #   code compilation/transpiling (building)
     build-watch:            nodemon --exec "npm start build" --watch src --ext js,ts
-    build:                  npm start build-server build-client
+    build:                  npm start build-server build-client build-man-api build-man-cli
     build-server:           tsc --project etc/tsc.json
     build-client: >
                             cross-env NODE_OPTIONS=--max-old-space-size=8192
                             vite --config etc/vite.ts build --logLevel info --mode production
+    build-man-api:          remark --quiet --use remark-man --output dst/stdver.3 src/stdver-api.md
+    build-man-cli:          remark --quiet --use remark-man --output dst/stdver.1 src/stdver-cli.md
 
     #   cleanup filesystem
     clean:                  rimraf dst

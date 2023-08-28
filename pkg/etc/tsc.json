@@ -12,6 +12,7 @@
         "esModuleInterop":            true,
         "lib":                        [ "ESNext" ],
         "skipLibCheck":               true,
+        "declaration":                true,
         "noEmit":                     false,
         "types":                      [ "node" ],
         "rootDir":                    "../src"
