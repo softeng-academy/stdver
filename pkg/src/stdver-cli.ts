@@ -9,6 +9,7 @@
 import fs          from "node:fs"
 import { Command } from "commander"
 import chalk       from "chalk"
+import stripAnsi   from "strip-ansi"
 
 import StdVerAPI   from "./stdver-api.js"
 
@@ -76,8 +77,11 @@ class StdVerCLI {
     }
     explain (opts: any, version: string) {
         const api = new StdVerAPI()
-        const text = api.explain(version, opts.format)
-        process.stdout.write(text + (text.match(/\n$/) ? "" : "\n"))
+        let text = api.explain(version, opts.format)
+        text += text.match(/\n$/) ? "" : "\n"
+        if (!process.stdout.isTTY)
+            text = stripAnsi(text)
+        process.stdout.write(text)
     }
 }
 (new StdVerCLI()).main()

@@ -6,6 +6,8 @@
 */
 
 import moment from "moment"
+import chalk  from "chalk"
+import Table  from "cli-table3"
 
 /*  Standard Versioning: Phase  */
 export enum StdVerPhase {
@@ -171,42 +173,56 @@ export default class StdVerAPI {
 
         let text = ""
         if (format === "text") {
-            text += `Version ${decoding.M}.${decoding.N}'s`
+            text += `Version ${chalk.blue.bold(decoding.M + "." + decoding.N)}'s`
             if (decoding.R === 0)
                 text += " initial"
             else {
                 const R = decoding.R + 1
-                text += ` ${R}`
+                text += ` ${chalk.blue.bold(R)}`
                 if      (R === 1)  text += "st"
                 else if (R === 2)  text += "nd"
                 else if (R === 3)  text += "rd"
                 else               text += "th"
             }
             text += " "
-            if      (decoding.p === StdVerPhase.alpha)     text += "alpha release"
-            else if (decoding.p === StdVerPhase.beta)      text += "beta release"
-            else if (decoding.p === StdVerPhase.candidate) text += "release candidate"
-            else                                           text += "release"
+            if      (decoding.p === StdVerPhase.alpha)     text += chalk.blue.bold("alpha release")
+            else if (decoding.p === StdVerPhase.beta)      text += chalk.blue.bold("beta release")
+            else if (decoding.p === StdVerPhase.candidate) text += chalk.blue.bold("release candidate")
+            else                                           text += chalk.blue.bold("release")
             if (decoding.D)
-                text += `, made on ${decoding.D.toString().replace(/^(....)(..)(..)$/, "$1.$2.$3")}`
+                text += `,\nsnapshotted on ${chalk.blue(decoding.D.toString().replace(/^(....)(..)(..)$/, "$1.$2.$3"))}`
             if (decoding.H)
-                text += `, from source state 0x${decoding.H}`
+                text += `,\nfrom source state 0x${chalk.blue(decoding.H)}`
             if (decoding.S) {
-                if      (decoding.S === StdVerScope.XA) text += ", intended for no availability"
-                else if (decoding.S === StdVerScope.LA) text += ", intended for limited availability"
-                else if (decoding.S === StdVerScope.EA) text += ", intended for early availability"
-                else if (decoding.S === StdVerScope.GA) text += ", intended for general availability"
+                if      (decoding.S === StdVerScope.XA) text += ",\nintended for " + chalk.blue("no availability")
+                else if (decoding.S === StdVerScope.LA) text += ",\nintended for " + chalk.blue("limited availability")
+                else if (decoding.S === StdVerScope.EA) text += ",\nintended for " + chalk.blue("early availability")
+                else if (decoding.S === StdVerScope.GA) text += ",\nintended for " + chalk.blue("general availability")
             }
-            text += "."
+            text += ".\n"
         }
         else if (format === "table") {
-            text += `Major Version      (M): ${decoding.M}\n`
-            text += `Minor Version      (N): ${decoding.N}\n`
-            text += `Maturity Phase     (p): ${StdVerPhase[decoding.p]}\n`
-            text += `Phase Revision     (R): ${decoding.R}\n`
-            text += `Release Date       (D): ${decoding.D ? decoding.D : "(none)"}\n`
-            text += `Source Hash        (H): ${decoding.H ? decoding.H : "(none)"}\n`
-            text += `Availability Scope (S): ${decoding.S ? StdVerScope[decoding.S] : "(none)"}\n`
+            const table = new Table({
+                head: [
+                    chalk.reset.bold("Part"),
+                    chalk.reset.bold("Id"),
+                    chalk.reset.bold("Value")
+                ],
+                colWidths: [ 20, 4, 20 ],
+                style: { "padding-left": 1, "padding-right": 1, border: [ "grey" ], compact: true },
+                chars: { "left-mid": "", mid: "", "mid-mid": "", "right-mid": "" }
+            })
+            table.push([ "Major Version",      "M", chalk.blue.bold(decoding.M) ])
+            table.push([ "Minor Version",      "N", chalk.blue.bold(decoding.N) ])
+            table.push([ "Maturity Phase",     "p", chalk.blue.bold(StdVerPhase[decoding.p]) ])
+            table.push([ "Phase Revision",     "R", chalk.blue.bold(decoding.R) ])
+            if (decoding.D)
+                table.push([ "Snapshot Date",      "D", chalk.blue(decoding.D) ])
+            if (decoding.H)
+                table.push([ "Source Hash",        "H", chalk.blue(decoding.H) ])
+            if (decoding.S)
+                table.push([ "Availability Scope", "S", chalk.blue(StdVerScope[decoding.S]) ])
+            text = table.toString()
         }
         else if (format === "json") {
             text += "{"
