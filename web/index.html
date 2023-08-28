@@ -126,8 +126,8 @@
                         On upgrade, <u>no</u> human interaction is required.
                         <i>Rationale: Revision counter within maturity phase.</i>
                     </li>
-                    <li><span class="var">D</span>: <tt>\d{8}</tt> &mdash; <span class="part">Release Date</span><br/>
-                        The optional release date of year, month and date, represented in sort-supporting ISO notation.
+                    <li><span class="var">D</span>: <tt>\d{8}</tt> &mdash; <span class="part">Snapshot Date</span><br/>
+                        The optional snapshot date of year, month and date, represented in sort-supporting ISO notation.
                         <i>Rationale: Support snapshots between official versions.</i>
                     </li>
                     <li><span class="var">H</span>: <tt>[\dA-F]{4}</tt> &mdash; <span class="part">Source Hash</span><br/>
@@ -333,7 +333,7 @@ console.log(text)</pre>
                         <tr><td>Minor Version (N):</td><td><tt>{{ decoder.decoded.N }}</tt></td></tr>
                         <tr><td>Maturity Phase (p):</td><td><tt>{{ decoder.decoded.p }}</tt></td></tr>
                         <tr><td>Revision (R):</td><td><tt>{{ decoder.decoded.R }}</tt></td></tr>
-                        <tr><td>Release Date (D):</td><td><tt>{{ decoder.decoded.D ?? "(none)" }}</tt></td></tr>
+                        <tr><td>Snapshot Date (D):</td><td><tt>{{ decoder.decoded.D ?? "(none)" }}</tt></td></tr>
                         <tr><td>Source Hash (H):</td><td><tt>{{ decoder.decoded.H ?? "(none)" }}</tt></td></tr>
                         <tr><td>Availability Scope (S):</td><td><tt>{{ decoder.decoded.S ?? "(none)" }}</tt></td></tr>
                     </table>
@@ -420,7 +420,7 @@ console.log(text)</pre>
                 <i>Standard Versioning</i> is motivated by the usual maturity-based intution
                 most people have in mind when it comes to solution versions. It also integrates
                 the recurring revisions of maturity phases directly into the version.
-                Finally, it knows the optional tagging of versions with release date,
+                Finally, it knows the optional tagging of versions with snapshot date,
                 source hash and availability scope in order to support snapshot versions,
                 development versions and different target customer scopes.
             </div>
