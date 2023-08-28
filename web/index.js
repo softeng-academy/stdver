@@ -25,7 +25,7 @@ Vue.createApp({
             page = page.replace(/^#/, "")
             if (page === "")
                 page = "scheme"
-            if (page.match(/^(?:scheme|decoding|examples|alternatives|about)$/))
+            if (page.match(/^(?:scheme|decoding|decoder|examples|alternatives|about)$/))
                 this.page = page
             else {
                 this.page = "decoder"
@@ -55,7 +55,9 @@ Vue.createApp({
             }
         },
         hashExport (el) {
-            if (this.version !== "")
+            if (this.version === "")
+                window.location.hash = `#decoder`
+            else
                 window.location.hash = `#${this.version}`
         },
         explain (input, format = "text", markup = "none") {
