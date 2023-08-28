@@ -45,7 +45,8 @@ class StdVerCLI {
             .argument("<version>", "Standard Versioning identifier to explain")
             .action((version, opts) => { try { this.explain(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.command("hash")
-            .argument("<path...>", "file or directory to hash")
+            .option("-t, --type <type>", "source state type ('path', 'string')", "string")
+            .argument("<source...>", "file or directory to hash")
             .action(async (path, opts) => { try { await this.hash(opts, path) } catch (ex) { this.fatal(ex) } })
         this.program.parse(process.argv)
     }
@@ -86,25 +87,35 @@ class StdVerCLI {
         text += text.match(/\n$/) ? "" : "\n"
         process.stdout.write(text)
     }
-    async hash (opts: any, paths: string) {
-        /*  find all files  */
-        let files = await globby(paths, {
-            onlyFiles: true,
-            followSymbolicLinks: false,
-            suppressErrors: true
-        })
+    async hash (opts: any, sources: string[]) {
+        let content
 
-        /*  ensure a deterministic hashing  */
-        files = files.sort()
+        /*  dispatch according to type  */
+        if (opts.type === "string") {
+            /*  just concatenate all source strings into a buffer  */
+            const encoder = new TextEncoder()
+            content = encoder.encode(sources.join(""))
+        }
+        else if (opts.type === "path") {
+            /*  find all files  */
+            let files = await globby(sources, {
+                onlyFiles: true,
+                followSymbolicLinks: false,
+                suppressErrors: true
+            })
 
-        /*  read and concatenate all the contents into a buffer  */
-        let promises = [] as Promise<Buffer>[]
-        for (const file of files)
-            promises.push(fs.promises.readFile(file, { encoding: null }))
-        let contents = await Promise.all(promises)
-        const content = Buffer.concat(contents)
-        contents = []
-        promises = []
+            /*  read and concatenate (in sorted order) all the contents into a buffer  */
+            files = files.sort()
+            let promises = [] as Promise<Buffer>[]
+            for (const file of files)
+                promises.push(fs.promises.readFile(file, { encoding: null }))
+            let contents = await Promise.all(promises)
+            content = Buffer.concat(contents)
+            contents = []
+            promises = []
+        }
+        else
+            throw new Error("invalid type")
 
         /*  calculate and output hash through API  */
         const api = new StdVerAPI()
