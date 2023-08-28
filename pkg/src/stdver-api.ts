@@ -174,21 +174,12 @@ export default class StdVerAPI {
         let text = ""
         if (format === "text") {
             text += `Version ${chalk.blue.bold(decoding.M + "." + decoding.N)}'s`
-            if (decoding.R === 0)
-                text += " initial"
-            else {
-                const R = decoding.R + 1
-                text += ` ${chalk.blue.bold(R)}`
-                if      (R === 1)  text += "st"
-                else if (R === 2)  text += "nd"
-                else if (R === 3)  text += "rd"
-                else               text += "th"
-            }
             text += " "
             if      (decoding.p === StdVerPhase.alpha)     text += chalk.blue.bold("alpha release")
             else if (decoding.p === StdVerPhase.beta)      text += chalk.blue.bold("beta release")
             else if (decoding.p === StdVerPhase.candidate) text += chalk.blue.bold("release candidate")
             else                                           text += chalk.blue.bold("release")
+            text += ` in revision ${chalk.blue.bold(decoding.R)}`
             if (decoding.D)
                 text += `,\nsnapshotted on ${chalk.blue(decoding.D.toString().replace(/^(....)(..)(..)$/, "$1.$2.$3"))}`
             if (decoding.H)

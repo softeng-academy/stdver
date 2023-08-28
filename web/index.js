@@ -70,7 +70,7 @@ Vue.createApp({
             if (version.R === "0")
                 text += " initial"
             else {
-                let R = parseInt(version.R) + 1
+                let R = parseInt(version.R)
                 text += ` ${R}`
                 if      (R === 1)  text += "st"
                 else if (R === 2)  text += "nd"
