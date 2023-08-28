@@ -123,8 +123,8 @@
                                 <span class="part">Revision</span> <span class="var">R</span> to 0,
                                 and drops <span class="part">Snapshot Date</span> <span class="var">D</span>
                                 and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
-                            <li>On change by provider, backward compatibility is not possible.</li>
-                            <li>On upgrade by consumer, human interaction is expected.</li>
+                            <li>On change by provider, backward compatibility is not possible.
+                                On upgrade by consumer, human interaction is expected.</li>
                         </ul>
                     </li>
                     <li><span class="var">N</span>: <tt>\d+</tt> (N &ge; 0) &mdash; <span class="part">Minor Version</span><br/>
@@ -136,8 +136,8 @@
                                 <span class="part">Revision</span> <span class="var">R</span> to 0,
                                 and drops <span class="part">Snapshot Date</span> <span class="var">D</span>
                                 and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
-                            <li>On change by provider, backward compatibility is seeked for, but not assured.</li>
-                            <li>On upgrade by consumer, human interaction might be required.</li>
+                            <li>On change by provider, backward compatibility is seeked for, but not assured.
+                                On upgrade by consumer, human interaction might be required.</li>
                         </ul>
                     </li>
                     <li><span class="var">p</span>: <tt>(?:a|b|rc|\.)</tt> &mdash; <span class="part">Maturity Phase</span><br/>
@@ -169,8 +169,8 @@
                                 A bump resets the <span class="part">Revision</span> <span class="var">R</span> to 0
                                 and drops <span class="part">Snapshot Date</span> <span class="var">D</span>
                                 and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
-                            <li>On change by provider, backward compatibility is seeked for, but not assured.</li>
-                            <li>On upgrade by consumer, human interaction might be required.</li>
+                            <li>On change by provider, backward compatibility is seeked for, but not assured.
+                                On upgrade by consumer, human interaction might be required.</li>
                         </ul>
                     </li>
                     <li><span class="var">R</span>: <tt>\d+</tt> (R &ge; 0) &mdash; <span class="part">Phase Revision</span><br/>
@@ -181,8 +181,8 @@
                                 A bump drops <span class="part">Snapshot Date</span> <span class="var">D</span>
                                 and <span class="part">Source Hash</span> <span class="var">H</span>.</li>
                             <li>On change by provider within Alpha and Beta maturity phases, <u>no</u> backward compatibility has to be assured.
-                                On change by provider within Release Candidate and Release maturity phases, full backward compatibility has to be assured.</li>
-                            <li>On upgrade by consumer, <u>no</u> human interaction is required.</li>
+                                On change by provider within Release Candidate and Release maturity phases, full backward compatibility has to be assured.
+                                On upgrade by consumer, <u>no</u> human interaction is required.</li>
                         </ul>
                     </li>
                     <li><span class="var">D</span>: <tt>\d{8}</tt> &mdash; <span class="part">Snapshot Date</span><br/>
@@ -193,8 +193,8 @@
                                 A bump just updates <span class="part">Snapshot Date</span> <span class="var">D</span>
                                 to the current date and drops the <span class="part">Source Hash</span> <span class="var">H</span>.</li>
                             <li>On change by provider within Alpha and Beta maturity phases, <u>no</u> backward compatibility has to be assured.
-                                On change by provider within Release Candidate and Release maturity phases, full backward compatibility has to be assured.</li>
-                            <li>On upgrade by consumer, human interaction might be required.</li>
+                                On change by provider within Release Candidate and Release maturity phases, full backward compatibility has to be assured.
+                                On upgrade by consumer, human interaction might be required.</li>
                         </ul>
                     </li>
                     <li><span class="var">H</span>: <tt>[\dA-F]{4}</tt> &mdash; <span class="part">Source Hash</span><br/>
@@ -206,8 +206,8 @@
                             <li>Bumped by provider on any build within <span class="part">Revision</span> <span class="var">R</span>.
                                 A bump just drops <span class="part">Source Hash</span> <span class="var">H</span>,
                                 as it afterwards has to be set manually.</li>
-                            <li>On change by provider, <u>no</u> backward compatibility has to be assured.</li>
-                            <li>On upgrade by consumer, human interaction might be required.</li>
+                            <li>On change by provider, <u>no</u> backward compatibility has to be assured.
+                                On upgrade by consumer, human interaction might be required.</li>
                         </ul>
                     </li>
                     <li><span class="var">S</span>: <tt>[XLEG]A</tt> &mdash; <span class="part">Availability Scope</span><br/>
@@ -235,8 +235,8 @@
                                 </ul>
                             </li>
                             <li>Bumped by provider on entering a new availability scope of the solution.</li>
-                            <li>On change by provider, backward compatibility is seeked for, but not assured.</li>
-                            <li>On upgrade by consumer, human interaction might be required.</li>
+                            <li>On change by provider, backward compatibility is seeked for, but not assured.
+                                On upgrade by consumer, human interaction might be required.</li>
                         </ul>
                     </li>
                 </ul>
