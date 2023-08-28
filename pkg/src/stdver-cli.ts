@@ -9,6 +9,7 @@
 import fs          from "node:fs"
 import { Command } from "commander"
 import chalk       from "chalk"
+import { globby }  from "globby"
 
 import StdVerAPI   from "./stdver-api.js"
 
@@ -43,6 +44,9 @@ class StdVerCLI {
             .option("-m, --markup <markup>", "markup ('none', 'ansi', 'html')", process.stdout.isTTY ? "ansi" : "none")
             .argument("<version>", "Standard Versioning identifier to explain")
             .action((version, opts) => { try { this.explain(opts, version) } catch (ex) { this.fatal(ex) } })
+        this.program.command("hash")
+            .argument("<path...>", "file or directory to hash")
+            .action(async (path, opts) => { try { await this.hash(opts, path) } catch (ex) { this.fatal(ex) } })
         this.program.parse(process.argv)
     }
     fatal (error: any): never {
@@ -57,7 +61,8 @@ class StdVerCLI {
             "$ stdver help\n" +
             "$ stdver version\n" +
             "$ stdver bump -p N 1.2.3\n" +
-            "$ stdver explain 1.2a3.20230801+ABCD-XA\n\n")
+            "$ stdver explain 1.2a3.20230801+ABCD-XA\n" +
+            "$ stdver hash src/**/*.js '!src/**/*.bak'\n\n")
         process.exit(0)
     }
     async version (opts: any) {
@@ -80,6 +85,31 @@ class StdVerCLI {
         let text = api.explain(version, { format: opts.format, markup: opts.markup })
         text += text.match(/\n$/) ? "" : "\n"
         process.stdout.write(text)
+    }
+    async hash (opts: any, paths: string) {
+        /*  find all files  */
+        let files = await globby(paths, {
+            onlyFiles: true,
+            followSymbolicLinks: false,
+            suppressErrors: true
+        })
+
+        /*  ensure a deterministic hashing  */
+        files = files.sort()
+
+        /*  read and concatenate all the contents into a buffer  */
+        let promises = [] as Promise<Buffer>[]
+        for (const file of files)
+            promises.push(fs.promises.readFile(file, { encoding: null }))
+        let contents = await Promise.all(promises)
+        const content = Buffer.concat(contents)
+        contents = []
+        promises = []
+
+        /*  calculate and output hash through API  */
+        const api = new StdVerAPI()
+        const hash = await api.hash(content)
+        process.stdout.write(hash + "\n")
     }
 }
 (new StdVerCLI()).main()

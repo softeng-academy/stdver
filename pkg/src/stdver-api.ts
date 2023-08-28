@@ -5,6 +5,7 @@
 **  Licensed under MIT license <https://spdx.org/licenses/MIT.html>
 */
 
+import crypto    from "tiny-webcrypto"
 import moment    from "moment"
 import chalk     from "chalk"
 import stripAnsi from "strip-ansi"
@@ -304,6 +305,27 @@ export default class StdVerAPI {
         else
             throw new Error("invalid format/markup combination")
         return text
+    }
+
+    /*  calculate hash values of a buffer  */
+    async hash (buf: Buffer | ArrayBuffer) {
+        /*  calculate 256-bit SHA digest  */
+        const hashBuf = await crypto.subtle.digest("SHA-256", buf)
+
+        /*  fold digest into 16-bit hash value  */
+        const n = 2
+        const hashArray = Array.from(new Uint8Array(hashBuf))
+        const hashFolded = new Array(n)
+        for (let i = 0; i < n; i++) {
+            let folded = 0x00
+            for (let j = 0; i + j < hashArray.length; j += n)
+                folded ^= hashArray[i + j]
+            hashFolded[i] = folded
+        }
+
+        /*  convert and return hash as a hexadecimal string  */
+        return hashFolded.map((byte: number) =>
+            byte.toString(16).padStart(2, "0").toUpperCase()).join("")
     }
 }
 
