@@ -19,6 +19,7 @@
     "bugs":                                 "https://github.com/softeng-academy/stdver/issues",
     "type":                                 "module",
     "main":                                 "dst/stdver-api.js",
+    "types":                                "dst/stdver-api.d.ts",
     "browser":                              "dst/stdver-api.browser.js",
     "bin":                                  { "stdver": "dst/stdver-cli.js" },
     "man":                                  [ "dst/stdver.1", "dst/stdver.3" ],
