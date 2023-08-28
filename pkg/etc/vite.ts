@@ -15,7 +15,7 @@ export default Vite.defineConfig(({ command, mode, ssrBuild }) => ({
             entry:              "stdver-api.ts",
             formats:            [ "umd" ],
             fileName:           (fmt) => `stdver-api.browser.js`,
-            name:               "stdver"
+            name:               "StdVer"
         },
         sourcemap:              (mode === "development"),
         outDir:                 "../dst",
