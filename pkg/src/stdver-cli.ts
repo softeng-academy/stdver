@@ -9,7 +9,6 @@
 import fs          from "node:fs"
 import { Command } from "commander"
 import chalk       from "chalk"
-import stripAnsi   from "strip-ansi"
 
 import StdVerAPI   from "./stdver-api.js"
 
@@ -40,7 +39,8 @@ class StdVerCLI {
             .argument("<version>", "Standard Versioning identifier to change")
             .action((version, opts) => { try { this.bump(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.command("explain")
-            .option("-f, --format <format>", "format ('text', 'table-cli', 'table-htmk', 'obj-json', 'obj-yaml')", "table-cli")
+            .option("-f, --format <format>", "format ('text', 'table', 'json', 'yaml')", "table")
+            .option("-m, --markup <markup>", "markup ('none', 'ansi', 'html')", process.stdout.isTTY ? "ansi" : "none")
             .argument("<version>", "Standard Versioning identifier to explain")
             .action((version, opts) => { try { this.explain(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.parse(process.argv)
@@ -77,10 +77,8 @@ class StdVerCLI {
     }
     explain (opts: any, version: string) {
         const api = new StdVerAPI()
-        let text = api.explain(version, opts.format)
+        let text = api.explain(version, { format: opts.format, markup: opts.markup })
         text += text.match(/\n$/) ? "" : "\n"
-        if (!process.stdout.isTTY)
-            text = stripAnsi(text)
         process.stdout.write(text)
     }
 }

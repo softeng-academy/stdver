@@ -2,5 +2,5 @@
 stdver
 ======
 
-**Standard Versioning Command-Line Interface**
+**Standard Versioning Application Programming Interface (API) and Command-Line Interface (CLI)**
 

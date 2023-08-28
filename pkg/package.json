@@ -1,8 +1,8 @@
 {
     "name":                                 "stdver",
     "publishConfig":                        { "access": "public" },
-    "version":                              "0.9.4",
-    "stdver":                               "0.9.4-EA",
+    "version":                              "0.9.5",
+    "stdver":                               "0.9.5-EA",
     "description":                          "Standard Versioning Command-Line Interface",
     "keywords":                             [ "standard", "versioning", "cli", "stdver" ],
     "repository": {

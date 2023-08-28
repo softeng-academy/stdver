@@ -5,9 +5,10 @@
 **  Licensed under MIT license <https://spdx.org/licenses/MIT.html>
 */
 
-import moment from "moment"
-import chalk  from "chalk"
-import Table  from "cli-table3"
+import moment    from "moment"
+import chalk     from "chalk"
+import stripAnsi from "strip-ansi"
+import Table     from "cli-table3"
 
 /*  Standard Versioning: Phase  */
 enum StdVerPhase {
@@ -171,11 +172,35 @@ export default class StdVerAPI {
     }
 
     /*  explain a Standard Versioning identifier  */
-    explain (encoding: string, format: "text" | "table-cli" | "table-html" | "obj-json" | "obj-yaml" = "text") {
+    explain (encoding: string, options = {} as { format?: string, markup?: string }) {
+        options = { format: "text", markup: "none", ...options }
+
         const decoding = this.decode(encoding)
 
         let text = ""
-        if (format === "text") {
+        if (options.format === "text" && options.markup === "html") {
+            text += `Version <span class="part part-M">${decoding.M + "." + decoding.N}</span>'s`
+            text += " "
+            if      (decoding.p === StdVerPhase.alpha)     text += "<span class=\"part part-p\">alpha release</span>"
+            else if (decoding.p === StdVerPhase.beta)      text += "<span class=\"part part-p\">beta release</span>"
+            else if (decoding.p === StdVerPhase.candidate) text += "<span class=\"part part-p\">release candidate</span>"
+            else                                           text += "<span class=\"part part-p\">release</span>"
+            text += ` in revision <span class="part part-R">${decoding.R}</span>`
+            if (decoding.D)
+                text += `, snapshotted on <span class="part part-D">${decoding.D.toString().replace(/^(....)(..)(..)$/, "$1.$2.$3")}</span>`
+            if (decoding.H)
+                text += `, from source state <span class="part part-H">0x${decoding.H}</span>`
+            if (decoding.S) {
+                text += ", intended for "
+                if      (decoding.S === StdVerScope.XA) text += "<span class=\"part part-S\">No Availability</span>"
+                else if (decoding.S === StdVerScope.LA) text += "<span class=\"part part-S\">Limited Availability</span>"
+                else if (decoding.S === StdVerScope.EA) text += "<span class=\"part part-S\">Early Availability</span>"
+                else if (decoding.S === StdVerScope.GA) text += "<span class=\"part part-S\">General Availability</span>"
+                text += " scope"
+            }
+            text += ".\n"
+        }
+        else if (options.format === "text" && options.markup?.match(/^(?:none|ansi)$/)) {
             text += `Version ${chalk.red(decoding.M + "." + decoding.N)}'s`
             text += " "
             if      (decoding.p === StdVerPhase.alpha)     text += chalk.red("alpha release")
@@ -188,14 +213,18 @@ export default class StdVerAPI {
             if (decoding.H)
                 text += `, from source state ${chalk.blue("0x" + decoding.H)}`
             if (decoding.S) {
-                if      (decoding.S === StdVerScope.XA) text += ", intended for " + chalk.blue("No Availability")
-                else if (decoding.S === StdVerScope.LA) text += ", intended for " + chalk.blue("Limited Availability")
-                else if (decoding.S === StdVerScope.EA) text += ", intended for " + chalk.blue("Early Availability")
-                else if (decoding.S === StdVerScope.GA) text += ", intended for " + chalk.blue("General Availability")
+                text += ", intended for "
+                if      (decoding.S === StdVerScope.XA) text += chalk.blue("No Availability")
+                else if (decoding.S === StdVerScope.LA) text += chalk.blue("Limited Availability")
+                else if (decoding.S === StdVerScope.EA) text += chalk.blue("Early Availability")
+                else if (decoding.S === StdVerScope.GA) text += chalk.blue("General Availability")
+                text += " scope"
             }
             text += ".\n"
+            if (options.markup !== "ansi")
+                text = stripAnsi(text)
         }
-        else if (format === "table-cli") {
+        else if (options.format === "table" && options.markup?.match(/^(?:none|ansi)$/)) {
             const table = new Table({
                 head: [
                     chalk.reset.bold("Part"),
@@ -217,23 +246,25 @@ export default class StdVerAPI {
             if (decoding.S)
                 table.push([ "Availability Scope", "S", chalk.blue(StdVerScope[decoding.S]) ])
             text = table.toString()
+            if (options.markup !== "ansi")
+                text = stripAnsi(text)
         }
-        else if (format === "table-html") {
-            text = "<table style=\"text-align: left;\">\n"
-            text += "    <tr><th>Part</th>              <th>Id</th><th>Value</th></tr>\n"
-            text += `    <tr><td>Major Version</td>     <td>M</td> <td>${decoding.M}</td></tr>\n`
-            text += `    <tr><td>Minor Version</td>     <td>N</td> <td>${decoding.N}</td></tr>\n`
-            text += `    <tr><td>Maturity Phase</td>    <td>p</td> <td>${StdVerPhase[decoding.p]}</td></tr>\n`
-            text += `    <tr><td>Phase Revision</td>    <td>R</td> <td>${decoding.R}</td></tr>\n`
+        else if (options.format === "table" && options.markup === "html") {
+            text = "<table class=\"stdver\" style=\"text-align: left;\">\n"
+            text += "    <tr><th class=\"part\">Part</th><th class=\"id\">Id</th><th class=\"value\">Value</th></tr>\n"
+            text += `    <tr class="M"><td class="part">Major Version</td><td class="id">M</td><td class="value">${decoding.M}</td></tr>\n`
+            text += `    <tr class="N"><td class="part">Minor Version</td><td class="id">N</td><td class="value">${decoding.N}</td></tr>\n`
+            text += `    <tr class="p"><td class="part">Maturity Phase</td><td class="id">p</td><td class="value">${StdVerPhase[decoding.p]}</td></tr>\n`
+            text += `    <tr class="R"><td class="part">Phase Revision</td><td class="id">R</td><td class="value">${decoding.R}</td></tr>\n`
             if (decoding.D)
-                text += `    <tr><td>Snapshot Date</td>     <td>D</td> <td>${decoding.D}</td></tr>\n`
+                text += `    <tr class="D"><td class="part">Snapshot Date</td><td class="id">D</td><td class="value">${decoding.D}</td></tr>\n`
             if (decoding.H)
-                text += `    <tr><td>Source Hash</td>       <td>H</td> <td>${decoding.H}</td></tr>\n`
+                text += `    <tr class="H"><td class="part">Source Hash</td><td class="id">H</td><td class="value">${decoding.H}</td></tr>\n`
             if (decoding.S)
-                text += `    <tr><td>Availability Scope</td><td>S</td> <td>${StdVerScope[decoding.S]}</td></tr>\n`
+                text += `    <tr class="S"><td class="part">Availability Scope</td><td class="id">S</td><td class="value">${StdVerScope[decoding.S]}</td></tr>\n`
             text += "</table>\n"
         }
-        else if (format === "obj-json") {
+        else if (options.format === "json") {
             text += "{"
             text += ` "M": ${decoding.M},`
             text += ` "N": ${decoding.N},`
@@ -248,7 +279,7 @@ export default class StdVerAPI {
             text = text.replace(/,$/, "")
             text += " }\n"
         }
-        else if (format === "obj-yaml") {
+        else if (options.format === "yaml") {
             text += `M: ${decoding.M}\n`
             text += `N: ${decoding.N}\n`
             text += `p: ${StdVerPhase[decoding.p]}\n`
@@ -261,7 +292,7 @@ export default class StdVerAPI {
                 text += `S: ${StdVerScope[decoding.S]}\n`
         }
         else
-            throw new Error("invalid format")
+            throw new Error("invalid format/markup combination")
         return text
     }
 }
