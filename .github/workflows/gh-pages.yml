@@ -27,7 +27,7 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v3
             -   name: Build Package
-                working-directory: web
+                working-directory: pkg
                 run: npm install && npm start build
             -   name: Build Website
                 working-directory: web
