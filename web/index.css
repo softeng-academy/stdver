@@ -234,3 +234,37 @@ pre {
     }
 }
 
+table.stdver {
+    padding: 0px 8px 0px 8px;
+    border-collapse: collapse;
+}
+table.stdver th,
+table.stdver td {
+    margin: 0;
+    padding: 0 8px 0 8px;
+}
+table.stdver th.part,
+table.stdver td.part {
+    padding: 0 8px 0 0;
+}
+table.stdver .part {
+    color: #000000;
+    font-weight: normal;
+}
+table.stdver .id {
+    color: #000000;
+    font-weight: normal;
+}
+table.stdver .value {
+    color: #907040;
+    font-weight: 600;
+}
+table.stdver th {
+    color: #000000 !important;
+    font-weight: 200 !important;
+}
+.decoded .part {
+    color: #907040;
+    font-weight: 600;
+}
+

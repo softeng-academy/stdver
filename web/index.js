@@ -45,53 +45,23 @@ Vue.createApp({
                 decoded: {},
                 error: ""
             }
-            const m = version.match(/^(\d+)\.(\d+)(a|b|rc|\.)(\d+)(?:\.(\d{8}))?(?:\+([\dA-F]{4}))?(?:-([XLEG]A))?$/)
-            if (m === null) {
-                decoder.error = "invalid stdver representation"
-                return decoder
+            const api = new StdVer()
+            try {
+                decoder.decoded = api.decode(version)
             }
-            else {
-                decoder.decoded.M = m[1]
-                decoder.decoded.N = m[2]
-                decoder.decoded.p = m[3]
-                decoder.decoded.R = m[4]
-                decoder.decoded.D = m[5]
-                decoder.decoded.H = m[6]
-                decoder.decoded.S = m[7]
+            catch (ex) {
+                decoder.decoded = {}
+                decoder.error = ex.toString()
+                return decoder
             }
             return decoder
         },
-        explain (input) {
+        explain (input, format = "text", markup = "none") {
             if (!input)
                 return ""
-            const decoder = this.decode(input)
-            const version = decoder.decoded
-            let text = `Version ${version.M}.${version.N}'s`
-            if (version.R === "0")
-                text += " initial"
-            else {
-                let R = parseInt(version.R)
-                text += ` ${R}`
-                if      (R === 1)  text += "st"
-                else if (R === 2)  text += "nd"
-                else if (R === 3)  text += "rd"
-                else               text += "th"
-            }
-            text += " "
-            if      (version.p === "a")  text += "alpha release"
-            else if (version.p === "b")  text += "beta release"
-            else if (version.p === "rc") text += "release candidate"
-            else                         text += "release"
-            if (version.D) text += `, made on ${version.D.replace(/^(....)(..)(..)$/, "$1.$2.$3")}`
-            if (version.H) text += `, from source state 0x${version.H}`
-            if (version.S) {
-                if      (version.S === "XA") text += `, intended for no availability`
-                else if (version.S === "LA") text += `, intended for limited availability`
-                else if (version.S === "EA") text += `, intended for early availability`
-                else if (version.S === "GA") text += `, intended for general availability`
-            }
-            text += "."
-            return text
+            const api = new StdVer()
+            const out = api.explain(input, { format, markup })
+            return out
         }
     }
 }).mount("body")

@@ -19,6 +19,7 @@
     "bugs":                        "https://github.com/softeng-academy/stdver/issues",
     "dependencies": {
         "vue":                     "3.3.4",
-        "typopro-web":             "4.2.6"
+        "typopro-web":             "4.2.6",
+        "stdver":                  "../pkg"
     }
 }

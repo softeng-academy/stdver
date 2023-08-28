@@ -26,16 +26,19 @@ jobs:
         steps:
             -   name: Checkout
                 uses: actions/checkout@v3
-            -   name: Build
+            -   name: Build Package
+                working-directory: web
+                run: npm install --omit=dev && npm start build
+            -   name: Build Website
                 working-directory: web
                 run: npm install --omit=dev
-            -   name: Setup Pages
+            -   name: Setup Github Pages
                 uses: actions/configure-pages@v3
-            -   name: Upload artifact
+            -   name: Upload Github Pages
                 uses: actions/upload-pages-artifact@v2
                 with:
                     path: "web"
-            -   name: Deploy to GitHub Pages
+            -   name: Deploy GitHub Pages
                 id:   deployment
                 uses: actions/deploy-pages@v2
 

@@ -14,6 +14,7 @@
         <link type="text/css" rel="stylesheet" href="node_modules/typopro-web/web/TypoPRO-SourceSansPro/TypoPRO-SourceSansPro.css">
         <link type="text/css" rel="stylesheet" href="node_modules/typopro-web/web/TypoPRO-SourceCodePro/TypoPRO-SourceCodePro.css">
         <script type="text/javascript" src="node_modules/vue/dist/vue.global.prod.js"></script>
+        <script type="text/javascript" src="node_modules/stdver/dst/stdver-api.browser.js"></script>
 
         <link type="text/css" rel="stylesheet" href="index.css">
         <style type="text/css" src="index.css"></style>
@@ -318,25 +319,15 @@ console.log(text)</pre>
                     <div class="subsubtitle">Error</div>
                     <div>{{ decoder.error }}</div>
                 </div>
-                <div class="error" v-if="decoder.error === ''">
+                <div v-if="decoder.error === ''">
                     <p/>
-                    <div class="subsubtitle">Explanation</div>
-                    <div>
-                        <b>{{ explain(decoder.encoded) }}</b>
-                    </div>
+                    <div class="subsubtitle">Decoded (text)</div>
+                    <div class="decoded" v-html="explain(decoder.encoded, 'text', 'html')"></div>
                 </div>
-                <div class="error" v-if="decoder.error === ''">
+                <div v-if="decoder.error === ''">
                     <p/>
-                    <div class="subsubtitle">Decoded</div>
-                    <table>
-                        <tr><td>Major Version (M):</td><td><tt>{{ decoder.decoded.M }}</tt></td></tr>
-                        <tr><td>Minor Version (N):</td><td><tt>{{ decoder.decoded.N }}</tt></td></tr>
-                        <tr><td>Maturity Phase (p):</td><td><tt>{{ decoder.decoded.p }}</tt></td></tr>
-                        <tr><td>Revision (R):</td><td><tt>{{ decoder.decoded.R }}</tt></td></tr>
-                        <tr><td>Snapshot Date (D):</td><td><tt>{{ decoder.decoded.D ?? "(none)" }}</tt></td></tr>
-                        <tr><td>Source Hash (H):</td><td><tt>{{ decoder.decoded.H ?? "(none)" }}</tt></td></tr>
-                        <tr><td>Availability Scope (S):</td><td><tt>{{ decoder.decoded.S ?? "(none)" }}</tt></td></tr>
-                    </table>
+                    <div class="subsubtitle">Decoded (table)</div>
+                    <div v-html="explain(decoder.encoded, 'table', 'html')"></div>
                 </div>
             </div>
             <div class="content" v-show="page === 'alternatives'">
