@@ -268,3 +268,21 @@ table.stdver th {
     font-weight: 600;
 }
 
+input.encoded {
+    display: block;
+    background-color: #40404010;
+    border: 1px solid #40404060;
+    border-radius: 4px;
+    padding: 2px 8px 2px 8px;
+    width: 600px;
+    font-size: 24pt;
+    font-family: "TypoPRO Source Code Pro", monospace;
+    letter-spacing: -0.7px;
+    outline: none;
+}
+input.encoded.error {
+    border: 1px solid #cc3333;
+    background-color: #cc333310;
+    color: #cc3333;
+}
+

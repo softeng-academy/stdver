@@ -9,11 +9,14 @@ Vue.createApp({
     data () {
         return {
             page: "scheme",
-            decoder: {
-                encoded: "",
-                decoded: {},
-                error: ""
-            }
+            version: "",
+            decoded: {},
+            error: ""
+        }
+    },
+    watch: {
+        decoder (val) {
+            console.log("WATCH", val)
         }
     },
     mounted () {
@@ -26,7 +29,7 @@ Vue.createApp({
                 this.page = page
             else {
                 this.page = "decoder"
-                this.decoder = this.decode(page)
+                this.hashImport(page)
             }
         }
         window.addEventListener("hashchange", () => {
@@ -39,29 +42,33 @@ Vue.createApp({
             this.page = page
             window.location.hash = page === "scheme" ? "" : `#${page}`
         },
-        decode (version) {
-            const decoder = {
-                encoded: version,
-                decoded: {},
-                error: ""
-            }
+        hashImport (version) {
+            this.version = version
             const api = new StdVer()
             try {
-                decoder.decoded = api.decode(version)
+                this.decoded = api.decode(this.version)
+                this.error   = ""
             }
             catch (ex) {
-                decoder.decoded = {}
-                decoder.error = ex.toString()
-                return decoder
+                this.decoded = {}
+                this.error   = ex.toString()
             }
-            return decoder
+        },
+        hashExport (el) {
+            if (this.version !== "")
+                window.location.hash = `#${this.version}`
         },
         explain (input, format = "text", markup = "none") {
             if (!input)
                 return ""
             const api = new StdVer()
-            const out = api.explain(input, { format, markup })
-            return out
+            try {
+                const out = api.explain(input, { format, markup })
+                return out
+            }
+            catch (ex) {
+                return `ERROR: ${ex.toString()}`
+            }
         }
     }
 }).mount("body")

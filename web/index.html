@@ -308,26 +308,30 @@ console.log(text)</pre>
 
             </div>
             <div class="content" v-show="page === 'decoder'">
-                <div class="subtitle">Standard Versioning Matching &amp; Decoder</div>
+                <div class="subtitle">Standard Versioning Decoder</div>
 
                 <div class="encoded">
                     <div class="subsubtitle">Encoded</div>
-                    <tt>{{ decoder.encoded }}</tt>
+                    <input class="encoded" name="encoded"
+                        v-bind:class="{ error: error !== '' }"
+                        v-on:keyup="hashExport"
+                        v-model="version"
+                    />
                 </div>
-                <div class="error" v-if="decoder.error !== ''">
+                <div class="error" v-if="error !== ''">
                     <p/>
                     <div class="subsubtitle">Error</div>
-                    <div>{{ decoder.error }}</div>
+                    <div>{{ error }}</div>
                 </div>
-                <div v-if="decoder.error === ''">
+                <div v-if="error === ''">
                     <p/>
                     <div class="subsubtitle">Decoded (text)</div>
-                    <div class="decoded" v-html="explain(decoder.encoded, 'text', 'html')"></div>
+                    <div class="decoded" v-html="explain(version, 'text', 'html')"></div>
                 </div>
-                <div v-if="decoder.error === ''">
+                <div v-if="error === ''">
                     <p/>
                     <div class="subsubtitle">Decoded (table)</div>
-                    <div v-html="explain(decoder.encoded, 'table', 'html')"></div>
+                    <div v-html="explain(version, 'table', 'html')"></div>
                 </div>
             </div>
             <div class="content" v-show="page === 'alternatives'">
