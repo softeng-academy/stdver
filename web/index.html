@@ -249,7 +249,7 @@
                 based on <i>Standard Versioning</i> <b>Level 0</b>,
                 where just release versions are used:
 
-                <ul>
+                <ul class="compact">
                     <li><tt>1.1.4</tt>: {{ explain("1.1.4") }}</li>
                     <li><tt>1.2.0</tt>: {{ explain("1.2.0") }}</li>
                     <li><tt>1.2.1</tt>: {{ explain("1.2.1") }}</li>
@@ -261,7 +261,7 @@
                 where also pre-release versions are used to support
                 development phases:
 
-                <ul>
+                <ul class="compact">
                     <li><tt>1.1.4</tt>: {{ explain("1.1.4") }}</li>
                     <li><tt>1.2a0</tt>: {{ explain("1.2a0") }}</li>
                     <li><tt>1.2a1</tt>: {{ explain("1.2a1") }}</li>
@@ -280,7 +280,7 @@
                 information are additionally used to especially also support
                 snapshots, developer round-trips and varying availability scopes:
 
-                <ul>
+                <ul class="compact">
                     <li><tt>1.1.4-GA</tt>: {{ explain("1.1.4-GA") }}</li>
                     <li><tt>1.2a0-LA</tt>: {{ explain("1.2a0-LA") }}</li>
                     <li><tt>1.2a0.20230821+42FA-XA</tt>: {{ explain("1.2a0.20230821+42FA-XA") }}</li>
@@ -334,7 +334,8 @@ $ stdver explain -f table 1.2.3.20230810+ABCD-XA</pre>
                 <pre>
 import StdVer from "stdver"
 const stdver = new StdVer()
-const text = stdver.explain("1.2.3.20230810+ABCD-XA", { format: "text", markup: "none" })
+const text = stdver.explain("1.2.3.20230810+ABCD-XA",
+    { format: "text", markup: "none" })
 console.log(text)</pre>
 
                 <div class="subsubtitle">Offline Decoder (Regular Expressions)</div>
