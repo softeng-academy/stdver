@@ -398,50 +398,51 @@ console.log(text)</pre>
                         when a certain class of change was done. The types of changes are
                         backward compatible bugfixes, backward compatible new functionality, and
                         backward incompatible changes. Hence, <a href="https://semver.org">Semantic Versioning</a>
-                        primary is compatibility-driven.
+                        primarily is compatibility-driven.
 
                         <p/>
                         <u>PRO:</u> One knows exactly what compatibility to expect from such a version number.
-                        Its base part of the versions also follows the widespread scheme of three numbers
-                        and this way meets the representation expectation of many people.
+                        Its base part of the versions also follows the widespread scheme of three positional numbers
+                        and this way meets the version identifier representation expectation of many people.
 
                         <p/>
                         <u>CON:</u> The compatibility-driven semantics are useful in practice, but when it comes
-                        to version numbers, the <i>intuition</i> of many people is primarily maurity-oriented and just
+                        to version identifiers, the <i>intuition</i> of many people is primarily maturity-oriented and just
                         secondarily compatibility-driven. Also, the maturity phase (pre-release) information
                         is just attached instead of fully integrated and hence confusing for some edge cases.
-                        For instance, <tt>1.2.3-alpha.4</tt> would denoate the 4th alpha of version 1.2.3, but
+                        For instance, <tt>1.2.3-alpha.4</tt> would denote the 4th alpha of version 1.2.3, but
                         as the 3 of 1.2.3 in <a href="https://semver.org">Semantic Versioning</a> is a strict
                         patchlevel for fully compatible bugfixes, why should an alpha version exists for such
-                        a situation anyway?
+                        a situation anyway?!
                     </li>
                     <li>
                         <b>Calendrical Versioning</b>
 
                         <p/>
                         Calendrical version identifiers like <tt>2023.08</tt> are a versioning scheme,
-                        usually based on year and month information and in ISO-notation.
+                        which usually is based on year and month information and in represented in sort-supporting
+                        ISO date notation.
 
                         <p/>
                         <u>PRO:</u> Calendrical version identifiers combine the intuition of traditional
-                        double-digit based versions with the release point in time.
+                        double-number based versions with the release point in time.
 
                         <p/>
-                        <u>CON:</u> Because of the maximum of a month resolution, they fit primarily large products
-                        with long release-cycles only, and especially do not work for small release-cycles.
+                        <u>CON:</u> Because of the maximum of a month resolution, they fit primarily to large solutions
+                        with long release-cycles only, and especially do not work well for solutions with small release-cycles.
                     </li>
                     <li>
-                        <b>Marketing Versioning</b>
+                        <b>Codename Versioning</b>
 
                         <p/>
                         Marketing version identifiers like (Windows) <tt>Vista</tt>, (macOS) <tt>Ventura</tt>
                         or (Debian GNU/Linux) <tt>Bookworm</tt>
-                        are based on code-names, usually derived from non-reserved/non-registerable
+                        are based on codenames, usually derived from non-reserved/non-registerable
                         names of places, people, etc.
 
                         <p/>
-                        <u>PRO:</u> Those version identifiers are nice in marketing products, as they
-                        can be easily pronounced and are catchy.
+                        <u>PRO:</u> Those version identifiers are nice for marketing solutions, as they
+                        can be easily pronounced and are rather catchy.
 
                         <p/>
                         <u>CON:</u> Those version identifiers carry no maturity and/or compatibility semantics at all
