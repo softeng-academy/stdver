@@ -321,8 +321,8 @@
 
                 <p/>
                 <pre>
-$ stdver explain -t text  1.2.3.20230810+ABCD-XA
-$ stdver explain -t table 1.2.3.20230810+ABCD-XA</pre>
+$ stdver explain -f text  1.2.3.20230810+ABCD-XA
+$ stdver explain -f table 1.2.3.20230810+ABCD-XA</pre>
 
                 <div class="subsubtitle">Offline Decoder (StdVer API)</div>
 
@@ -334,7 +334,7 @@ $ stdver explain -t table 1.2.3.20230810+ABCD-XA</pre>
                 <pre>
 import StdVer from "stdver"
 const stdver = new StdVer()
-const text = stdver.explain("1.2.3.20230810+ABCD-XA", "text")
+const text = stdver.explain("1.2.3.20230810+ABCD-XA", { format: "text", markup: "none" })
 console.log(text)</pre>
 
                 <div class="subsubtitle">Offline Decoder (Regular Expressions)</div>
