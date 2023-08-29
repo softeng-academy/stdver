@@ -202,11 +202,11 @@ export default class StdVerAPI {
             if (decoding.H)
                 text += `, from source state <span class="part part-H">0x${decoding.H}</span>`
             if (decoding.S) {
-                text += ", intended for "
-                if      (decoding.S === StdVerScope.XA) text += "<span class=\"part part-S\">No Availability</span>"
-                else if (decoding.S === StdVerScope.LA) text += "<span class=\"part part-S\">Limited Availability</span>"
-                else if (decoding.S === StdVerScope.EA) text += "<span class=\"part part-S\">Early Availability</span>"
-                else if (decoding.S === StdVerScope.GA) text += "<span class=\"part part-S\">General Availability</span>"
+                text += ", released for "
+                if      (decoding.S === StdVerScope.XA) text += "<span class=\"part part-S\">no availability</span>"
+                else if (decoding.S === StdVerScope.LA) text += "<span class=\"part part-S\">limited availability</span>"
+                else if (decoding.S === StdVerScope.EA) text += "<span class=\"part part-S\">early availability</span>"
+                else if (decoding.S === StdVerScope.GA) text += "<span class=\"part part-S\">general availability</span>"
                 text += " scope"
             }
             text += ".\n"
@@ -225,10 +225,10 @@ export default class StdVerAPI {
                 text += `, from source state ${chalk.blue("0x" + decoding.H)}`
             if (decoding.S) {
                 text += ", intended for "
-                if      (decoding.S === StdVerScope.XA) text += chalk.blue("No Availability")
-                else if (decoding.S === StdVerScope.LA) text += chalk.blue("Limited Availability")
-                else if (decoding.S === StdVerScope.EA) text += chalk.blue("Early Availability")
-                else if (decoding.S === StdVerScope.GA) text += chalk.blue("General Availability")
+                if      (decoding.S === StdVerScope.XA) text += chalk.blue("no availability")
+                else if (decoding.S === StdVerScope.LA) text += chalk.blue("limited availability")
+                else if (decoding.S === StdVerScope.EA) text += chalk.blue("early availability")
+                else if (decoding.S === StdVerScope.GA) text += chalk.blue("general availability")
                 text += " scope"
             }
             text += ".\n"
@@ -248,14 +248,14 @@ export default class StdVerAPI {
             })
             table.push([ "Major Version",      "M", chalk.red(decoding.M) ])
             table.push([ "Minor Version",      "N", chalk.red(decoding.N) ])
-            table.push([ "Maturity Phase",     "p", chalk.red(StdVerPhase[decoding.p]) ])
-            table.push([ "Phase Revision",     "R", chalk.red(decoding.R) ])
+            table.push([ "Release Phase",      "p", chalk.red(StdVerPhase[decoding.p]) ])
+            table.push([ "Release Revision",   "R", chalk.red(decoding.R) ])
             if (decoding.D)
-                table.push([ "Snapshot Date",      "D", chalk.blue(decoding.D) ])
+                table.push([ "Snapshot Date",  "D", chalk.blue(decoding.D) ])
             if (decoding.H)
-                table.push([ "Source Hash",        "H", chalk.blue(decoding.H) ])
+                table.push([ "Source Hash",    "H", chalk.blue(decoding.H) ])
             if (decoding.S)
-                table.push([ "Availability Scope", "S", chalk.blue(StdVerScope[decoding.S]) ])
+                table.push([ "Release Scope",  "S", chalk.blue(StdVerScope[decoding.S]) ])
             text = table.toString()
             if (options.markup !== "ansi")
                 text = stripAnsi(text)
@@ -265,14 +265,14 @@ export default class StdVerAPI {
             text += "    <tr><th class=\"part\">Part</th><th class=\"id\">Id</th><th class=\"value\">Value</th></tr>\n"
             text += `    <tr class="M"><td class="part">Major Version</td><td class="id">M</td><td class="value">${decoding.M}</td></tr>\n`
             text += `    <tr class="N"><td class="part">Minor Version</td><td class="id">N</td><td class="value">${decoding.N}</td></tr>\n`
-            text += `    <tr class="p"><td class="part">Maturity Phase</td><td class="id">p</td><td class="value">${StdVerPhase[decoding.p]}</td></tr>\n`
-            text += `    <tr class="R"><td class="part">Phase Revision</td><td class="id">R</td><td class="value">${decoding.R}</td></tr>\n`
+            text += `    <tr class="p"><td class="part">Release Phase</td><td class="id">p</td><td class="value">${StdVerPhase[decoding.p]}</td></tr>\n`
+            text += `    <tr class="R"><td class="part">Release Revision</td><td class="id">R</td><td class="value">${decoding.R}</td></tr>\n`
             if (decoding.D)
                 text += `    <tr class="D"><td class="part">Snapshot Date</td><td class="id">D</td><td class="value">${decoding.D}</td></tr>\n`
             if (decoding.H)
                 text += `    <tr class="H"><td class="part">Source Hash</td><td class="id">H</td><td class="value">${decoding.H}</td></tr>\n`
             if (decoding.S)
-                text += `    <tr class="S"><td class="part">Availability Scope</td><td class="id">S</td><td class="value">${StdVerScope[decoding.S]}</td></tr>\n`
+                text += `    <tr class="S"><td class="part">Release Scope</td><td class="id">S</td><td class="value">${StdVerScope[decoding.S]}</td></tr>\n`
             text += "</table>\n"
         }
         else if (options.format === "json") {
