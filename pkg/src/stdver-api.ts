@@ -104,7 +104,6 @@ export default class StdVerAPI {
     bump (encoding: string, options = {} as { part?: string, level?: number }) {
         /*  provide option defaults  */
         options = { part: "R", level: 1, ...options }
-        console.log(options)
 
         /*  decode identifier  */
         const decoding = this.decode(encoding)
