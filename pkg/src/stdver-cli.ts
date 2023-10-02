@@ -84,7 +84,6 @@ class StdVerCLI {
             const [ k, v ] = kv.split("=")
             set[k] = v
         }
-        console.log(set)
         const versionNew = api.modify(version, { level: opts.level, bump: opts.bump, set: set })
         process.stdout.write(versionNew + "\n")
     }
