@@ -27,7 +27,7 @@ class StdVerCLI {
             .action((opts) => { this.help(opts) })
         this.program.command("version")
             .action((opts) => { this.version(opts) })
-        this.program.command("bump")
+        this.program.command("modify")
             .option("-l, --level <level>", "Standard Versioning scheme level", (v: string, p: number) => {
                 const l = parseInt(v, 10)
                 if (isNaN(l))
@@ -36,9 +36,10 @@ class StdVerCLI {
                     this.fatal(new Error("invalid option argument: out of range (expected 0..2)"))
                 return l
             }, 0)
-            .option("-p, --part <part>", "Standard Versioning identifier part to bump", "R")
+            .option("-b, --bump <part>", "Standard Versioning identifier part to bump", "R")
+            .option("-s, --set <key-val>", "Standard Versioning identifier part to set (after bumpings were done)", (v, l) => l.concat([ v ]), [] as string[])
             .argument("<version>", "Standard Versioning identifier to change")
-            .action((version, opts) => { try { this.bump(opts, version) } catch (ex) { this.fatal(ex) } })
+            .action((version, opts) => { try { this.modify(opts, version) } catch (ex) { this.fatal(ex) } })
         this.program.command("explain")
             .option("-f, --format <format>", "format ('text', 'table', 'json', 'yaml')", "table")
             .option("-m, --markup <markup>", "markup ('none', 'ansi', 'html')", process.stdout.isTTY ? "ansi" : "none")
@@ -61,7 +62,7 @@ class StdVerCLI {
         process.stdout.write("Examples:\n" +
             "$ stdver help\n" +
             "$ stdver version\n" +
-            "$ stdver bump -p N 1.2.3\n" +
+            "$ stdver modify -b N 1.2.3\n" +
             "$ stdver explain 1.2a3.20230801+ABCD-XA\n" +
             "$ stdver hash src/**/*.js '!src/**/*.bak'\n\n")
         process.exit(0)
@@ -76,9 +77,15 @@ class StdVerCLI {
         process.stdout.write(`Licensed under ${pkg.license} <http://spdx.org/licenses/${pkg.license}.html>\n`)
         process.exit(0)
     }
-    bump (opts: any, version: string) {
+    modify (opts: any, version: string) {
         const api = new StdVerAPI()
-        const versionNew = api.bump(version, { part: opts.part, level: opts.level })
+        const set = {} as { [ key: string ]: string }
+        for (const kv of opts.set) {
+            const [ k, v ] = kv.split("=")
+            set[k] = v
+        }
+        console.log(set)
+        const versionNew = api.modify(version, { level: opts.level, bump: opts.bump, set: set })
         process.stdout.write(versionNew + "\n")
     }
     explain (opts: any, version: string) {

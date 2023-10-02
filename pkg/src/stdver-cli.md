@@ -14,9 +14,10 @@
 `version`
 
 `stdver`
-`bump`
+`modify`
 \[`-l`|`--level` *level*\]
-\[`-p`|`--part` *part*\]
+\[`-b`|`--bump` *part*\]
+\[`-s`|`--set` *part*=*value*\]
 *version*
 
 `stdver`
@@ -51,12 +52,14 @@ The following commands are provided:
   Show version information.
 
 - `stdver`
-  `bump`
+  `modify`
   \[`-l`|`--level` *level*\]
-  \[`-p`|`--part` *part*\]
+  \[`-b`|`--bump` *part*\]
+  \[`-s`|`--set` *part*=*value*\]
   *version*:
-  Bump a *version* identifier *part* (default: `R`) under
-  the constraint of a certain *Standard Versioning* level (default: `0`)
+  Under the constraint of a certain *Standard Versioning* level (default: `0`),
+  bump a *version* identifier *part* (default: `R`) or
+  set a *version* identifier *part* to a fixed *value*.
 
 - `stdver`
   `explain`
@@ -79,7 +82,7 @@ The following commands are provided:
 ```
 $ stdver help
 $ stdver version
-$ stdver bump -p N 1.2.3
+$ stdver modify -b N 1.2.3
 $ stdver explain 1.2a3.20230801+ABCD-XA
 $ stdver hash src/**/*.js '!src/**/*.bak'
 ```

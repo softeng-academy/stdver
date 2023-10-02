@@ -34,11 +34,12 @@ export default class StdVerAPI {
     encode(
         decoding: StdVer
     ): string
-    bump(
+    modify(
         encoding: string,
         options?: {
-            part?:  string
-            level?: number
+            level?: number,
+            bump?:  string,
+            set?:   { [ key: string ]: string }
         }
     ): string;
     explain(

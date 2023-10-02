@@ -100,16 +100,16 @@ export default class StdVerAPI {
         return encoding
     }
 
-    /*  bump a Standard Versioning identifier part  */
-    bump (encoding: string, options = {} as { part?: string, level?: number }) {
+    /*  modify a Standard Versioning identifier part  */
+    modify (encoding: string, options = {} as { level?: number, bump?: string, set?: { [ part: string ]: string } }) {
         /*  provide option defaults  */
-        options = { part: "R", level: 1, ...options }
+        options = { level: 1, bump: "R", set: {} as { [ part: string ]: string }, ...options }
 
         /*  decode identifier  */
         const decoding = this.decode(encoding)
 
         /*  bump identifier part and update related parts implicitly  */
-        if (options.part === "M") {
+        if (options.bump === "M") {
             decoding.M++
             decoding.N = 0
             if (options.level === 0)
@@ -122,7 +122,7 @@ export default class StdVerAPI {
             if (decoding.H)
                 delete decoding.H
         }
-        else if (options.part === "N") {
+        else if (options.bump === "N") {
             decoding.N++
             if (options.level === 0)
                 decoding.p = StdVerPhase.release
@@ -134,7 +134,7 @@ export default class StdVerAPI {
             if (decoding.H)
                 delete decoding.H
         }
-        else if (options.part === "p") {
+        else if (options.bump === "p") {
             switch (decoding.p) {
                 case StdVerPhase.alpha:     decoding.p = StdVerPhase.beta;      break
                 case StdVerPhase.beta:      decoding.p = StdVerPhase.candidate; break
@@ -148,28 +148,62 @@ export default class StdVerAPI {
             if (decoding.H)
                 delete decoding.H
         }
-        else if (options.part === "R") {
+        else if (options.bump === "R") {
             decoding.R++
             if (decoding.D)
                 delete decoding.D
             if (decoding.H)
                 delete decoding.H
         }
-        else if (options.part === "D") {
+        else if (options.bump === "D") {
             decoding.D = parseInt(moment().format("YYYYMMDD"))
             if (decoding.H)
                 delete decoding.H
         }
-        else if (options.part === "H") {
+        else if (options.bump === "H") {
             delete decoding.H
         }
-        else if (options.part === "S") {
+        else if (options.bump === "S") {
             switch (decoding.S) {
                 case StdVerScope.XA: decoding.S = StdVerScope.LA; break
                 case StdVerScope.LA: decoding.S = StdVerScope.EA; break
                 case StdVerScope.EA: decoding.S = StdVerScope.GA; break
                 case StdVerScope.GA:
                     throw new Error("cannot bump Scope higher than 'GA'")
+            }
+        }
+
+        /*  set identifier part explicitly  */
+        if (options.set) {
+            for (const key of Object.keys(options.set)) {
+                const val = options.set[key]
+                if (key === "M")
+                    decoding.M = parseInt(val)
+                else if (key === "N")
+                    decoding.N = parseInt(val)
+                else if (key === "p") {
+                    if      (val === "a")  decoding.p = StdVerPhase.alpha
+                    else if (val === "b")  decoding.p = StdVerPhase.beta
+                    else if (val === "rc") decoding.p = StdVerPhase.candidate
+                    else if (val === ".")  decoding.p = StdVerPhase.candidate
+                    else
+                        throw new Error("invalid phase field value")
+                }
+                else if (key === "R")
+                    decoding.R = parseInt(val)
+                else if (key === "D")
+                    decoding.D = parseInt(val)
+                else if (key === "H")
+                    decoding.H = val
+                else if (key === "S")
+                    if      (val === "XA") decoding.S = StdVerScope.XA
+                    else if (val === "LA") decoding.S = StdVerScope.LA
+                    else if (val === "EA") decoding.S = StdVerScope.EA
+                    else if (val === "GA") decoding.S = StdVerScope.GA
+                    else
+                        throw new Error("invalid scope field value")
+                else
+                    throw new Error("invalid field name for set operation")
             }
         }
 
