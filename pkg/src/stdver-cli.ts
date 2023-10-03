@@ -36,7 +36,7 @@ class StdVerCLI {
                     this.fatal(new Error("invalid option argument: out of range (expected 0..2)"))
                 return l
             }, 0)
-            .option("-b, --bump <part>", "Standard Versioning identifier part to bump", "R")
+            .option("-b, --bump <part>", "Standard Versioning identifier part to bump", "")
             .option("-s, --set <key-val>", "Standard Versioning identifier part to set (after bumpings were done)", (v, l) => l.concat([ v ]), [] as string[])
             .argument("<version>", "Standard Versioning identifier to change")
             .action((version, opts) => { try { this.modify(opts, version) } catch (ex) { this.fatal(ex) } })

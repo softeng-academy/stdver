@@ -103,7 +103,7 @@ export default class StdVerAPI {
     /*  modify a Standard Versioning identifier part  */
     modify (encoding: string, options = {} as { level?: number, bump?: string, set?: { [ part: string ]: string } }) {
         /*  provide option defaults  */
-        options = { level: 1, bump: "R", set: {} as { [ part: string ]: string }, ...options }
+        options = { level: 1, bump: "", set: {} as { [ part: string ]: string }, ...options }
 
         /*  decode identifier  */
         const decoding = this.decode(encoding)
