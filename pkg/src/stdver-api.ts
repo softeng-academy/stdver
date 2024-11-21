@@ -50,10 +50,10 @@ export default class StdVerAPI {
             throw new Error("invalid Standard Versioning identifier")
         let p: StdVerPhase
         switch (m[3]) {
-            case "a": p = StdVerPhase.alpha;      break
-            case "b": p = StdVerPhase.beta;       break
+            case "a": p = StdVerPhase.alpha;       break
+            case "b": p = StdVerPhase.beta;        break
             case "rc": p = StdVerPhase.candidate;  break
-            default:  p = StdVerPhase.release;    break
+            default:  p = StdVerPhase.release;     break
         }
         let S: StdVerScope | undefined
         if (m[7]) {
