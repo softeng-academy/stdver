@@ -52,7 +52,7 @@ export default class StdVerAPI {
         switch (m[3]) {
             case "a": p = StdVerPhase.alpha;      break
             case "b": p = StdVerPhase.beta;       break
-            case "c": p = StdVerPhase.candidate;  break
+            case "rc": p = StdVerPhase.candidate;  break
             default:  p = StdVerPhase.release;    break
         }
         let S: StdVerScope | undefined
