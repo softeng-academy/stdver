@@ -64,9 +64,27 @@
             <div class="content" v-show="page === 'scheme'">
                 <div class="subtitle">Standard Versioning Scheme</div>
 
+                <div class="subsubtitle">Introduction</div>
+
+                The strict versioning of a software product is an
+                essential task in Software Engineering. It is achieved
+                by attaching version identifiers, which at least
+                have to be unique between releases of the software
+                product. Optimally, those version identifers are also
+                both based on a stringent syntactical notation and carry
+                semantic information to express the status quo, maturity
+                and availability of the software product.
+
+                <p/>
+                The
+                <i>Standard Versioning</i> (in short <i>stdver</i>) supports this essential task in
+                a concise, precise and expressive way. This is the formal
+                specification which can be referenced online via <a href="https://stdver.org">stdver.org</a>
+
                 <div class="subsubtitle">Scheme</div>
 
-                The <i>Standard Versioning</i> is a maturity-oriented versioning scheme, defined by the following version identifier scheme:
+                The <i>Standard Versioning</i> is a maturity-oriented versioning scheme,
+                defined by the following version identifier scheme:
 
                 <div class="scheme">
                     <span class="var">M</span><tt>.</tt><span class="var">N</span><span class="var">p</span><span class="var">R</span>
@@ -74,6 +92,10 @@
                     <span class="pa">[</span><tt>+</tt><span class="var">H</span><span class="pa">]</span>
                     <span class="pa">[</span><tt>-</tt><span class="var">S</span><span class="pa">]</span>
                 </div>
+
+                The parts in parenthesis are optional. The dot, plus and minus segments are fixed characters,
+                all other segments are placeholding variables. Examples of version identifiers following
+                this scheme are both the simple <tt>1.2.3</tt> and the full-blown <tt>1.2a4.20230821+42FA-XA</tt>.
 
                 <div class="subsubtitle">Level</div>
 
