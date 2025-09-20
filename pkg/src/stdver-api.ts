@@ -341,7 +341,7 @@ export default class StdVerAPI {
     }
 
     /*  calculate hash values of a buffer  */
-    async hash (buf: Buffer | ArrayBuffer) {
+    async hash (buf: Buffer<ArrayBuffer> | ArrayBuffer) {
         /*  calculate 256-bit SHA digest  */
         const hashBuf = await crypto.subtle.digest("SHA-256", buf)
 

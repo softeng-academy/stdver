@@ -73,7 +73,7 @@ class StdVerCLI {
         const pkg = JSON.parse(pkgJSON)
         process.stdout.write(chalk.blue.bold(`${pkg.name} ${pkg.version}`) + ` (node ${process.versions.node})\n`)
         process.stdout.write(chalk.blue(`${pkg.description}\n`))
-        process.stdout.write(`Copyright (c) 2023 ${pkg.author.name} <${pkg.author.url}>\n`)
+        process.stdout.write(`Copyright (c) 2023-2025 ${pkg.author.name} <${pkg.author.url}>\n`)
         process.stdout.write(`Licensed under ${pkg.license} <http://spdx.org/licenses/${pkg.license}.html>\n`)
         process.exit(0)
     }
@@ -84,7 +84,7 @@ class StdVerCLI {
             const [ k, v ] = kv.split("=")
             set[k] = v
         }
-        const versionNew = api.modify(version, { level: opts.level, bump: opts.bump, set: set })
+        const versionNew = api.modify(version, { level: opts.level, bump: opts.bump, set })
         process.stdout.write(versionNew + "\n")
     }
     explain (opts: any, version: string) {
@@ -100,7 +100,7 @@ class StdVerCLI {
         if (opts.type === "string") {
             /*  just concatenate all source strings into a buffer  */
             const encoder = new TextEncoder()
-            content = encoder.encode(sources.join(""))
+            content = Buffer.from(encoder.encode(sources.join("")))
         }
         else if (opts.type === "path") {
             /*  find all files  */
