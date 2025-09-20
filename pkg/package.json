@@ -24,36 +24,14 @@
     "bin":                                  { "stdver": "dst/stdver-cli.js" },
     "man":                                  [ "dst/stdver.1", "dst/stdver.3" ],
     "dependencies": {
-<<<<<<< HEAD
         "commander":                        "14.0.1",
         "chalk":                            "5.6.2",
         "strip-ansi":                       "7.1.2",
         "moment":                           "2.30.1",
-        "json-asty":                        "1.2.3",
         "cli-table3":                       "0.6.5",
         "globby":                           "14.1.0",
         "tiny-webcrypto":                   "1.0.3",
         "@types/node":                      "24.5.2"
-||||||| parent of 5f97e9b (remove unused module)
-        "commander":                        "11.0.0",
-        "chalk":                            "5.3.0",
-        "strip-ansi":                       "7.1.0",
-        "moment":                           "2.29.4",
-        "json-asty":                        "1.0.6",
-        "cli-table3":                       "0.6.3",
-        "globby":                           "13.2.2",
-        "tiny-webcrypto":                   "1.0.1",
-        "@types/node":                      "20.8.1"
-=======
-        "commander":                        "11.0.0",
-        "chalk":                            "5.3.0",
-        "strip-ansi":                       "7.1.0",
-        "moment":                           "2.29.4",
-        "cli-table3":                       "0.6.3",
-        "globby":                           "13.2.2",
-        "tiny-webcrypto":                   "1.0.1",
-        "@types/node":                      "20.8.1"
->>>>>>> 5f97e9b (remove unused module)
     },
     "devDependencies": {
         "typescript":                       "5.9.2",
