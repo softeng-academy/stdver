@@ -16,7 +16,7 @@ scripts:
     lint-watch:             nodemon --exec "npm start lint" --watch src --ext js,ts
     lint:                   npm start lint-tsc lint-eslint
     lint-tsc:               tsc --project etc/tsc.json --noEmit
-    lint-eslint:            eslint --config etc/eslint.yaml --ext ts src/**/*.ts
+    lint-eslint:            eslint --config etc/eslint.mjs --ext ts src/**/*.ts
 
     #   code compilation/transpiling (building)
     build-watch:            nodemon --exec "npm start build" --watch src --ext js,ts
