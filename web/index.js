@@ -1,7 +1,7 @@
 /*
 **  StdVer ~ Standard Versioning
-**  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
-**  Copyright (c) 2008-2023 Dr. Ralf S. Engelschall
+**  Copyright (c) 2023-2025 SEA Software Engineering Academy gGmbH
+**  Copyright (c) 2008-2025 Dr. Ralf S. Engelschall
 **  Licensed under Creative Commons Attribution 4.0 <https://spdx.org/licenses/CC-BY-4.0.html>
 */
 
