@@ -45,7 +45,7 @@
         "eslint-plugin-node":               "11.1.0",
 
         "stmux":                            "1.8.11",
-        "nps":                              "5.10.0",
+        "@rse/stx":                         "1.1.4",
         "cross-env":                        "10.1.0",
         "nodemon":                          "3.1.14",
         "vite":                             "8.0.8",
@@ -58,6 +58,6 @@
         "node":                             ">=20.0.0"
     },
     "scripts": {
-        "start":                            "nps -c etc/nps.yaml"
+        "start":                            "stx -v4 -l warning -c etc/stx.conf"
     }
 }
