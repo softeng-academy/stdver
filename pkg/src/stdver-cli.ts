@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /*!
 **  StdVer ~ Standard Versioning
-**  Copyright (c) 2023 SEA Software Engineering Academy gGmbH
-**  Copyright (c) 2008-2023 Dr. Ralf S. Engelschall
+**  Copyright (c) 2023-2026 SEA Software Engineering Academy gGmbH
+**  Copyright (c) 2008-2026 Dr. Ralf S. Engelschall
 **  Licensed under MIT license <https://spdx.org/licenses/MIT.html>
 */
 
@@ -73,7 +73,7 @@ class StdVerCLI {
         const pkg = JSON.parse(pkgJSON)
         process.stdout.write(chalk.blue.bold(`${pkg.name} ${pkg.version}`) + ` (node ${process.versions.node})\n`)
         process.stdout.write(chalk.blue(`${pkg.description}\n`))
-        process.stdout.write(`Copyright (c) 2023-2025 ${pkg.author.name} <${pkg.author.url}>\n`)
+        process.stdout.write(`Copyright (c) 2023-2026 ${pkg.author.name} <${pkg.author.url}>\n`)
         process.stdout.write(`Licensed under ${pkg.license} <http://spdx.org/licenses/${pkg.license}.html>\n`)
         process.exit(0)
     }
