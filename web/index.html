@@ -480,6 +480,23 @@ console.log(text)</pre>
                 <u>CON:</u> Those version identifiers carry no maturity and/or compatibility semantics at all
                 and hence in practice always have to be combined with underlying technical version identifiers.
 
+                <p/>
+                <div class="subsubtitle">Pace Versioning</div>
+
+                <p/>
+                <a href="https://pacever.org/">Pace Versioning</a> "is a versioning scheme for user-facing apps that
+                reach people through two channels at two speeds: a slow, gated native build that goes through an app
+                store, and a fast, independent over-the-air (OTA) update that lands on an already-installed build.
+                The version number tells you which channel a release came down: its pace, not its size."
+                It uses version identifiers like <tt>2023.3.4</tt>, based on a "Marketing", "Native" and
+                "Over-The-Air (OTA)" position notation.
+
+                <p/>
+                <u>PRO:</u> It fits dual-delivery-channel products like mobile apps.
+
+                <p/>
+                <u>CON:</u> Does not fit single-delivery-channel products and has no expression of compatibility.
+
             </div>
             <div class="content" v-show="page === 'about'">
                 <div class="subtitle">About Standard Versioning</div>
