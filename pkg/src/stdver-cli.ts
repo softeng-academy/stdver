@@ -112,13 +112,11 @@ class StdVerCLI {
 
             /*  read and concatenate (in sorted order) all the contents into a buffer  */
             files = files.sort()
-            let promises = [] as Promise<Buffer>[]
+            const promises = [] as Promise<Buffer>[]
             for (const file of files)
                 promises.push(fs.promises.readFile(file, { encoding: null }))
-            let contents = await Promise.all(promises)
+            const contents = await Promise.all(promises)
             content = Buffer.concat(contents)
-            contents = []
-            promises = []
         }
         else
             throw new Error("invalid type")
