@@ -172,6 +172,8 @@ export default class StdVerAPI {
                     throw new Error("cannot bump Scope higher than 'GA'")
             }
         }
+        else if (options.bump !== "")
+            throw new Error("invalid field name for bump operation")
 
         /*  set identifier part explicitly  */
         if (options.set) {
