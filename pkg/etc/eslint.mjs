@@ -5,36 +5,32 @@
 **  Licensed under MIT license <https://spdx.org/licenses/MIT.html>
 */
 
-import pluginJs      from "@eslint/js"
-import pluginStd     from "neostandard"
-import pluginN       from "eslint-plugin-n"
-import pluginImport  from "eslint-plugin-import"
-import pluginPromise from "eslint-plugin-promise"
-import pluginTS      from "typescript-eslint"
-import globals       from "globals"
-import parserTS      from "@typescript-eslint/parser"
+import pluginJs        from "@eslint/js"
+import * as pluginStd  from "neostandard"
+import pluginPromise   from "eslint-plugin-promise"
+import pluginTS        from "typescript-eslint"
+import globals         from "globals"
+import parserTS        from "@typescript-eslint/parser"
 
 export default [
+    { ignores: [ "etc/eslint.mjs", "dst" ] },
     pluginJs.configs.recommended,
     ...pluginTS.configs.strict,
     ...pluginTS.configs.stylistic,
-    ...pluginStd({
+    ...pluginStd.neostandard({
+        ts:      true,
         ignores: pluginStd.resolveIgnoresFromGitignore()
     }),
     {
         plugins: {
-            "n":       pluginN,
-            "import":  pluginImport,
             "promise": pluginPromise
         },
-        files:   [ "**/*.ts" ],
-        ignores: [ "dst/" ],
+        files: [ "**/*.ts" ],
         languageOptions: {
             ecmaVersion: 2024,
             sourceType:  "module",
             parser: parserTS,
             parserOptions: {
-                extraFileExtensions: [],
                 ecmaFeatures: {
                     jsx: false
                 }
